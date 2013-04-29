@@ -17,6 +17,5 @@ function disconnect()
 }
 */
 
-hello world
 
 ?>
