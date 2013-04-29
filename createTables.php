@@ -17,6 +17,6 @@ function disconnect()
 }
 */
 
-My name is Lance
+echo "My name is Lance";
 
 ?>
