@@ -19,4 +19,7 @@ function disconnect()
 
 echo "My name is Lance";
 
+$sucker = "Shut up";
+
+echo $sucker;
 ?>
