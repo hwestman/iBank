@@ -4,7 +4,7 @@
 <head>
     <title>iBank</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="/iBank/style.css" />
+    <link rel="stylesheet" type="text/css" href="/iBank/css/style.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
      
     
@@ -24,7 +24,7 @@
 		<input name="submit" type="submit" value="Submit" disabled="disabled"/>
             </form>
             
-           <script type="text/javascript" src="/iBank/onload.js"></script>
+           <script type="text/javascript" src="/iBank/js/onload.js"></script>
             
         </body>
 </html>
