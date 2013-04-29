@@ -22,4 +22,5 @@ echo "My name is Lance";
 $sucker = "Shut up";
 
 echo $sucker;
+
 ?>
