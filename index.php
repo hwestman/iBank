@@ -1,3 +1,10 @@
+<?php
+    $i = "hallvard";
+    $j = 4;
+    $k = 6;
+    $l = $k+$j;
+
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
