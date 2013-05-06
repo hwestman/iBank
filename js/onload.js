@@ -113,4 +113,9 @@ $(document).ready(function(){
     $("input[name=password]").keyup(function() {
         validatePassword();
     });
+    
+    
+    $("#content").click(function(){
+    	$(this).html('')
+    })
 });
