@@ -6,10 +6,11 @@
 <html dir="ltr" lang="en-US">
 
 	<head>
-	    <title>iBank</title>
+	    <title>View account - iBank</title>
 	    <meta charset="UTF-8"/>
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
 	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+	    <link rel="stylesheet" type="text/css" href="css/button.css" />
 	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 	    <script src="js/onload.js" type="text/javascript"></script>
 	</head>
@@ -17,23 +18,37 @@
 	<div id="container">
 		<?php include "include/header.php"; ?>
 		<div id="content">
-			<form name="update" method="post" action="#"
-			<div class="update-details">
-				<table>
-					<tr><td>Full name:</td><td><input name="fName" id="fName" type="text" maxlength="50" size="50"/></td></tr>
-					<tr><td>Address:</td><td><input name="address" id="address" type="text" maxlength="200" size="50"/></td></tr>
-					<tr><td>Post code:</td><td><input name="postcode" id="postcode" type="tel" maxlength="4" size="10" /></td></tr>
-					<tr><td>Contact number:</td><td><input name="telephone" id="telephone" type="tel" maxlength="10" size="20"/></td></tr>
-					<tr><td><hr></td><td><hr></td></tr>
-					<tr><td>Current password:</td><td><input name="password" id="password" type="password" maxlength="50" size="50"/></td></tr>
-				</table>
-			</div><!-- CLOSE UPDATE DETAILS -->
-			<div class="update-password">
-				<table>
-					<tr><td>New password:</td><td><input name="newPassword" id="newPassword" type="password" maxlength="50" size="50" required placeholder="leave blank if no change"/></td></tr>
-					<tr><td>Confirm new password:</td><td><input name="confirmPassword" id="confirmPassword" type="password" size="50" maxlength="50" required placeholder="leave blank if no change"/><div class="caption"></div></td></tr>
-				</table>
-			</div><!--CLOSE UPDATE PASSWORD -->
+			<div id="content-main">
+				<div class="view-account">
+					<table>
+						<th width="10%">Date</th><th width="30%">Transaction</th><th width="30%">Amount</th><th width="30%">Balance</th>
+					 <?php
+					 	for($i = 0; $i < 15; $i++)
+					 	{
+					 		if($i %2)
+							{
+								?><tr><td>08/05/2013</td><td>123456</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
+							}
+							else
+							{
+								?><tr bgcolor="#CCC"><td>08/05/2013</td><td>123456</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
+							}
+					 	}
+					 ?>
+					 <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td></td><td bgcolor="grey" >Account total:</td><td bgcolor="grey" >$2,000,068.91</td></tr>
+					</table>
+				</div><!--CLOSE VIEW ACCOUNT -->
+			</div><!--CLOSE CONTENT MAIN-->
+			<div id="content-right">
+				<div class="interest-table">
+					<table>
+						<th width="70%">Accrued interest</th><th>Amount</th>
+						<tr><td>Interest to date:</td><td>$2.68</td></tr>
+						<tr bgcolor="#CCC"><td>Interest frequency:</td><td>Monthly</td></tr>
+						<tr><td>Interest rate p/a:</td><td>6.00%</td></tr>
+					</table>
+				</div><!--CLOSE INTEREST TABLE-->
+			</div><!--CLOSE CONTENT RIGHT-->
 		</div><!-- CLOSE CONTENT -->
 		<?php include "include/footer.php"; ?>
 	</div><!-- CLOSE CONTAINER -->
