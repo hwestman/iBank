@@ -1,0 +1,42 @@
+<?php
+
+	session_start();
+	
+	$savingsAmount = "6";
+	$chequeAmount = "0";
+	$creditAmount = "15.75";
+	$loanAmount = "6.15";
+
+?>
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+	<head>
+	    <title>Interest rates - iBank</title>
+	    <meta charset="UTF-8"/>
+	    <link rel="stylesheet" type="text/css" href="css/style.css" />
+	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+	    <link rel="stylesheet" type="text/css" href="css/button.css" />
+	    <!--
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	    <script src="js/onload.js" type="text/javascript"></script>
+-->
+	</head>
+
+	<div id="container">
+		<?php include "include/header.php"; ?>
+		<div id="content">
+			<div id="content-main">
+				<table>
+					<th width="35%">Account type</th><th width="35%">Interest rate per annum</th>
+					<tr bgcolor="#DDD"><td>Savings</td><td><?php echo $savingsAmount;?>%</td></tr>
+					<tr bgcolor="#CCC"><td>Cheque</td><td><?php echo $chequeAmount;?>%</td></tr>
+					<tr bgcolor="#DDD"><td>Credit</td><td><?php echo $creditAmount;?>%</td></tr>
+					<tr bgcolor="#CCC"><td>Loan</td><td><?php echo $loanAmount;?>%</td></tr>
+				</table>
+				<a href="update-interest-rate.php"><input type="submit" class="button" id="right" name="Update" value="Update"></a>
+			</div><!--CLOSE CONTENT MAIN-->
+		</div><!-- CLOSE CONTENT -->
+		<?php include "include/footer.php"; ?>
+	</div><!-- CLOSE CONTAINER -->
+</html>
