@@ -1,7 +1,7 @@
 /* 
     Document   : style.css
     Created on : Apr 15, 2013, 12:08:41 PM
-    Author     : hwestman
+    Author     : hwestman, lancensolomon
     Description:
         Purpose of the stylesheet follows.
 */
@@ -19,3 +19,212 @@ i{
     
 }
 
+/*//////////////////////// MAIN ///////////////////////////////////*/
+* {
+	padding: 0;
+	margin: 0;
+}
+
+html,
+body {
+	background:-webkit-linear-gradient(#666 0%, #ffffff 78.48%);
+	/* Safari 4-5, Chrome 1-9 */
+	background: -webkit-gradient(linear, 0% 0%, 0% 78.48%, from(#000), to(#fff));
+	/* Safari 5.1, Chrome 10+ */
+	background: -webkit-linear-gradient(top, #666, #fff);
+	/* Firefox 3.6+ */
+	background: -moz-linear-gradient(top, #666, #fff);
+	/* IE 10 */
+	background: -ms-linear-gradient(top, #666, #fff);
+	/* Opera 11.10+ */
+	background: -o-linear-gradient(top, #666, #fff);
+	max-width: 1024px;
+	min-height: 768px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#container {
+   min-height: 100%;
+   position: relative;
+}
+
+/*/////////////////////// HEADER /////////////////////////////////*/
+#header {
+	width: 95%;
+	height: 130px;
+	margin-left: auto;
+	margin-right: auto;	
+	background-color: #24408d;
+	margin-bottom: 30px
+}
+
+#header .logo {
+	width: 400px;
+	height: 115px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.logo img{
+	width: 95%;
+	height: 95%;
+}
+
+#header .menu {
+	width: 80%;
+	height: 28px;
+	background-color: #24408d;
+	margin-left: auto;
+	margin-right: auto;
+	border-top: solid #1d3371 1px;
+	border-left: solid #1d3371 1px;
+	border-right: solid #1d3371 1px;
+}
+
+#header .menu ul {
+	float:left;
+	width:100%;
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+#header .menu li {
+	display: inline;
+	background-color: #24408d; 
+}
+
+#header .menu li a{
+	display: inline;
+	background-color: #24408d;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.2em;
+	float:left;
+	width:6em;
+	padding:0.2em 0.6em;
+	border-right:1px solid white;
+}
+
+#header .menu li a:hover{
+	background-color: #002157;
+	text-decoration: underline;
+	color: white;
+}
+
+
+
+/*////////////////////// CONTENT ////////////////////////////////*/
+#content {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*/////// LOGIN /////////*/
+.login {
+	width: 300px;
+	height: 100px;
+	background: #24408d;
+	margin: auto;
+	margin-bottom: 100px;
+}
+
+.login table {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+}
+
+.login td{
+	padding-top: 10px;
+	color: white;
+}
+
+.update-details {
+	max-width: 500px;
+	height: 250px;
+	margin: 10px;
+	border: 5px groove #959595;
+}
+
+.update-details table{
+	max-width: 500px;
+	max-height: 250px;
+	margin: 10px;
+}
+
+.update-details td{
+	margin-top: 10px;
+	margin: 10px;
+}
+
+.update-password {
+	width: 500px;
+	height: 100px;
+	margin: 10px;
+}
+
+
+/*///////////////////// RIGHT CONTENT //////////////////////////*/
+
+
+
+
+/*////////////////////// FOOTER /////////////////////////////////*/
+#footer {
+	width: 100%;
+	height: 130px;
+	background-color: #0f0f0f;
+	margin-bottom: 30px;
+	color: white;
+	bottom: 0;
+	position: relative;
+}
+
+#footer .fex {
+	width: 300px;
+	height: 115px;
+	padding-left: 10px;
+	float: left;
+}
+
+#footer .menu {
+	float: right;
+}
+
+#footer .menu ul {
+	float:left;
+	width:100%;
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+#footer .menu li {
+	display: inline;
+	background-color: #0f0f0f;
+}
+
+#footer .menu li a{
+	display: inline;
+	background-color: #0f0f0f;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	font-size: .8em;
+	float:left;
+	width:10em;
+	padding:0.2em 0.6em;
+	border-left:1px solid white;
+}
+
+#footer .menu li a:hover{
+	background-color: #0f0f0f;
+	text-decoration: underline;
+	color: white;
+}
