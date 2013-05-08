@@ -1,3 +1,2 @@
-/*
-    roles.sql
-*/
+/* roles */
+SET SQLBLANKLINES ON
