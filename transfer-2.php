@@ -25,7 +25,7 @@
 <html dir="ltr" lang="en-US">
 
 	<head>
-	    <title>View account - iBank</title>
+	    <title>Verify transfer - iBank</title>
 	    <meta charset="UTF-8"/>
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
 	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
