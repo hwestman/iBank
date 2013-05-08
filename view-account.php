@@ -17,7 +17,7 @@
 		<?php include "include/header.php"; ?>
 		<div id="content">
 			<div class="update-details">
-				<table>
+				<table width="95%">
 					<tr><td>Full name:</td><td><input name="fName" id="fName" type="text" maxlength="50" size="50"/></td></tr>
 					<tr><td>Address:</td><td><input name="address" id="address" type="text" maxlength="200" size="50"/></td></tr>
 					<tr><td>Post code:</td><td><input name="postcode" id="postcode" type="tel" maxlength="4" size="10" /></td></tr>
