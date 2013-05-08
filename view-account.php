@@ -19,35 +19,31 @@
 		<?php include "include/header.php"; ?>
 		<div id="content">
 			<div id="content-main">
-				<div class="view-account">
-					<table>
-						<th width="10%">Date</th><th width="30%">Transaction</th><th width="30%">Amount</th><th width="30%">Balance</th>
-					 <?php
-					 	for($i = 0; $i < 15; $i++)
-					 	{
-					 		if($i %2)
-							{
-								?><tr><td>08/05/2013</td><td>123456</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
-							}
-							else
-							{
-								?><tr bgcolor="#CCC"><td>08/05/2013</td><td>123456</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
-							}
-					 	}
-					 ?>
-					 <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td></td><td bgcolor="grey" >Account total:</td><td bgcolor="grey" >$2,000,068.91</td></tr>
-					</table>
-				</div><!--CLOSE VIEW ACCOUNT -->
+				<table>
+					<th width="10%">Date</th><th width="30%">Transaction</th><th width="30%">Amount</th><th width="30%">Balance</th>
+				 <?php
+				 	for($i = 0; $i < 15; $i++)
+				 	{
+				 		if($i %2)
+						{
+							?><tr bgcolor="#DDD"><td>08/05/2013</td><td>123456</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
+						}
+						else
+						{
+							?><tr bgcolor="#CCC"><td>08/05/2013</td><td>123456</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
+						}
+				 	}
+				 ?>
+				 <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td></td><td>Account total:</td><td>$2,000,068.91</td></tr>
+				</table>
 			</div><!--CLOSE CONTENT MAIN-->
 			<div id="content-right">
-				<div class="interest-table">
-					<table>
-						<th width="70%">Accrued interest</th><th>Amount</th>
-						<tr><td>Interest to date:</td><td>$2.68</td></tr>
-						<tr bgcolor="#CCC"><td>Interest frequency:</td><td>Monthly</td></tr>
-						<tr><td>Interest rate p/a:</td><td>6.00%</td></tr>
-					</table>
-				</div><!--CLOSE INTEREST TABLE-->
+				<table width="100%">
+					<th>Accrued interest</th><th>Amount</th>
+					<tr><td>Interest to date:</td><td>$2.68</td></tr>
+					<tr bgcolor="#CCC"><td>Interest frequency:</td><td>Monthly</td></tr>
+					<tr><td>Interest rate p/a:</td><td>6.00%</td></tr>
+				</table>
 			</div><!--CLOSE CONTENT RIGHT-->
 		</div><!-- CLOSE CONTENT -->
 		<?php include "include/footer.php"; ?>
