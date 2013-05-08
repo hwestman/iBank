@@ -1,6 +1,6 @@
 SET SQLBLANKLINES ON
 /*DROP TABLE users;*/
-CREATE TABLE users(
+CREATE TABLE ibankUsers(
     
     login_id number(11) PRIMARY KEY,
     full_name varchar2(50),
@@ -11,7 +11,7 @@ CREATE TABLE users(
 );
 
 /*DROP TABLE address;*/
-CREATE TABLE address(
+CREATE TABLE ibankAddress(
 
     address_id number(11) PRIMARY KEY,
     street_address varchar2(200),
@@ -20,14 +20,14 @@ CREATE TABLE address(
 );
 
 /*DROP TABLE postcode;*/
-CREATE TABLE postcode(
+CREATE TABLE ibankPostcode(
 
     post_code_id number(11) PRIMARY KEY,
     postal_code number(4)
 );
 
 /*DROP TABLE account;*/
-CREATE TABLE account(
+CREATE TABLE ibankAccount(
     account_number number(8) PRIMARY KEY,
     staff_user_id number(11),
     login_user_id number(11),
@@ -39,14 +39,14 @@ CREATE TABLE account(
 ); 
 
 /*DROP TABLE accountType;*/
-CREATE TABLE accountType (
+CREATE TABLE ibankAccountType (
     type_id number(11) PRIMARY KEY,
     name varchar2(50),
     interest_rate number(2,4)
 );
 
 /*DROP TABLE transaction;*/
-CREATE TABLE transaction (
+CREATE TABLE ibankTransaction (
     transaction_id number(11) PRIMARY KEY,
     from_account number(8),
     to_account number(8),
@@ -55,44 +55,44 @@ CREATE TABLE transaction (
     date_of_transaction date
 );
 
-ALTER TABLE users
+ALTER TABLE ibankUsers
 add CONSTRAINT fk_address
     FOREIGN KEY (address_id)
-    REFERENCES address(address_id);
+    REFERENCES ibankAddress(address_id);
 
-ALTER TABLE address
+ALTER TABLE ibankAddress
 add CONSTRAINT fk_postcode
     FOREIGN KEY (post_code_id)
-    REFERENCES postcode(post_code_id);
+    REFERENCES ibankPostcode(post_code_id);
 
-ALTER TABLE account
+ALTER TABLE ibankAccount
 add CONSTRAINT fk_login_staff
     FOREIGN KEY (staff_user_id)
-    REFERENCES users(login_id);
+    REFERENCES ibankUsers(login_id);
 
-ALTER TABLE account
+ALTER TABLE ibankAccount
 add CONSTRAINT fk_login_user
     FOREIGN KEY (login_user_id)
-    REFERENCES users(login_id);
+    REFERENCES ibankUsers(login_id);
 
-ALTER TABLE account
+ALTER TABLE ibankAccount
 add CONSTRAINT fk_login_user2
     FOREIGN KEY (login_user_id2)
-    REFERENCES users(login_id);
+    REFERENCES ibankUsers(login_id);
 
-ALTER TABLE account
+ALTER TABLE ibankAccount
 add CONSTRAINT fk_account_type
     FOREIGN KEY (type_of_account)
-    REFERENCES accountType(type_id);
+    REFERENCES ibankAccountType(type_id);
 
-ALTER TABLE transaction
+ALTER TABLE ibankTransaction
 add CONSTRAINT fk_transaction_from
     FOREIGN KEY (from_account)
-    REFERENCES account(account_number);
+    REFERENCES ibankAccount(account_number);
 
-ALTER TABLE transaction
+ALTER TABLE ibankTransaction
 add CONSTRAINT fk_transaction_to
     FOREIGN KEY (to_account)
-    REFERENCES account(account_number);
+    REFERENCES ibankAccount(account_number);
 
-
+COMMIT;
