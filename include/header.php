@@ -1,13 +1,12 @@
 <?php
-	session_start();
-
+session_start();
 ?>
 
 <div id="header">
 	<div class="logo">
 		<a href="#"><img src="resources/images/logo.png"></a>
 	</div><!-- CLOSE LOGO -->
-	<?php if($_SESSION['login']['cust'] == true)
+	<?php if($_SESSION['login']['cust'])
 	{?>
 	<div id='cssmenu'>
 		<ul>
@@ -27,7 +26,7 @@
 	</div><!--CLOSE CSSMENU-->
 	<?php
 	}
-	else if($_SESSION['login']['teller'] == true)
+	else if($_SESSION['login']['teller'])
 	{?>
 	<div id='cssmenu'>
 		<ul>
@@ -46,7 +45,7 @@
 	</div><!--CLOSE CSSMENU-->
 	<?php
 	}
-	else if($_SESSION['login']['manager'] == true)
+	else if($_SESSION['login']['manager'])
 	{?>
 	<div id='cssmenu'>
 		<ul>

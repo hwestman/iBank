@@ -11,8 +11,10 @@
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
 	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
 	    <link rel="stylesheet" type="text/css" href="css/button.css" />
-	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	    <!--
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 	    <script src="js/onload.js" type="text/javascript"></script>
+-->
 	</head>
 
 	<div id="container">
