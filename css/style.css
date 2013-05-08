@@ -57,7 +57,10 @@ body {
 	margin-left: auto;
 	margin-right: auto;	
 	background-color: #24408d;
-	margin-bottom: 30px
+	margin-bottom: 60px;
+	border-radius: .6em;
+	-webkit-box-shadow: 0 3px 3px rgba(0,0,0, .4); 
+	-moz-box-shadow: 0 3px 3px rgba(0,0,0, .4);
 }
 
 #header .logo {
@@ -72,50 +75,7 @@ body {
 	height: 95%;
 }
 
-#header .menu {
-	width: 80%;
-	height: 28px;
-	background-color: #24408d;
-	margin-left: auto;
-	margin-right: auto;
-	border-top: solid #1d3371 1px;
-	border-left: solid #1d3371 1px;
-	border-right: solid #1d3371 1px;
-}
-
-#header .menu ul {
-	float:left;
-	width:100%;
-	padding:0;
-	margin:0;
-	list-style-type:none;
-}
-
-#header .menu li {
-	display: inline;
-	background-color: #24408d; 
-}
-
-#header .menu li a{
-	display: inline;
-	background-color: #24408d;
-	color: white;
-	text-align: center;
-	text-decoration: none;
-	font-size: 1.2em;
-	float:left;
-	width:6em;
-	padding:0.2em 0.6em;
-	border-right:1px solid white;
-}
-
-#header .menu li a:hover{
-	background-color: #002157;
-	text-decoration: underline;
-	color: white;
-}
-
-
+/*///////// MENU CSS SCRIPT CONTAINS THE STYLING FOR THE MENU ////////////////////*/
 
 /*////////////////////// CONTENT ////////////////////////////////*/
 #content {
@@ -154,12 +114,14 @@ body {
 
 .update-details table{
 	max-width: 500px;
+	width: 95%;
 	max-height: 250px;
 	margin: 10px;
 }
 
 .update-details td{
 	margin-top: 10px;
+	height: 35px;
 	margin: 10px;
 }
 

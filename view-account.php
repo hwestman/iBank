@@ -9,6 +9,7 @@
 	    <title>iBank</title>
 	    <meta charset="UTF-8"/>
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
+	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
 	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 	    <script src="js/onload.js" type="text/javascript"></script>
 	</head>
@@ -16,8 +17,9 @@
 	<div id="container">
 		<?php include "include/header.php"; ?>
 		<div id="content">
+			<form name="update" method="post" action="#"
 			<div class="update-details">
-				<table width="95%">
+				<table>
 					<tr><td>Full name:</td><td><input name="fName" id="fName" type="text" maxlength="50" size="50"/></td></tr>
 					<tr><td>Address:</td><td><input name="address" id="address" type="text" maxlength="200" size="50"/></td></tr>
 					<tr><td>Post code:</td><td><input name="postcode" id="postcode" type="tel" maxlength="4" size="10" /></td></tr>
