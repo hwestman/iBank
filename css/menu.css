@@ -45,7 +45,7 @@
 
 #cssmenu .active a, 
 #cssmenu li:hover > a {
-	background: #666 url(images/overlay.png) repeat-x 0 -40px; 
+	background: #FFF url(images/overlay.png) repeat-x 0 -40px; 
 	color: #444;
 	border-top: solid 1px #f8f8f8;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0, .2);
@@ -58,7 +58,7 @@
 #cssmenu li:hover li a {
 	background: none;
 	border: none;
-	color: #666;
+	color: #000;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 }
@@ -84,8 +84,8 @@
 	position: absolute; 
 	top: 40px; 
 	left: 0; 
-	background: #ddd url(images/overlay.png) repeat-x 0 0; 
-	border: solid 1px #b4b4b4; 
+	background: #FFF url(images/overlay.png) repeat-x 0 0; 
+	border: solid 1px #DDD; 
 	-webkit-border-radius: 5px; 
 	-moz-border-radius: 5px; 
 	border-radius: 5px; 
