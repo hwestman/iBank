@@ -1,5 +1,11 @@
 <?php
-    //this needs all required files
+
+	session_start();
+	
+	$savingsAmount = "52012.55";
+	$chequeAmount = "10012.50";
+	$creditAmount = "-2561.12";
+	$loanAmount = "-250321.87";
 
 ?>
 <!DOCTYPE html>
@@ -23,12 +29,12 @@
 			<div id="content-main">
 				<table>
 					<th width="30%">Account number</th><th width="35%">Account type</th><th width="35%">Balance</th>
-					<tr bgcolor="#DDD"><td>12345678</td><td>Savings</td><td>$52,012.50</td></tr>
-					<tr bgcolor="#CCC"><td>12387654</td><td>Cheque</td><td>$10,012.50</td></tr>
-					<tr bgcolor="#DDD"><td>87654321</td><td>Credit</td><td>-$2,561.12</td></tr>
-					<tr bgcolor="#CCC"><td>81726354</td><td>Loan</td><td>-$250,321.87</td></tr>
-					<tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total debt:</td><td>-$252,882.99</td></tr>
-					<tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total credit:</td><td>$62,025.00</td></tr>
+					<tr bgcolor="#DDD"><td>12345678</td><td>Savings</td><td>$<?php echo $savingsAmount;?></td></tr>
+					<tr bgcolor="#CCC"><td>12387654</td><td>Cheque</td><td>$<?php echo $chequeAmount;?></td></tr>
+					<tr bgcolor="#DDD"><td>87654321</td><td>Credit</td><td>$<?php echo $creditAmount;?></td></tr>
+					<tr bgcolor="#CCC"><td>81726354</td><td>Loan</td><td><?php echo $loanAmount;?></td></tr>
+					<tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total debt:</td><td>$<?php echo $creditAmount+$loanAmount;?></td></tr>
+					<tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total credit:</td><td>$<?php echo $savingsAmount+$chequeAmount;?></td></tr>
 				</table>
 			</div><!--CLOSE CONTENT MAIN-->
 		</div><!-- CLOSE CONTENT -->
