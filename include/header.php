@@ -4,7 +4,7 @@ session_start();
 
 <div id="header">
 	<div class="logo">
-		<a href="#"><img src="resources/images/logo.png"></a>
+		<a href="#"> </a>
 	</div><!-- CLOSE LOGO -->
 	<?php if($_SESSION['login']['cust'])
 	{?>
