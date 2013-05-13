@@ -25,7 +25,7 @@
 						<table>
 							<tr><td>Full name:</td><td><input class="left" name="fName" id="fName" type="text" placeholder="dynamic driven" maxlength="50" size="50"/></td></tr>
 							<tr><td>Address:</td><td><input class="left" name="address" id="address" type="text" placeholder="dynamic driven" maxlength="200" size="50"/></td></tr>
-							<tr><td>Post code:</td><td><input class="left" name="postcode" id="postcode" type="tel" placeholder="dynamic driven" maxlength="4" size="10" /></td></tr>
+							<tr><td>Suburb:</td><td><input class="left" name="suburb" id="suburb" type="text" placeholder="dynamic driven drop down" maxlength="30" size="30" /> <input class="left" name="postcode" id="postcode" type="tel" placeholder="dynamic driven" readonly="readonly" maxlength="4" size="10" /></td></tr>
 							<tr><td>Contact number:</td><td><input class="left" name="telephone" id="telephone" type="tel" placeholder="dynamic driven" maxlength="10" size="20"/></td></tr>
 							<tr><td>Current password:</td><td><input class="left" name="password" id="password" type="password" placeholder="enter current password to make changes" maxlength="50" size="50"/></td></tr>
 							<tr><td></td></tr>

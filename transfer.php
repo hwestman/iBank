@@ -60,7 +60,7 @@
 						<tr><td>To account:</td><td><input class="left" type="text" name="toAccount" <?php if($transfer){ 
 							echo "value=\"".$_SESSION['transfer']['toAccount']."\"";} else { echo "placeholder=\"8 digit account number\"";}?>
 						size="30" maxlength="8"/></td></tr>
-						<tr><td>Amount:</td><td><input class="left" type="text" name="amount" <?php if($transfer){ 
+						<tr><td>Amount: $</td><td><input class="left" type="text" name="amount" <?php if($transfer){ 
 							echo "value=\"".$_SESSION['transfer']['amount']."\"";} else { echo "placeholder=\"How much?\"";}?> 
 						size="20" maxlength="10"/></td></tr>
 					</table>

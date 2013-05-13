@@ -47,7 +47,7 @@
 						<tr><td>Memo:</td><td><input class="left" type="text" name="memo" readonly="readonly" value="<?php echo $memo; ?>" size="30" maxlength="18"/></td></tr>
 						<tr><td><hr></td><td><hr></td></tr>
 						<tr><td>To account:</td><td><input class="left" type="text" name="toAccount" readonly="readonly" value="<?php echo $toAccount; ?>" size="30" maxlength="8"/></td></tr>
-						<tr><td>Amount:</td><td><input class="left" type="text" name="amount" readonly="readonly" value="<?php echo $amount; ?>" size="20" maxlength="4"/></td></tr>
+						<tr><td>Amount: $</td><td><input class="left" type="text" name="amount" readonly="readonly" value="<?php echo $amount; ?>" size="20" maxlength="4"/></td></tr>
 					</table>
 					<input type="submit" class="button" id="left" name="Back" value="Back">
 					<input type="submit" class="button" id="right" name="Transfer" value="Transfer">

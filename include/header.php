@@ -3,9 +3,7 @@ session_start();
 ?>
 
 <div id="header">
-	<div class="logo">
-		<a href="#"> </a>
-	</div><!-- CLOSE LOGO -->
+	<a href="index.php"><div class="logo"></div></a>
 	<?php if($_SESSION['login']['cust'])
 	{?>
 	<div id='cssmenu'>

@@ -1,5 +1,9 @@
 <?php
     //this needs all required files
+    
+    $transaction_id = "Yep";
+    
+    $accountNumber = "Needs to get from database";
 
 ?>
 <!DOCTYPE html>
@@ -22,17 +26,18 @@
 		<div id="content">
 			<div id="content-main">
 				<table>
-					<th width="10%">Date</th><th width="30%">Transaction</th><th width="30%">Amount</th><th width="30%">Balance</th>
+					<h2>Account number: <?php echo $accountNumber; ?></h2>
+					<th width="10%">Date</th><th width="25%">Transaction</th><th width="25%">Memo</th><th width="10%">Amount</th><th width="20%">Balance</th>
 				 <?php
 				 	for($i = 0; $i < 15; $i++)
 				 	{
 				 		if($i %2)
 						{
-							?><tr bgcolor="#DDD"><td>08/05/2013</td><td>123456</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
+							?><tr bgcolor="#DDD"><td>08/05/2013</td><td><a href="transaction-details.php?idNumber=<?php echo $transaction_id;?>">123456</a></td><td>Neque porro quisqu</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
 						}
 						else
 						{
-							?><tr bgcolor="#CCC"><td>08/05/2013</td><td>123456</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
+							?><tr bgcolor="#CCC"><td>08/05/2013</td><td><a href="transaction-details.php?idNumber=<?php echo $transaction_id;?>">123456</a></td><td>Neque porro quisqu</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
 						}
 				 	}
 				 ?>

@@ -49,7 +49,7 @@
 						<tr><td>Memo:</td><td><input class="left" type="text" name="memo" readonly="readonly" value="<?php echo $memo; ?>" size="30" maxlength="18"/></td></tr>
 						<tr><td><hr></td><td><hr></td></tr>
 						<tr><td>To account:</td><td><input class="left" type="text" name="toAccount" readonly="readonly" value="<?php echo $toAccount; ?>" size="30" maxlength="8"/></td></tr>
-						<tr><td>Amount:</td><td><input class="left" type="text" name="amount" readonly="readonly" value="<?php echo $amount; ?>" size="20" maxlength="4"/></td></tr>
+						<tr><td>Amount: $</td><td><input class="left" type="text" name="amount" readonly="readonly" value="<?php echo $amount; ?>" size="20" maxlength="4"/></td></tr>
 						<tr><td></td></tr>
 						<tr><td><strong>Receipt number:</strong></td><td style="text-align:left;"><?php echo $receipt; ?></td></tr>
 					</table>
