@@ -2,6 +2,8 @@
 
 	session_start();
 	
+	include "check.php";
+	
 	$savingsAmount = "52012.55";
 	$chequeAmount = "10012.50";
 	$creditAmount = "-2561.12";

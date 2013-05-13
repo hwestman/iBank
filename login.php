@@ -21,13 +21,13 @@
 		<?php include "include/header.php"; ?>
 		<div id="content">
 			<div class="login">
-				<form method="post" action="login().php" name="bank-login">
+				<form method="post" action="login().php" name="login">
 					<table>
 						<tr><td>User ID:</td><td><input name="username" class="left" id="username" type="text" size="30"/></td></tr>
 						<tr><td>Password:</td><td><input name="password" class="left" id="password" type="password" size="30"/></td></tr>
 					</table>
-						<input type="submit" class="button" id="left" value="Cancel" name="Cancel"/>
-						<input type="submit" class="button" id="right" value="Login" name="Login"/>
+						<input type="reset" class="button" id="left" value="Cancel" name="Cancel"/>
+						<input type="submit" class="button" id="right" value="Login" name="login"/>
 				</form>
 			</div><!--CLOSE LOGIN-->
 		</div><!-- CLOSE CONTENT -->

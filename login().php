@@ -2,7 +2,7 @@
 
 	session_start();
 
-	if(isset($_POST['Login']))
+	if(isset($_POST['login']))
 	{
 		$username = $_POST['username'];
 	}
