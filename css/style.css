@@ -39,15 +39,16 @@ body {
 	/* Opera 11.10+ */
 	background: -o-linear-gradient(top, #666, #fff);
 	max-width: 1024px;
-	min-height: 768px;
+	min-height: 668px;
 	height: auto;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 #container {
-   min-height: 100%;
-   position: relative;
+   min-height: 668px;
+	width: inherit;
+	position: relative;
 }
 
 /*/////////////////////// HEADER /////////////////////////////////*/
@@ -57,7 +58,10 @@ body {
 	margin-left: auto;
 	margin-right: auto;	
 	background-color: #24408d;
-	margin-bottom: 30px
+	margin-bottom: 60px;
+	border-radius: .6em;
+	-webkit-box-shadow: 0 3px 3px rgba(0,0,0, .4); 
+	-moz-box-shadow: 0 3px 3px rgba(0,0,0, .4);
 }
 
 #header .logo {
@@ -72,103 +76,126 @@ body {
 	height: 95%;
 }
 
-#header .menu {
-	width: 80%;
-	height: 28px;
-	background-color: #24408d;
-	margin-left: auto;
-	margin-right: auto;
-	border-top: solid #1d3371 1px;
-	border-left: solid #1d3371 1px;
-	border-right: solid #1d3371 1px;
-}
-
-#header .menu ul {
-	float:left;
-	width:100%;
-	padding:0;
-	margin:0;
-	list-style-type:none;
-}
-
-#header .menu li {
-	display: inline;
-	background-color: #24408d; 
-}
-
-#header .menu li a{
-	display: inline;
-	background-color: #24408d;
-	color: white;
-	text-align: center;
-	text-decoration: none;
-	font-size: 1.2em;
-	float:left;
-	width:6em;
-	padding:0.2em 0.6em;
-	border-right:1px solid white;
-}
-
-#header .menu li a:hover{
-	background-color: #002157;
-	text-decoration: underline;
-	color: white;
-}
-
-
+/*///////// MENU CSS SCRIPT CONTAINS THE STYLING FOR THE MENU ////////////////////*/
 
 /*////////////////////// CONTENT ////////////////////////////////*/
 #content {
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
+	position: relative;
+	width: inherit;
+	min-height: 487px;
+	height: 100%;
+	overflow: hidden;
+}
+
+#content-main {
+	min-width: 60%;
+	max-width: 60%;
+	height: auto !important;
+	float: left;
+	margin-top: 10px;
+	margin-left: 50px;
+	margin-bottom: 10px;
+	border: 5px groove #959595;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#content-right {
+	width: 27.5%;
+	margin-left: 1%;
+	float: left;
+	height: auto;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	border: 5px groove #959595;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
 }
 
 
 /*/////// LOGIN /////////*/
 .login {
-	width: 300px;
-	height: 100px;
+	width: 350px;
+	height: 17	0px;
 	background: #24408d;
-	margin: auto;
-	margin-bottom: 100px;
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 5px groove #959595;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: white;
 }
 
 .login table {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 100px;
+	width: 100%;
 }
 
-.login td{
-	padding-top: 10px;
-	color: white;
+.login th {
+	height: 45px;
+	margin: 5px;
+	font-size: 1.2em;
 }
 
-.update-details {
-	max-width: 500px;
-	height: 250px;
-	margin: 10px;
-	border: 5px groove #959595;
+.login td {
+	height: 35px;
+	margin: 5px;
+	padding: 5px;
+	text-align: right;
 }
 
-.update-details table{
-	max-width: 500px;
-	max-height: 250px;
-	margin: 10px;
+#content-main table {
+	width: 100%;
+	background-color: #BBB;
 }
 
-.update-details td{
-	margin-top: 10px;
-	margin: 10px;
+#content-right table {
+	width: 100%;
+	background-color: #BBB;
 }
 
-.update-password {
-	width: 500px;
-	height: 100px;
-	margin: 10px;
+#content-main th {
+	background-color: grey;
+	height: 45px;
+	margin: 5px;
+	font-size: 1.2em;
 }
 
+#content-right th {
+	background-color: grey;
+	height: 45px;
+	margin: 5px;
+	font-size: 1.2em;
+}
+
+#content-main td {
+	height: 35px;
+	margin: 5px;
+	padding: 5px;
+	text-align: right;
+}
+
+#content-right td {
+	height: 35px;
+	margin: 5px;
+	padding: 5px;
+	text-align: right;
+}
 
 /*///////////////////// RIGHT CONTENT //////////////////////////*/
 
@@ -180,10 +207,15 @@ body {
 	width: 100%;
 	height: 130px;
 	background-color: #0f0f0f;
-	margin-bottom: 30px;
+	-webkit-border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
+	margin-top: 30px;
 	color: white;
 	bottom: 0;
 	position: relative;
+	-webkit-box-shadow: 0px 5px 10px 5px rgba(0,0,0, .6); 
+	-moz-box-shadow: 0px 5px 10px 5px rgba(0,0,0, .6);
 }
 
 #footer .fex {
@@ -195,6 +227,7 @@ body {
 
 #footer .menu {
 	float: right;
+	padding: 5px;
 }
 
 #footer .menu ul {

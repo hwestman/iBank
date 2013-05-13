@@ -1,12 +1,14 @@
 <?php
-    //this needs all required files
-
+	session_start();
+   unset($_SESSION['login']);
+   
+   header('LOCATION: login.php');
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
 	<head>
-	    <title>Login - iBank</title>
+	    <title>Log out - iBank</title>
 	    <meta charset="UTF-8"/>
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
 	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
@@ -21,13 +23,13 @@
 		<?php include "include/header.php"; ?>
 		<div id="content">
 			<div class="login">
-				<form method="post" action="login().php" name="bank-login">
+				<form method="post" action="login().php" name="login">
 					<table>
 						<tr><td>User ID:</td><td><input name="username" class="left" id="username" type="text" size="30"/></td></tr>
 						<tr><td>Password:</td><td><input name="password" class="left" id="password" type="password" size="30"/></td></tr>
 					</table>
-						<input type="submit" class="button" id="left" value="Cancel" name="Cancel"/>
-						<input type="submit" class="button" id="right" value="Login" name="Login"/>
+						<input type="submit" class="button" id="left" value="cancel" name="cancel"/>
+						<input type="submit" class="button" id="right" value="Login" name="login"/>
 				</form>
 			</div><!--CLOSE LOGIN-->
 		</div><!-- CLOSE CONTENT -->
