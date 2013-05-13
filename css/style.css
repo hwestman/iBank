@@ -55,9 +55,10 @@ body {
 #header {
 	width: 95%;
 	height: 130px;
+	margin-top: 5px;
 	margin-left: auto;
 	margin-right: auto;	
-	background-color: #24408d;
+	background-image: url(../resources/images/iBank-banner.tif);
 	margin-bottom: 60px;
 	border-radius: .6em;
 	-webkit-box-shadow: 0 3px 3px rgba(0,0,0, .4); 
@@ -162,11 +163,17 @@ body {
 #content-main table {
 	width: 100%;
 	background-color: #BBB;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 #content-right table {
 	width: 100%;
 	background-color: #BBB;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 #content-main th {
