@@ -12,6 +12,15 @@ $faker = Faker\Factory::create();
     echo $faker->firstname;
     echo "</br>";
     
+    
+    select sid,username,serial# from v$session where  = 'ibank_manager'
+    
+    //https://github.com/fzaninotto/Faker
+    
+    postcode (substring to 4)
+    
+    <dayOfMonth>13-<monthName>(sub4)nov-<substring 2-4>92
+    
 //};
 /*
  * To change this template, choose Tools | Templates
