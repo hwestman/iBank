@@ -45,7 +45,8 @@
 					<tr bgcolor="#DDD"><td>Credit</td><td><input type="text" name="credit" class="left" value="<?php echo $creditAmount;?>"/>%</td></tr>
 					<tr bgcolor="#CCC"><td>Loan</td><td><input type="text" name="loan" class="left" value="<?php echo $loanAmount;?>"/>%</td></tr>
 				</table>
-				<input type="submit" class="button" id="right" name="Update" value="Update">
+				<input type="reset" class="button" id="left" name="cancel" onclick="location.href='interest-rate.php'" value="Cancel"/>
+				<input type="submit" class="button" id="right" name="Update" value="Update"/>
 			</form>
 			</div><!--CLOSE CONTENT MAIN-->
 		</div><!-- CLOSE CONTENT -->
