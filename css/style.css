@@ -58,6 +58,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;	
 	background-color: #24408d;
+	background-image: url(../resources/images/iBank-banner.tif);
 	margin-bottom: 60px;
 	border-radius: .6em;
 	-webkit-box-shadow: 0 3px 3px rgba(0,0,0, .4); 
