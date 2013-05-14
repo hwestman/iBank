@@ -19,7 +19,7 @@ CREATE TABLE ibankUsers(
     address_id number(11) NOT NULL,
     pword varchar2(200) NOT NULL,
     priv number(1) DEFAULT 1 NOT NULL,
-    contact_number number(10)
+    contact_number VARCHAR2(10)
 );
 
 /*For auto_increment*/
