@@ -7,7 +7,7 @@ this below displays priveleges on logged on user
 SELECT * FROM USER_SYS_PRIVS;
 
 need to kick out a user?
-select sid,serial,username# from v$session
+select sid,username,serial# from v$session
 alter system kill session '<sid>,<serial#>'
 
 
@@ -51,48 +51,52 @@ create role ibank_manager_role;
 
 GRANT SELECT ON ibankUsers TO ibank_customer_role;
 GRANT SELECT ON ibankAddress TO ibank_customer_role;
-GRANT SELECT ON ibankPostcode TO ibank_customer_role;
+
 GRANT SELECT ON ibankAccount TO ibank_customer_role;
 GRANT SELECT ON ibankAccountType TO ibank_customer_role;
 GRANT SELECT ON ibankTransaction TO ibank_customer_role;
+GRANT SELECT ON ibankSuburb TO ibank_customer_role;
 
 GRANT SELECT ON ibankUsers TO ibank_teller_role;
 GRANT SELECT ON ibankAddress  TO ibank_teller_role;
-GRANT SELECT ON ibankPostcode TO ibank_teller_role;
+
 GRANT SELECT ON ibankAccount TO ibank_teller_role;
 GRANT SELECT ON ibankAccountType TO ibank_teller_role;
 GRANT SELECT ON ibankTransaction TO ibank_teller_role;
+GRANT SELECT ON ibankSuburb TO ibank_teller_role;
+
 
 GRANT SELECT ON ibankUsers TO ibank_manager_role;
 GRANT SELECT ON ibankAddress TO ibank_manager_role;
-GRANT SELECT ON ibankPostcode TO ibank_manager_role;
+
 GRANT SELECT ON ibankAccount TO ibank_manager_role;
 GRANT SELECT ON ibankAccountType TO ibank_manager_role;
 GRANT SELECT ON ibankTransaction TO ibank_manager_role;
+GRANT SELECT ON ibankSuburb TO ibank_manager_role;
 
 GRANT ALTER ON ibankUsers TO ibank_customer_role;
 GRANT ALTER ON ibankAddress TO ibank_customer_role;
-GRANT ALTER ON ibankPostcode TO ibank_customer_role;
+GRANT ALTER ON ibankSuburb TO ibank_customer_role;
 GRANT ALTER ON ibankAccount TO ibank_customer_role;
 
 GRANT ALTER ON ibankUsers TO ibank_teller_role;
 GRANT ALTER ON ibankAddress TO ibank_teller_role;
-GRANT ALTER ON ibankPostcode TO ibank_teller_role;
+GRANT ALTER ON ibankSuburb TO ibank_teller_role;
 GRANT ALTER ON ibankAccount TO ibank_teller_role;
 
 GRANT ALTER ON ibankUsers TO ibank_manager_role;
 GRANT ALTER ON ibankAddress TO ibank_manager_role;
-GRANT ALTER ON ibankPostcode TO ibank_manager_role;
+GRANT ALTER ON ibankSuburb TO ibank_manager_role;
 GRANT ALTER ON ibankAccount TO ibank_manager_role;
 GRANT ALTER ON ibankAccountType TO ibank_manager_role;
 
 GRANT INSERT ON ibankUsers TO ibank_teller_role;
 GRANT INSERT ON ibankAddress TO ibank_teller_role;
-GRANT INSERT ON ibankPostcode TO ibank_teller_role;
+GRANT INSERT ON ibankSuburb TO ibank_teller_role;
 
 GRANT INSERT ON ibankUsers TO ibank_manager_role;
 GRANT INSERT ON ibankAddress TO ibank_manager_role;
-GRANT INSERT ON ibankPostcode TO ibank_manager_role;
+GRANT INSERT ON ibankSuburb TO ibank_manager_role;
 
    
 GRANT ibank_customer_role to ibank_customer;

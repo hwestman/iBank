@@ -3,26 +3,34 @@ class Connection {
     
     var $connection = null;
     
-    public function __construct() {		//constructor
+    public function __construct($userName,$password) {		//constructor
         
         
         $description = "(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = dwarf.cit.griffith.edu.au)(PORT = 1526)))(CONNECT_DATA =(SID = DBS)(SERVER = DEDICATED)))";
-        $userName = "s2873575";
-        $password = "dba";
+      
         
         $this->connection = OCILogon($userName,$password,$description);
    
     }
     public function getConnection(){
-        return $connection;
+        return $this->connection;
         
     }
     public function parseStatement($query){
         
-        $stmt = OCIParse($this->connection,$query);     
-        OCIExecute($stmt);
+        $stmt = OCIParse($this->connection,$query); 
+        $res = oci_execute($stmt);
         
-        return $stmt;
+        if(!$res){
+            echo "Query not executed, it erred";
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+            var_dump($e);
+            
+        }
+        
+        
+        
+        return $res;
     }
     public function parseFile($file){
         //$content = file_get_contents($file);

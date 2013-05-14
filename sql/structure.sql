@@ -1,69 +1,160 @@
+
+/*
+    INITIATING
+*/
+
 SET SQLBLANKLINES ON
-/*DROP TABLE users;*/
+
+
+/*
+    CREATING TABLES
+*/
+
+/*----------------------------------Users-------------------------------------*/
+
 CREATE TABLE ibankUsers(
     
-    login_id number(11) PRIMARY KEY,
-    full_name varchar2(50),
-    address_id number(11),
-    pword varchar2(200),
-    priv number(1),
+    login_id number(11) PRIMARY KEY NOT NULL,
+    full_name varchar2(50) NOT NULL,
+    address_id number(11) NOT NULL,
+    pword varchar2(200) NOT NULL,
+    priv number(1) DEFAULT 1 NOT NULL,
     contact_number number(10)
 );
 
-/*DROP TABLE address;*/
+/*For auto_increment*/
+CREATE SEQUENCE login_id_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE trigger login_id_trig
+BEFORE INSERT ON ibankUsers
+FOR EACH ROW
+BEGIN
+    SELECT login_id_seq.nextval INTO :new.login_id FROM dual;
+END;
+/
+
+/*-------------------------------Address--------------------------------------*/
+
 CREATE TABLE ibankAddress(
 
-    address_id number(11) PRIMARY KEY,
-    street_address varchar2(200),
-    suburb varchar2(50),
-    post_code_id number(11)
+    address_id number(11) PRIMARY KEY NOT NULL,
+    street_address varchar2(200) NOT NULL,
+    county varchar2(50) NOT NULL,
+    suburb_id number(11) NOT NULL
 );
 
-/*DROP TABLE postcode;*/
-CREATE TABLE ibankPostcode(
+/*For auto_increment*/
+CREATE SEQUENCE address_id_seq START WITH 1 INCREMENT BY 1;
 
-    post_code_id number(11) PRIMARY KEY,
-    postal_code number(4)
+CREATE OR REPLACE trigger address_id_trig
+BEFORE INSERT ON ibankAddress
+FOR EACH ROW
+BEGIN
+    SELECT address_id_seq.nextval INTO :new.address_id FROM dual;
+END;
+/
+
+
+
+/*----------------------------------Suburb------------------------------------*/
+
+CREATE TABLE ibankSuburb(
+    suburb_id number(11)PRIMARY KEY NOT NULL, 
+    postcode number(11) NOT NULL, 
+    suburb_name varchar2(50)
 );
 
-/*DROP TABLE account;*/
+/*For auto_increment*/
+CREATE SEQUENCE suburb_id_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE trigger suburb_id_trig
+BEFORE INSERT ON ibankSuburb
+FOR EACH ROW
+BEGIN
+    SELECT suburb_id_seq.nextval INTO :new.suburb_id FROM dual;
+END;
+/
+
+/*---------------------------------Account------------------------------------*/
+
 CREATE TABLE ibankAccount(
-    account_number number(8) PRIMARY KEY,
-    staff_user_id number(11),
-    login_user_id number(11),
+    account_number number(8) PRIMARY KEY NOT NULL,
+    staff_user_id number(11) NOT NULL,
+    login_user_id number(11) NOT NULL,
     login_user_id2 number(11),
-    balance number(*,4),
-    date_opened date,
-    type_of_account number(11),
-    interest_sum number(*,4)
+    balance number(*,4) DEFAULT 0.0,
+    date_opened date DEFAULT SYSDATE,
+    type_of_account number(11) DEFAULT 1 NOT NULL,
+    interest_sum number(*,4) DEFAULT 0.0 NOT NULL
 ); 
 
-/*DROP TABLE accountType;*/
+/*For auto_increment*/
+CREATE SEQUENCE account_number_seq START WITH 18273645 INCREMENT BY 1337;
+
+CREATE OR REPLACE trigger account_number_trig
+BEFORE INSERT ON ibankAccount
+FOR EACH ROW
+BEGIN
+    SELECT account_number_seq.nextval INTO :new.account_number FROM dual;
+END;
+/
+
+/*------------------------------AccountType-----------------------------------*/
+
 CREATE TABLE ibankAccountType (
-    type_id number(11) PRIMARY KEY,
-    name varchar2(50),
-    interest_rate number(2,4)
+    type_id number(11) PRIMARY KEY NOT NULL,
+    name varchar2(50) NOT NULL,
+    interest_rate number(6,4) DEFAULT 0 NOT NULL
 );
 
-/*DROP TABLE transaction;*/
+/*For auto_increment*/
+CREATE SEQUENCE type_id_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE trigger type_id_trig
+BEFORE INSERT ON ibankAccountType
+FOR EACH ROW
+BEGIN
+    SELECT type_id_seq.nextval INTO :new.type_id FROM dual;
+END;
+/
+
+/*----------------------------Transaction-------------------------------------*/
+
 CREATE TABLE ibankTransaction (
-    transaction_id number(11) PRIMARY KEY,
-    from_account number(8),
-    to_account number(8),
+    transaction_id number(11) PRIMARY KEY NOT NULL,
+    from_account number(8) NOT NULL,
+    to_account number(8) NOT NULL,
     memo varchar2(18),
-    amount number(*,2),
-    date_of_transaction date
+    amount number(*,2) NOT NULL,
+    date_of_transaction date DEFAULT SYSDATE
 );
 
+/*For auto_increment*/
+CREATE SEQUENCE transaction_id_seq START WITH 100001 INCREMENT BY 1;
+
+CREATE OR REPLACE trigger transaction_id_trig
+BEFORE INSERT ON ibankTransaction
+FOR EACH ROW
+BEGIN
+    SELECT transaction_id_seq.nextval INTO :new.transaction_id FROM dual;
+END;
+/
+
+/*
+    ALTERING TABLES, foreign keys and such
+*/
+
+/*--------------------------------ALTERS--------------------------------------*/
 ALTER TABLE ibankUsers
 add CONSTRAINT fk_address
     FOREIGN KEY (address_id)
     REFERENCES ibankAddress(address_id);
 
 ALTER TABLE ibankAddress
-add CONSTRAINT fk_postcode
-    FOREIGN KEY (post_code_id)
-    REFERENCES ibankPostcode(post_code_id);
+add CONSTRAINT fk_suburb
+    FOREIGN KEY (suburb_id)
+    REFERENCES ibankSuburb(suburb_id);
+
 
 ALTER TABLE ibankAccount
 add CONSTRAINT fk_login_staff
