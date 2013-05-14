@@ -64,7 +64,7 @@
 							echo "value=\"".$_SESSION['transfer']['amount']."\"";} else { echo "placeholder=\"How much?\"";}?> 
 						size="20" maxlength="10"/></td></tr>
 					</table>
-					<input type="submit" class="button" id="left" name="Cancel" value="Cancel">
+					<input type="reset" class="button" id="left" name="cancel" onclick="location.href='index.php'" value="Cancel"/>
 					<input type="submit" class="button" id="right" name="Next" value="Next">
 				</form>
 			</div><!--CLOSE CONTENT MAIN-->
