@@ -1,7 +1,6 @@
 
 /*
     INITIATING
-rlwrap -c sqlplus ibank_dba/billybob@dwarf @views.sql
 */
 
 SET SQLBLANKLINES ON
