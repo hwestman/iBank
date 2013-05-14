@@ -1,3 +1,7 @@
+/*
+rlwrap -c sqlplus ibank_dba/billybob@dwarf @views.sql
+*/
+
 SET SQLBLANKLINES ON
 
 insert into ibankSuburb values('1',4217,'Surfers Paradise');
