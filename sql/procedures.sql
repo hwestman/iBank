@@ -6,26 +6,26 @@
     sqlplus ibank_dba/billybob@dwarf @sampleData.sql
     sqlplus ibank_dba/billybob@dwarf @procedures.sql
     
-    EXEC createUser('Hallvard Westman','17','phoebe','4', '0466894751');
 */
 
 SET SQLBLANKLINES ON
 
 CREATE OR REPLACE PROCEDURE createUser (
+	suburbID IN VARCHAR2,
 	streetAddress IN VARCHAR2,
 	county IN VARCHAR2,
-	suburbID IN VARCHAR2,
 	fullName IN VARCHAR2,  
 	pword IN VARCHAR2, 
 	priv IN INTEGER, 
 	contactNumber IN VARCHAR2
 )
-IS
-BEGIN
-	DECLARE addressID INTEGER;
+AS
+addressID NUMBER;
+BEGIN	
 	INSERT INTO ibankAddress
 		VALUES ('', streetAddress, county, suburbID)
 		RETURNING address_id INTO addressID;
+	
 	INSERT INTO ibankUsers
 		VALUES ('', fullName, addressID, pword, priv, contactNumber);
 END;
