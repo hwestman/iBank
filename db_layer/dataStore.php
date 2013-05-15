@@ -19,7 +19,8 @@ $faker = Faker\Factory::create();
   */  
     
  //generatePostecode($connection->getConnection(),100);   
- generateUsers($connection->getConnection(),10);
+ //generateUsers($connection->getConnection(),10);
+ generateAustraliaPost($connection->getConnection());
  $connection->closeConnection();
 
 function generatePostecode($con,$count){
@@ -55,6 +56,42 @@ function generatePostecode($con,$count){
     oci_commit($stmt);
     oci_free_statement($stmt);
     
+    
+}
+
+function generateAustraliaPost($con){
+    
+    $query = "INSERT INTO ibank_dba.ibankSuburb (suburb_id,postcode,suburb_name) 
+                    VALUES ('',:postCode,:suburbName)";
+    
+    
+    $stmt = \oci_parse($con, $query);
+    
+    $f = "s";
+    $file = file_get_contents('./resources/suburbs.txt', true);
+    
+    $data = explode("\n", $file);
+    
+    foreach($data as $suburb){
+        
+        $sep = explode(",",$suburb);
+        
+        oci_bind_by_name($stmt, ':postCode', $sep[0]);
+        oci_bind_by_name($stmt, ':suburbName', $sep[1]);
+        
+        $res = oci_execute ($stmt);
+
+        if(!$res){
+            echo "Query not executed, it erred";
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+            $error.=$e->message;
+            
+        }
+        
+        
+    }
+    oci_commit($stmt);
+    oci_free_statement($stmt);
     
 }
 
