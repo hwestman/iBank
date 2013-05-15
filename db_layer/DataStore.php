@@ -35,6 +35,9 @@ class DataStore{
             case 3:
                 $this->connection = new Connection("ibank_manager","billybob");
                 break;
+            case 4:
+                $this->connection = new Connection("ibank_dba","billybob");
+                break;
         }
         
     }
