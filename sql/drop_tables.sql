@@ -44,7 +44,9 @@ DROP VIEW account_info_view;
 
 
 
-
-
+/*
+    Indexes
+*/
+DROP INDEX suburb_name_index;
 
 COMMIT;

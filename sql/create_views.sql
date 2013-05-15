@@ -14,8 +14,16 @@ CREATE OR REPLACE VIEW account_info_view AS
     SELECT U.login_id,A.account_number,A.balance,A.interest_sum,A.type_of_account
     FROM ibankAccount A
     LEFT JOIN ibankUser U on U.login_id = A.login_user_id
+    
+    WITH READ ONLY;
 
-
+CREATE OR REPLACE VIEW customer_info_view AS
+    
+    SELECT U.login_id,U.full_name,U.contact_number,U.street_address,U.postcode,A.account_number,A.balance,A.interest_sum,A.type_of_account
+    FROM account_info_view A
+    LEFT JOIN user_info_view U on U.login_id = A.login_id
+    
+    WITH READ ONLY;
 
 
 
