@@ -1,6 +1,8 @@
 <?php
 
 	include "check.php";
+	include "db_layer/DataStore.php";
+    $accounts = $datastore->getMiAccounts();
      session_start();
      
      if(isset($_POST['Next']))
@@ -26,6 +28,7 @@
      {
      	$transfer = true;
      }
+     
 
 ?>
 <!DOCTYPE html>
@@ -50,9 +53,16 @@
 				Maximum transfer limit per day: $4,000.00
 				<form name="transfer" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
 					<table>
-						<tr><td>From account:</td><td><input class="left" type="text" name="fromAccount" <?php if($transfer){ 
-							echo "value=\"".$_SESSION['transfer']['fromAccount']."\"";} else { echo "placeholder=\"Drop down menu goes here\"";}?> 
-						size="30"/ maxlength="8"></td></tr>
+						<tr>
+							<td>From account:</td>
+							<td>
+								<select name="fromAccount">
+									<?php foreach($accounts as $account){ ?>
+									<option value="<?php echo $account->accountNumber; ?>"><?php echo $account->accountNumber; ?></option>
+									<?php } ?>
+								</select>
+							</td>
+						</tr>
 						<tr><td>Memo:</td><td><input class="left" type="text" name="memo" <?php if($transfer){ 
 							echo "value=\"".$_SESSION['transfer']['memo']."\"";} else { echo "placeholder=\"Distinctive text of transaction\"";}?> 
 						size="30" maxlength="18"/></td></tr>

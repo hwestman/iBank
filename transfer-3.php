@@ -1,15 +1,16 @@
 <?php
-    //this needs all required files
+    include "check.php";
+	include "db_layer/DataStore.php";
     
     session_start();
     
     if(isset($_SESSION['transfer']))
     {
 	    $fromAccount = $_SESSION['transfer']['fromAccount'];
-	    $memo = $_POST['memo'] = $_SESSION['transfer']['memo'];
-	    $toAccount = $_POST['toAccount'] = $_SESSION['transfer']['toAccount'];
-	    $amount = $_POST['amount'] = $_SESSION['transfer']['amount'];
-	    $receipt = 56789;
+	    $memo = $_SESSION['transfer']['memo'];
+	    $toAccount = $_SESSION['transfer']['toAccount'];
+	    $amount = $_SESSION['transfer']['amount'];
+	    $receipt = $datastore->transferFunds($amount, $fromAccount, $toAccount, $memo);
 	    unset($_SESSION['transfer']);
     }
     
