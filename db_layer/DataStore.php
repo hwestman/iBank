@@ -283,6 +283,36 @@ class DataStore{
         oci_free_statement($stmt);
         $this->closeConnection();
     }
+    
+    public function transferFunds($amount, $fromAccount, $toAccount, $memo) {
+	    
+	    $receiptNumber = null;
+
+	    $query = "BEGIN transferFunds($fromAccount, $toAccount, '$memo', $amount, :receiptNumber); END;";
+
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    oci_bind_by_name($stmt, ":receiptNumber", $receiptNumber);
+	    $res = \oci_execute($stmt);
+	    
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                $receiptNumber = $row['RECEIPTNUMBER'];
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        
+        oci_free_statement($stmt);
+        
+        if($receiptNumber < 1 || $receiptNumber == null){
+            return "Error";
+        }
+        else {
+	        return $receiptNumber;
+        }   
+    }
 
     
     

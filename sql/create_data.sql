@@ -43,7 +43,7 @@ insert into ibankAccountType values('','Cheque',00.0000);
 insert into ibankAccountType values('','Loan',04.2500);
 
 insert into ibankAddress values('1337','1337 Yippee Ki-yay Way','Queensland',10);
-insert into ibankUser values ('','John Macane',10,'billybob',1,9823982398);
+insert into ibankUser values ('','John Macane',10,'billybob',3,9823982398);
 insert into ibankAccount (account_number,staff_user_id,login_user_id) values('',13371337,13371337);
 
 insert into ibankAccount (account_number,staff_user_id,login_user_id) values('',1,2);

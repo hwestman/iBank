@@ -198,6 +198,13 @@ body {
 	text-align: right;
 }
 
+#content-main td select {
+	height: 10px;
+	width: 100px;
+	margin: 5px;
+	padding: 5px;
+}
+
 #content-main td a{
 	text-decoration: none;
 	color: inherit;

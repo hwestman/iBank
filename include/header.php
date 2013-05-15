@@ -3,12 +3,12 @@ session_start();
 ?>
 
 <div id="header">
-	<a href="index.php"><div class="logo"></div></a>
+	<a href="mibank.php"><div class="logo"></div></a>
 	<?php if($_SESSION['login']['priv'] == 1)
 	{?>
 	<div id='cssmenu'>
 		<ul>
-		   <li class='active'><a href="index.php"><span>Mi Accounts</span></a></li>
+		   <li class='active'><a href="mibank.php"><span>Mi Accounts</span></a></li>
 		   <li class='has-sub'><a href=''><span>View Accounts</span></a>
 		      <ul>
 		         <li><a href='view-account.php?type=1'><span>Savings</span></a></li>
