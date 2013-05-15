@@ -79,16 +79,16 @@ END;
 /
 
 
-CREATE OR REPLACE PROCEDURE transferFunds (
+CREATE OR REPLACE FUNCTION transferFunds (
 	accountFrom IN NUMBER,
 	accountTo IN NUMBER,
 	message IN VARCHAR2,
-	money IN NUMBER,
-	receiptNumber OUT NUMBER
+	money IN NUMBER	
 )
 RETURN NUMBER
 AS
 fromAmount NUMBER;
+receiptNumber NUMBER;
 BEGIN	
 		SELECT balance FROM ibankAccount WHERE accountFrom = account_number;
 		RETURNING balance INTO fromAmount;
