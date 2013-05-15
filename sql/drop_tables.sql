@@ -28,4 +28,15 @@ DROP TRIGGER suburb_id_trig;
 DROP TABLE ibankSuburb;
 
 
+/*
+    VIEWS
+*/
+DROP VIEW user_info_view;
+DROP VIEW account_info_view;
+
+
+
+
+
+
 COMMIT;

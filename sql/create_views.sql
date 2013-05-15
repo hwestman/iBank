@@ -9,22 +9,14 @@ CREATE OR REPLACE VIEW user_info_view AS
     LEFT JOIN ibankAddress A ON U.address_id = A.address_id
     LEFT JOIN ibankSuburb S ON A.suburb_id = S.suburb_id;
 
- Type
-■ Balance
-■ Interest
-■ Last x transactions
-
 CREATE OR REPLACE VIEW account_info_view AS
     
-    SELECT A.account_number,A.balance,A.interest_sum,A.type_of_account
+    SELECT U.login_id,A.account_number,A.balance,A.interest_sum,A.type_of_account
     FROM ibankAccount A
-    LEFT JOIN ibankUser
+    LEFT JOIN ibankUser U on U.login_id = A.login_user_id
 
 
-    SELECT U.login_id,U.full_name,U.contact_number,A.street_address,S.postcode
-    FROM ibankUser U   
-    LEFT JOIN ibankAddress A ON U.address_id = A.address_id
-    LEFT JOIN ibankSuburb S ON A.suburb_id = S.suburb_id;
+
 
 
 
