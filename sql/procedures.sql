@@ -6,6 +6,14 @@
     sqlplus ibank_dba/billybob@dwarf @sampleData.sql
     sqlplus ibank_dba/billybob@dwarf @procedures.sql
     
+    EXEC createAccount(1,4,'',2);
+    
+    SELECT createAccount(1,4,'',2) FROM DUAL;
+    
+    	variable accountNumber NUMBER;
+    	EXEC :accountNumber := createAccount(1,4,'',4);
+    	PRINT accountNumber;
+    	/
 */
 
 SET SQLBLANKLINES ON
@@ -26,10 +34,30 @@ BEGIN
 		VALUES ('', streetAddress, county, suburbID)
 		RETURNING address_id INTO addressID;
 	
-	INSERT INTO ibankUsers
+	INSERT INTO ibankUser
 		VALUES ('', fullName, addressID, pword, priv, contactNumber);
 END;
 /
+
+CREATE OR REPLACE FUNCTION createAccount (
+	staffID IN NUMBER,
+	loginID IN NUMBER,
+	loginID2 IN NUMBER,
+	accountType IN NUMBER
+)
+RETURN NUMBER
+IS
+accountNumber NUMBER;
+BEGIN	
+		INSERT INTO ibankAccount
+			(account_number, staff_user_id, login_user_id, login_user_id2, type_of_account)
+			VALUES ('', staffID, loginID, loginID2, accountType)
+			RETURNING account_number INTO accountNumber;
+			COMMIT;
+			RETURN accountNumber;
+END;
+/
+
 
 
 /* TEXT BOOK EXAMPLE
