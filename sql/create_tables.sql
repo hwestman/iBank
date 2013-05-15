@@ -12,7 +12,7 @@ SET SQLBLANKLINES ON
 
 /*----------------------------------Users-------------------------------------*/
 
-CREATE TABLE ibankUsers(
+CREATE TABLE ibankUser(
     
     login_id number(11) PRIMARY KEY NOT NULL,
     full_name varchar2(50) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE ibankUsers(
 CREATE SEQUENCE login_id_seq START WITH 1 INCREMENT BY 1;
 
 CREATE OR REPLACE trigger login_id_trig
-BEFORE INSERT ON ibankUsers
+BEFORE INSERT ON ibankUser
 FOR EACH ROW
 BEGIN
     SELECT login_id_seq.nextval INTO :new.login_id FROM dual;
@@ -60,7 +60,7 @@ END;
 
 CREATE TABLE ibankSuburb(
     suburb_id number(11)PRIMARY KEY NOT NULL, 
-    postcode number(11) NOT NULL, 
+    postcode varchar2(4) NOT NULL, 
     suburb_name varchar2(50)
 );
 
@@ -145,7 +145,7 @@ END;
 */
 
 /*--------------------------------ALTERS--------------------------------------*/
-ALTER TABLE ibankUsers
+ALTER TABLE ibankUser
 add CONSTRAINT fk_address
     FOREIGN KEY (address_id)
     REFERENCES ibankAddress(address_id);
@@ -159,17 +159,17 @@ add CONSTRAINT fk_suburb
 ALTER TABLE ibankAccount
 add CONSTRAINT fk_login_staff
     FOREIGN KEY (staff_user_id)
-    REFERENCES ibankUsers(login_id);
+    REFERENCES ibankUser(login_id);
 
 ALTER TABLE ibankAccount
 add CONSTRAINT fk_login_user
     FOREIGN KEY (login_user_id)
-    REFERENCES ibankUsers(login_id);
+    REFERENCES ibankUser(login_id);
 
 ALTER TABLE ibankAccount
 add CONSTRAINT fk_login_user2
     FOREIGN KEY (login_user_id2)
-    REFERENCES ibankUsers(login_id);
+    REFERENCES ibankUser(login_id);
 
 ALTER TABLE ibankAccount
 add CONSTRAINT fk_account_type

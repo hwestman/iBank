@@ -34,6 +34,8 @@ class User {
     var $account;
     
     public function __construct($priv) {		//constructor
+        
+        /*
         global $faker;
         
         $this->full_name = $faker->name;
@@ -44,7 +46,7 @@ class User {
         $this->street_address = $faker->address;
         $this->suburb_name = $faker->city;
         $this->postcode = $faker->randomNumber(1000, 9999);
-        
+        */
         
         
         

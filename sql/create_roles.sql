@@ -57,7 +57,7 @@ GRANT SELECT ON ibankAccountType TO ibank_customer_role;
 GRANT SELECT ON ibankTransaction TO ibank_customer_role;
 GRANT SELECT ON ibankSuburb TO ibank_customer_role;
 
-GRANT SELECT ON ibankUsers TO ibank_teller_role;
+GRANT SELECT ON ibankUser TO ibank_teller_role;
 GRANT SELECT ON ibankAddress  TO ibank_teller_role;
 
 GRANT SELECT ON ibankAccount TO ibank_teller_role;
@@ -66,7 +66,7 @@ GRANT SELECT ON ibankTransaction TO ibank_teller_role;
 GRANT SELECT ON ibankSuburb TO ibank_teller_role;
 
 
-GRANT SELECT ON ibankUsers TO ibank_manager_role;
+GRANT SELECT ON ibankUser TO ibank_manager_role;
 GRANT SELECT ON ibankAddress TO ibank_manager_role;
 
 GRANT SELECT ON ibankAccount TO ibank_manager_role;
@@ -74,27 +74,27 @@ GRANT SELECT ON ibankAccountType TO ibank_manager_role;
 GRANT SELECT ON ibankTransaction TO ibank_manager_role;
 GRANT SELECT ON ibankSuburb TO ibank_manager_role;
 
-GRANT ALTER ON ibankUsers TO ibank_customer_role;
+GRANT ALTER ON ibankUser TO ibank_customer_role;
 GRANT ALTER ON ibankAddress TO ibank_customer_role;
 GRANT ALTER ON ibankSuburb TO ibank_customer_role;
 GRANT ALTER ON ibankAccount TO ibank_customer_role;
 
-GRANT ALTER ON ibankUsers TO ibank_teller_role;
+GRANT ALTER ON ibankUser TO ibank_teller_role;
 GRANT ALTER ON ibankAddress TO ibank_teller_role;
 GRANT ALTER ON ibankSuburb TO ibank_teller_role;
 GRANT ALTER ON ibankAccount TO ibank_teller_role;
 
-GRANT ALTER ON ibankUsers TO ibank_manager_role;
+GRANT ALTER ON ibankUser TO ibank_manager_role;
 GRANT ALTER ON ibankAddress TO ibank_manager_role;
 GRANT ALTER ON ibankSuburb TO ibank_manager_role;
 GRANT ALTER ON ibankAccount TO ibank_manager_role;
 GRANT ALTER ON ibankAccountType TO ibank_manager_role;
 
-GRANT INSERT ON ibankUsers TO ibank_teller_role;
+GRANT INSERT ON ibankUser TO ibank_teller_role;
 GRANT INSERT ON ibankAddress TO ibank_teller_role;
 GRANT INSERT ON ibankSuburb TO ibank_teller_role;
 
-GRANT INSERT ON ibankUsers TO ibank_manager_role;
+GRANT INSERT ON ibankUser TO ibank_manager_role;
 GRANT INSERT ON ibankAddress TO ibank_manager_role;
 GRANT INSERT ON ibankSuburb TO ibank_manager_role;
 
