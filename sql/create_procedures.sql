@@ -8,6 +8,8 @@
     
     EXEC createAccount(1,4,'',2);
     
+    select * from SYS.USER_ERRORS;
+    
     SELECT createAccount(1,4,'',2) FROM DUAL;
     
     DECLARE
@@ -28,7 +30,7 @@
     	
     	//// TRANSFER FUNDS PROCEDURE ////
     	variable receiptNumber NUMBER;
-    	EXEC transferFunds(18283004,18280330,'Enjoy',300.25, :receiptNumber);
+    	EXEC transferFunds(18283004,18280330,'HELLO',300.25, :receiptNumber);
     	PRINT receiptNumber;
     	/
     	
@@ -197,6 +199,33 @@ BEGIN
 END;
 /
 
+/*///////////////////////////// UPDATE INTEREST RATE PROCEDURE /////////////////////////////*/
+CREATE OR REPLACE PROCEDURE updateInterestRate (
+	savings IN NUMBER,
+	credit IN NUMBER,
+	cheque IN NUMBER,
+	loan IN NUMBER
+)
+AS
+interestRate NUMBER;
+BEGIN	
+		UPDATE ibankAccountType
+			SET interest_rate = savings
+			WHERE type_id = 1;
+		UPDATE ibankAccountType
+			SET interest_rate = credit
+			WHERE type_id = 2;
+		UPDATE ibankAccountType
+			SET interest_rate = cheque
+			WHERE type_id = 3;
+		UPDATE ibankAccountType
+			SET interest_rate = loan
+			WHERE type_id = 4;
+		COMMIT;
+		RETURN;
+END;
+/
+
 /*////////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////////////////////////////*/
 
 /*///////////////////////////// CREATING AN ACCOUNT FUNCTION /////////////////////////////*/
@@ -218,3 +247,4 @@ BEGIN
 			RETURN accountNumber;
 END;
 /
+

@@ -1,12 +1,13 @@
 <?php
+	include "check.php";
+	include "db_layer/DataStore.php";
 
 	session_start();
 	
-	$savingsAmount = "6";
-	$chequeAmount = "0";
-	$creditAmount = "15.75";
-	$loanAmount = "6.15";
-
+	$interestRate = array();
+	$interestRate = $datastore->getInterestRate();
+	
+	$_SESSION['interestRates'] = $interestRate; 
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -29,10 +30,10 @@
 			<div id="content-main">
 				<table>
 					<th width="35%">Account type</th><th width="35%">Interest rate per annum</th>
-					<tr bgcolor="#DDD"><td>Savings</td><td><?php echo $savingsAmount;?>%</td></tr>
-					<tr bgcolor="#CCC"><td>Cheque</td><td><?php echo $chequeAmount;?>%</td></tr>
-					<tr bgcolor="#DDD"><td>Credit</td><td><?php echo $creditAmount;?>%</td></tr>
-					<tr bgcolor="#CCC"><td>Loan</td><td><?php echo $loanAmount;?>%</td></tr>
+					<tr bgcolor="#DDD"><td>Savings</td><td><?php echo $interestRate[0];?>%</td></tr>
+					<tr bgcolor="#CCC"><td>Credit</td><td><?php echo $interestRate[1];?>%</td></tr>
+					<tr bgcolor="#DDD"><td>Cheque</td><td><?php echo $interestRate[2];?>%</td></tr>
+					<tr bgcolor="#CCC"><td>Loan</td><td><?php echo $interestRate[3];?>%</td></tr>
 				</table>
 				<a href="update-interest-rate.php"><input type="submit" class="button" id="right" name="Update" value="Update"></a>
 			</div><!--CLOSE CONTENT MAIN-->

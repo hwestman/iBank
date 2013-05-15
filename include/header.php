@@ -41,15 +41,7 @@ $accounts = $datastore->getMiAccounts();
 	{?>
 	<div id='cssmenu'>
 		<ul>
-			<li class="active"><a href=""><span>Manager</span></a></li>
-			<li class='has-sub'><a href=''><span>Reporting</span></a>
-		      <ul>
-		         <li><a href='view-account.php?type=1'><span>Savings</span></a></li>
-		         <li><a href='view-account.php?type=2'><span>Cheque</span></a></li>
-		         <li><a href='view-account.php?type=3'><span>Credit card</span></a></li>
-		         <li class='last'><a href='view-account.php?type=4'><span>Loan</span></a></li>
-		      </ul>
-		   </li>
+			<li class="active"><a href="manager.php"><span>Manager</span></a></li>
 		   <li><a href='interest-rate.php'><span>Interest rate</span></a></li>
 		   <li class='last'><a href='log-out.php'><span>Log out</span></a></li>
 		</ul>

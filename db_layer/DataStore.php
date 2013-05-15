@@ -313,6 +313,57 @@ class DataStore{
 	        return $receiptNumber;
         }   
     }
+    
+    public function getInterestRate() {
+	    $interestRate = array();
+	    
+	    $query = "SELECT interest_rate FROM ibank_dba.ibankAccountType";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    
+	    $res = \oci_execute($stmt);
+	    
+	    $i = 0;
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                $interestRate[$i] = $row['INTEREST_RATE'];
+                $i++;
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $interestRate;
+    }
+    
+    public function updateInterestRate($savings, $credit, $cheque, $loan) {
+	    $interestRate = array();
+	    
+	    $query = "CALL ibank_dba.updateInterestRate($savings, $credit, $cheque, $loan)";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    $res = \oci_execute($stmt);
+	    
+	    $i = 0;
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                $interestRate[$i] = $row['INTEREST_RATE'];
+                $i++;
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $interestRate;
+    }
 
     
     
