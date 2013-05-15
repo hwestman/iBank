@@ -1,18 +1,17 @@
 <?php
+	include "check.php";
+	include "db_layer/DataStore.php";
 
 	session_start();
 	
-	$savingsAmount = "6";
-	$chequeAmount = "0";
-	$creditAmount = "15.75";
-	$loanAmount = "6.15";
-	
 	if(isset($_POST['Update']))
 	{
-		$savingsAmount = $_POST['savings'];
-		$chequeAmount = $_POST['cheque'];
-		$creditAmount = $_POST['credit'];
-		$loanAmount = $_POST['loan'];
+		$_SESSION['interestRates'][0] = $_POST['savings'];
+		$_SESSION['interestRates'][1] = $_POST['credit'];
+		$_SESSION['interestRates'][2] = $_POST['cheque'];
+		$_SESSION['interestRates'][3] = $_POST['loan'];
+		
+		$updatedInterestRates = $datastore->updateInterestRate($_SESSION['interestRates'][0], $_SESSION['interestRates'][1], $_SESSION['interestRates'][2], $_SESSION['interestRates'][3]);
 		
 		header('LOCATION: interest-rate.php');
 	}
@@ -40,10 +39,10 @@
 			<form name="interest-rate" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
 				<table>
 					<th width="35%">Account type</th><th width="35%">Interest rate per annum</th>
-					<tr bgcolor="#DDD"><td>Savings</td><td><input type="text" name="savings" class="left" value="<?php echo $savingsAmount;?>"/>%</td></tr>
-					<tr bgcolor="#CCC"><td>Cheque</td><td><input type="text" name="cheque" class="left" value="<?php echo $chequeAmount;?>"/>%</td></tr>
-					<tr bgcolor="#DDD"><td>Credit</td><td><input type="text" name="credit" class="left" value="<?php echo $creditAmount;?>"/>%</td></tr>
-					<tr bgcolor="#CCC"><td>Loan</td><td><input type="text" name="loan" class="left" value="<?php echo $loanAmount;?>"/>%</td></tr>
+					<tr bgcolor="#DDD"><td>Savings</td><td><input type="text" name="savings" class="left" value="<?php echo $_SESSION['interestRates'][0];;?>"/>%</td></tr>
+					<tr bgcolor="#CCC"><td>Credit</td><td><input type="text" name="cheque" class="left" value="<?php echo $_SESSION['interestRates'][1];?>"/>%</td></tr>
+					<tr bgcolor="#DDD"><td>Cheque</td><td><input type="text" name="credit" class="left" value="<?php echo $_SESSION['interestRates'][2];?>"/>%</td></tr>
+					<tr bgcolor="#CCC"><td>Loan</td><td><input type="text" name="loan" class="left" value="<?php echo $_SESSION['interestRates'][3];?>"/>%</td></tr>
 				</table>
 				<input type="reset" class="button" id="left" name="cancel" onclick="location.href='interest-rate.php'" value="Cancel"/>
 				<input type="submit" class="button" id="right" name="Update" value="Update"/>

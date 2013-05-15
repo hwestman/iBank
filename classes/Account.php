@@ -36,10 +36,10 @@ class Account {
                 $this->accountTypeName = 'Savings';
                 break;
             case 2:
-                $this->accountTypeName = 'Cheque';
+                $this->accountTypeName = 'Credit';
                 break;
             case 3:
-                $this->accountTypeName = 'Credit';
+                $this->accountTypeName = 'Cheque';
                 break;
             case 4:
                 $this->accountTypeName = 'Loan';
