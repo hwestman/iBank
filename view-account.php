@@ -1,9 +1,12 @@
 <?php
     //this needs all required files
     
-    $transaction_id = "Yep";
+    session_start();
+
+    include "db_layer/DataStore.php";
+    $accountNumber = $_GET['accountNumber'];
     
-    $accountNumber = "Needs to get from database";
+    $transactions = $datastore->getTransactions($accountNumber);
 
 ?>
 <!DOCTYPE html>
@@ -27,17 +30,17 @@
 			<div id="content-main">
 				<table>
 					<h2>Account number: <?php echo $accountNumber; ?></h2>
-					<th width="10%">Date</th><th width="25%">Transaction</th><th width="25%">Memo</th><th width="10%">Amount</th><th width="20%">Balance</th>
+					<th width="10%">Date</th><th width="25%">Transaction</th><th width="25%">Memo</th><th width="10%">Amount</th>
 				 <?php
-				 	for($i = 0; $i < 15; $i++)
+				 	foreach($transactions as $key=>$transaction)
 				 	{
-				 		if($i %2)
+				 		if($key %2)
 						{
-							?><tr bgcolor="#DDD"><td>08/05/2013</td><td><a href="transaction-details.php?idNumber=<?php echo $transaction_id;?>">123456</a></td><td>Neque porro quisqu</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
+							?><tr bgcolor="#DDD"><td><?php echo $transaction->date ?></td><td><a href="transaction-details.php?idNumber=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td><td><?php echo $transaction->memo;?></td><td><?php echo $transaction->amount;?></td></tr><?php
 						}
 						else
 						{
-							?><tr bgcolor="#CCC"><td>08/05/2013</td><td><a href="transaction-details.php?idNumber=<?php echo $transaction_id;?>">123456</a></td><td>Neque porro quisqu</td><td>-$150.00</td><td>$2,010.00</td></tr><?php
+							?><tr bgcolor="#CCC"><td><?php echo $transaction->date ?></td><td><a href="transaction-details.php?idNumber=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td><td><?php echo $transaction->memo;?></td><td><?php echo $transaction->amount;?></td></tr><?php
 						}
 				 	}
 				 ?>

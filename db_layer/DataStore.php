@@ -4,6 +4,7 @@
 include 'Connection.php';
 //include 'User.php';
 include 'classes/Account.php';
+include 'classes/Transaction.php';
 
 class DataStore{
     
@@ -114,6 +115,117 @@ class DataStore{
         
         return $accounts;
     }
+    
+    public function checkAccountNumber($account_number){
+        
+        $query = "  SELECT login_user_id
+                    FROM ibank_dba.ibankUser U
+                    LEFT JOIN ibank_dba.ibankAccount A
+                    ON U.login_id = A.login_user_id
+                    WHERE A.account_number = :accountNumber";
+                      
+        
+        $stmt = \oci_parse($this->connection->getConnection(), $query);
+
+        oci_bind_by_name($stmt, ':accountNumber', $account_number);
+
+        $res = oci_execute($stmt);
+        $attemptUser = null;
+        if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                
+                
+                $attemptUser = $row['LOGIN_USER_ID'];
+            }
+
+        }else{
+            $attemptUser = null;
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+            
+        }
+        //oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        if(isset($attemptUser) && $attemptUser == $_SESSION['login']['id']){
+            
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function getTransactions($accountNumber){
+        
+        
+        if($this->checkAccountNumber($accountNumber)){
+        
+            $transactions = Array();
+            $query = "  SELECT TT.transaction_id,TT.to_account,TT.date_of_transaction,TT.memo,TT.amount,A.login_user_id 
+                        FROM ibank_dba.ibankTransaction TT 
+                        LEFT JOIN ibank_dba.ibankAccount A on TT.from_account = A.account_number
+                        WHERE TT.from_account = :account_number";
+
+
+            $stmt = \oci_parse($this->connection->getConnection(), $query);
+
+            oci_bind_by_name($stmt, ':account_number', $accountNumber);
+
+            $res = oci_execute($stmt);
+
+            if($res){
+                while ($row = oci_fetch_assoc($stmt)) {
+
+                    $transaction = new Transaction($accountNumber,$row['TO_ACCOUNT'], $row['DATE_OF_TRANSACTION'], $row['TRANSACTION_ID'], $row['MEMO'], $row['AMOUNT']);
+                    array_push($transactions,$transaction);
+                }
+
+            }else{
+                $transactions = null;
+                $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+
+            }
+
+
+            $query = "  SELECT TT.transaction_id,TT.from_account,TT.date_of_transaction,TT.memo,TT.amount,A.login_user_id 
+                        FROM ibank_dba.ibankTransaction TT 
+                        LEFT JOIN ibank_dba.ibankAccount A on TT.to_account = A.account_number
+                        WHERE TT.to_account = :account_number";
+
+
+            $stmt = \oci_parse($this->connection->getConnection(), $query);
+
+            oci_bind_by_name($stmt, ':account_number', $accountNumber);
+
+            $res = oci_execute($stmt);
+
+            if($res){
+                while ($row = oci_fetch_assoc($stmt)) {
+
+                    $transaction = new Transaction($row['FROM_ACCOUNT'],$accountNumber,$row['DATE_OF_TRANSACTION'], $row['TRANSACTION_ID'], $row['MEMO'], $row['AMOUNT']);
+                    array_push($transactions,$transaction);
+                }
+
+            }else{
+                $transactions = null;
+                $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+
+            }
+
+
+            //oci_commit($stmt);
+            oci_free_statement($stmt);
+            
+            return $transactions;
+        }else{
+            
+            return false;
+        }
+        
+        
+        
+        
+    }
+    
     
     public function generateAustraliaPost(){
     

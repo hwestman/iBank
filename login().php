@@ -13,9 +13,9 @@ include 'db_layer/DataStore.php';
         $password = $_POST['password'];
         
         $login = $datastore->attemptLogin($username,$password);
-        $login['datastore'] = $datastore;
-        $_SESSION['login'] = $login; 
-        
+        if($login){
+            $_SESSION['login'] = $login; 
+        }
 	}
     switch ($_SESSION['login']['priv']) {
         case 1:
