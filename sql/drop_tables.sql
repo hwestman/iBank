@@ -2,6 +2,7 @@
 /* sqlplus s2873575@dwarf @drop_tables.sql */
 SET SQLBLANKLINES ON
 
+
 DROP SEQUENCE transaction_id_seq;
 DROP TRIGGER transaction_id_trig;
 DROP TABLE ibankTransaction;
@@ -26,6 +27,13 @@ DROP TABLE ibankAddress;
 DROP SEQUENCE suburb_id_seq;
 DROP TRIGGER suburb_id_trig;
 DROP TABLE ibankSuburb;
+
+
+
+
+
+
+
 
 
 /*

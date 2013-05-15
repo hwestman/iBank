@@ -51,7 +51,7 @@ insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',1
 insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',1,8);
 insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',1,9);
 insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',1,10);
-
+COMMIT;
 UPDATE ibankAccount SET balance = '-250000' WHERE account_number = 18301722;
 UPDATE ibankAccount SET balance = 2500000 WHERE account_number = 18277656;
 UPDATE ibankAccount SET balance = 48 WHERE account_number = 18283004;
