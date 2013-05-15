@@ -20,22 +20,34 @@
 		PRINT loginUserID;
 		/
     
-		//// CREATING ACCOUNT PROCEDURE ////
+		//// CREATING ACCOUNT FUNCTION ////
     	variable accountNumber NUMBER;
     	EXEC :accountNumber := createAccount(1,4,'',4);
     	PRINT accountNumber;
     	/
     	
+    	//// TRANSFER FUNDS PROCEDURE ////
     	variable receiptNumber NUMBER;
     	EXEC transferFunds(18283004,18280330,'Enjoy',300.25, :receiptNumber);
     	PRINT receiptNumber;
     	/
+    	
+    	//// ACCUMULATE INTEREST PROCEDURE ////
+    	VARIABLE interestSum NUMBER;
+    	EXEC accumulateInterest(:interestSum);
+    	/
+    	
+    	//// PAYOUT INTEREST PROCEDURE ////
+    	VARIABLE interestSum NUMBER;
+    	EXEC payoutInterest(:interestSum);
+    	/
+    	
 */
 
 SET SQLBLANKLINES ON
+/*////////////////////////////////////////////// PROCEDURES ////////////////////////////////////////////////////////////////////////*/
 
 /*///////////////////////////// CREATING A USER PROCEDURE /////////////////////////////*/
-
 CREATE OR REPLACE PROCEDURE createUser (
 	suburbID IN VARCHAR2,
 	streetAddress IN VARCHAR2,
@@ -99,6 +111,93 @@ BEGIN
 		END IF;
 END;
 /
+
+/*///////////////////////////// ACCUMULATE INTEREST PROCEDURE /////////////////////////////*/
+CREATE OR REPLACE PROCEDURE accumulateInterest(
+	interestSum OUT NUMBER
+)
+AS
+accountNumber NUMBER;
+interestRate NUMBER (8,7);
+accountType NUMBER;
+bankBalance NUMBER;
+tmp NUMBER;
+interestBalance NUMBER;
+
+cursor account_tmp IS SELECT account_number FROM ibankAccount;
+
+BEGIN
+	OPEN account_tmp;
+	LOOP
+		FETCH account_tmp INTO accountNumber;
+		EXIT WHEN account_tmp%NOTFOUND;
+			
+			SELECT 	balance INTO bankBalance
+					FROM ibankAccount
+					WHERE accountNumber = account_number;
+			SELECT 	type_of_account INTO accountType
+					FROM ibankAccount
+					WHERE accountNumber = account_number;	
+			SELECT 	interest_sum INTO interestBalance 
+					FROM ibankAccount
+					WHERE accountNumber = account_number;	
+			SELECT 	interest_rate INTO interestRate
+					FROM ibankAccountType
+					WHERE accountType = type_id;
+			
+			interestRate := interestRate/365;
+			interestRate := interestRate/100;
+			tmp := interestBalance + bankBalance;
+			tmp := tmp*interestRate;
+			interestBalance := tmp + interestBalance;
+			
+			UPDATE ibankAccount
+				SET interest_sum = interestBalance WHERE accountNumber = account_number;
+			COMMIT;
+	END LOOP;
+	RETURN;
+END;
+/
+
+/*///////////////////////////// ACCUMULATE INTEREST PROCEDURE /////////////////////////////*/
+CREATE OR REPLACE PROCEDURE payoutInterest(
+	interestSum OUT NUMBER
+)
+AS
+accountNumber NUMBER;
+bankBalance NUMBER;
+interestBalance NUMBER;
+
+cursor account_tmp IS SELECT account_number FROM ibankAccount;
+
+BEGIN
+	OPEN account_tmp;
+	LOOP
+		FETCH account_tmp INTO accountNumber;
+		EXIT WHEN account_tmp%NOTFOUND;
+			
+			SELECT 	balance INTO bankBalance
+					FROM ibankAccount
+					WHERE accountNumber = account_number;	
+			SELECT 	interest_sum INTO interestBalance 
+					FROM ibankAccount
+					WHERE accountNumber = account_number;	
+					
+			bankBalance := interestBalance + bankBalance;
+			
+			UPDATE ibankAccount
+				SET balance = bankBalance, interest_sum = 0 WHERE accountNumber = account_number;
+				
+			INSERT INTO ibankTransaction
+				(transaction_id, from_account, to_account, memo, amount)
+				VALUES ('', 13371337, accountNumber, 'Interest', interestBalance);
+			COMMIT;
+	END LOOP;
+	RETURN;
+END;
+/
+
+/*////////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////////////////////////////*/
 
 /*///////////////////////////// CREATING AN ACCOUNT FUNCTION /////////////////////////////*/
 CREATE OR REPLACE FUNCTION createAccount (

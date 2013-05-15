@@ -42,6 +42,9 @@ insert into ibankAccountType values('','Credits',15.4963);
 insert into ibankAccountType values('','Cheque',00.0000);
 insert into ibankAccountType values('','Loan',04.2500);
 
+insert into ibankAddress values('1337','1337 Yippee Ki-yay Way','Queensland',10);
+insert into ibankUser values ('','John Macane',10,'billybob',1,9823982398);
+insert into ibankAccount (account_number,staff_user_id,login_user_id) values('',13371337,13371337);
 
 insert into ibankAccount (account_number,staff_user_id,login_user_id) values('',1,2);
 insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',1,4);
@@ -71,7 +74,7 @@ UPDATE ibankAccount SET balance = balance + 25000 WHERE account_number = 1828701
 UPDATE ibankAccount SET balance = balance + 1234 WHERE account_number = 18288352;
 UPDATE ibankAccount SET balance = balance + 6782 WHERE account_number = 18289689;
 UPDATE ibankAccount SET balance = balance + '-12' WHERE account_number = 18291026;
-UPDATE ibankAccount SET balance = balance + '-3214' WHERE account_number = 18292363;
+UPDATE ibankAccount SET balance = balance + '-3214' WHERE account_number = 18285678;
 UPDATE ibankAccount SET balance = balance + '-6001' WHERE account_number = 18293700;
 UPDATE ibankAccount SET balance = balance + '-9876' WHERE account_number = 18295037;
 UPDATE ibankAccount SET balance = balance + '-123456' WHERE account_number = 18296374;
@@ -79,7 +82,5 @@ UPDATE ibankAccount SET balance = balance + '-9812733' WHERE account_number = 18
 UPDATE ibankAccount SET balance = balance + '-1234' WHERE account_number = 18299048;
 UPDATE ibankAccount SET balance = balance + '-8562' WHERE account_number = 18300385;
 UPDATE ibankAccount SET balance = balance + '-2342' WHERE account_number = 18301722;
-
-
 
 COMMIT;
