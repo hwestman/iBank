@@ -17,19 +17,18 @@ include 'db_layer/DataStore.php';
         $_SESSION['login'] = $login; 
         
 	}
-	/*
-	if($username == "customer")
-	{
-		$_SESSION['login']['cust'] = true;
-	}
-	else if($username == "teller")
-	{
-		$_SESSION['login']['teller'] = true;
-	}
-	else if($username == "manager")
-	{
-		$_SESSION['login']['manager'] = true;
-	}
-    */
-	header("LOCATION: index.php");
+    switch ($_SESSION['login']['priv']) {
+        case 1:
+            header("LOCATION: mibank.php");
+            break;
+        case 2:
+            header("LOCATION: teller.php");
+            break;
+        case 3:
+            header("LOCATION: manager.php");
+            break;
+        default:
+            header("LOCATION: index.php");
+            break; 
+    }
 ?>
