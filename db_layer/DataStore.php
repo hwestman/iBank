@@ -288,7 +288,7 @@ class DataStore{
 	    
 	    $receiptNumber = null;
 
-	    $query = "BEGIN transferFunds($fromAccount, $toAccount, '$memo', $amount, :receiptNumber); END;";
+	    $query = "CALL ibank_dba.transferFunds($fromAccount, $toAccount, '$memo', $amount, :receiptNumber)";
 
 	    $stmt = \oci_parse($this->connection->getConnection(), $query);
 	    oci_bind_by_name($stmt, ":receiptNumber", $receiptNumber);
@@ -303,7 +303,7 @@ class DataStore{
             
             $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
         }
-        
+        oci_commit($stmt);
         oci_free_statement($stmt);
         
         if($receiptNumber < 1 || $receiptNumber == null){

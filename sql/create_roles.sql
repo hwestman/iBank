@@ -60,6 +60,7 @@ GRANT SELECT ON ibankAccountType TO ibank_customer_role;
 GRANT SELECT ON ibankTransaction TO ibank_customer_role;
 GRANT SELECT ON ibankSuburb TO ibank_customer_role;
 GRANT SELECT ON user_info_view TO ibank_customer_role;
+GRANT EXECUTE ON transferFunds TO ibank_customer_role;
 
 
 GRANT ALTER ON ibankUser TO ibank_customer_role;
