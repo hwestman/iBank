@@ -56,22 +56,20 @@ UPDATE ibankAccount SET balance = '-250000' WHERE account_number = 18301722;
 UPDATE ibankAccount SET balance = 2500000 WHERE account_number = 18277656;
 UPDATE ibankAccount SET balance = 48 WHERE account_number = 18283004;
 UPDATE ibankAccount SET balance = '-1532' WHERE account_number = 18293700;
-
-
-18273645		     1
-18274982		     1
-18276319		     1
-18277656		     1
-18278993		     1
-18280330		     1
-18281667		     1
-18283004		     1
-18287015		     2
-18288352		     2
-18289689		     2
-18291026		     3
-18292363		     3
-18293700		     3
+UPDATE ibankAccount SET balance = 450 WHERE account_number = 18273645;
+UPDATE ibankAccount SET balance = 123456 WHERE account_number = 18274982;
+UPDATE ibankAccount SET balance = 99871 WHERE account_number = 18276319;
+UPDATE ibankAccount SET balance = 12 WHERE account_number = 18277656;
+UPDATE ibankAccount SET balance = 96 WHERE account_number = 18278993;
+UPDATE ibankAccount SET balance = 9912 WHERE account_number = 18280330;
+UPDATE ibankAccount SET balance = 982 WHERE account_number = 18281667;
+UPDATE ibankAccount SET balance = 54321 WHERE account_number = 18283004;
+UPDATE ibankAccount SET balance = 25000 WHERE account_number = 18287015;
+UPDATE ibankAccount SET balance = 1234 WHERE account_number = 18288352;
+UPDATE ibankAccount SET balance = 6782 WHERE account_number = 18289689;
+UPDATE ibankAccount SET balance = '-12' WHERE account_number = 18291026;
+UPDATE ibankAccount SET balance = '-3214' WHERE account_number = 18292363;
+UPDATE ibankAccount SET balance = '-6001' WHERE account_number = 18293700;
 18295037		     4
 18296374		     4
 18297711		     4
