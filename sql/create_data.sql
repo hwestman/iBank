@@ -26,16 +26,16 @@ insert into ibankAddress values('8','17 runaway way','Western Australia',8);
 insert into ibankAddress values('9','19 wiggle street','Northern Territory',9);
 insert into ibankAddress values('10','63 counting crows','Victoria',10);
 
-insert into ibankUsers values ('1','Billy ray cyrus',1,'billybob',2,9823982398);
-insert into ibankUsers values ('2','Mily cyrus',2,'billybob',1,9823982398);
-insert into ibankUsers values ('3','Johnny Depp',3,'billybob',3,9823982398);
-insert into ibankUsers values ('4','P. Sherman',4,'billybob',1,9823982398);
-insert into ibankUsers values ('5','Lance Armstrong',5,'billybob',1,9823982398);
-insert into ibankUsers values ('','Aroona',6,'billybob',1,9823982398);
-insert into ibankUsers values ('','Carlton Banks',7,'billybob',1,9823982398);
-insert into ibankUsers values ('','Nemo',8,'billybob',1,9823982398);
-insert into ibankUsers values ('','Jimminy Billy bob',9,'billybob',1,9823982398);
-insert into ibankUsers values ('','Gert',10,'billybob',1,9823982398);
+insert into ibankUser values ('1','Billy ray cyrus',1,'billybob',2,9823982398);
+insert into ibankUser values ('2','Mily cyrus',2,'billybob',1,9823982398);
+insert into ibankUser values ('3','Johnny Depp',3,'billybob',3,9823982398);
+insert into ibankUser values ('4','P. Sherman',4,'billybob',1,9823982398);
+insert into ibankUser values ('5','Lance Armstrong',5,'billybob',1,9823982398);
+insert into ibankUser values ('','Aroona',6,'billybob',1,9823982398);
+insert into ibankUser values ('','Carlton Banks',7,'billybob',1,9823982398);
+insert into ibankUser values ('','Nemo',8,'billybob',1,9823982398);
+insert into ibankUser values ('','Jimminy Billy bob',9,'billybob',1,9823982398);
+insert into ibankUser values ('','Gert',10,'billybob',1,9823982398);
 
 insert into ibankAccountType values('','Savings',06.0000);
 insert into ibankAccountType values('','Credits',15.4963);

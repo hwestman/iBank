@@ -16,7 +16,7 @@ DROP TABLE ibankAccountType;
 
 DROP SEQUENCE login_id_seq;
 DROP TRIGGER login_id_trig;
-DROP TABLE ibankUsers;
+DROP TABLE ibankUser;
 
 DROP SEQUENCE address_id_seq;
 DROP TRIGGER address_id_trig;
