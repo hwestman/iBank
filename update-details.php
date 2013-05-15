@@ -1,6 +1,10 @@
 <?php
     //this needs all required files
 
+
+    include_once '';
+
+
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -21,7 +25,7 @@
 		<?php include "include/header.php"; ?>
 		<div id="content">
 			<div id="content-main">
-				<form name="update" method="post" action="#">
+				<form name="update" method="post" action="<?php $_SERVER['php_self'] ?>">
 						<table>
 							<tr><td>Full name:</td><td><input class="left" name="fName" id="fName" type="text" placeholder="dynamic driven" maxlength="50" size="50"/></td></tr>
 							<tr><td>Address:</td><td><input class="left" name="address" id="address" type="text" placeholder="dynamic driven" maxlength="200" size="50"/></td></tr>

@@ -3,8 +3,9 @@
 	session_start();
 	
 	include "check.php";
-	include "db_layer/DataStore.php";
+	include_once "db_layer/DataStore.php";
     $accounts = $datastore->getMiAccounts();
+    $total = 0;
     
 ?>
 <!DOCTYPE html>
@@ -28,12 +29,21 @@
 			<div id="content-main">
 				<table>
 					<th width="30%">Account number</th><th width="35%">Account type</th><th width="35%">Balance</th>
-					<?php foreach($accounts as $account){ ?>
+					
+                    <?php foreach($accounts as $key=>$account){ 
+                        
+                        $total = $total+$account->balance;
+                        ?>
+                        
+                        <?php if($key %2){ ?>
                         <tr bgcolor="#DDD"><td><a href="view-account.php?accountNumber=<?php echo $account->accountNumber;?>"><?php echo $account->accountNumber; ?></a></td><td><?php echo $account->accountTypeName; ?></td><td>$<?php echo $account->balance;?></td></tr>
-                       
+                        <?php }else{ ?>
+                        <tr bgcolor="#CCC"><td><a href="view-account.php?accountNumber=<?php echo $account->accountNumber;?>"><?php echo $account->accountNumber; ?></a></td><td><?php echo $account->accountTypeName; ?></td><td>$<?php echo $account->balance;?></td></tr>
+                        <?php } ?>
+                        
                     <?php } ?>
-                        <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total debt:</td><td>$<?php echo $creditAmount+$loanAmount;?></td></tr>
-                        <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total credit:</td><td>$<?php echo $savingsAmount+$chequeAmount;?></td></tr>
+                        <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total:</td><td>$<?php echo $total?></td></tr>
+                        
                 </table>
 			</div><!--CLOSE CONTENT MAIN-->
 		</div><!-- CLOSE CONTENT -->

@@ -36,11 +36,18 @@
 				 	{
 				 		if($key %2)
 						{
-							?><tr bgcolor="#DDD"><td><?php echo $transaction->date ?></td><td><a href="transaction-details.php?idNumber=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td><td><?php echo $transaction->memo;?></td><td><?php echo $transaction->amount;?></td></tr><?php
+							?><tr bgcolor="#DDD">
+                                <td><?php echo $transaction->date ?></td>
+                                <td><a href="transaction-details.php?idNumber=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td>
+                                <td><?php echo $transaction->memo;?></td>
+                                <td><?php echo '$ '; if($transaction->from == $accountNumber){echo '- ';} echo $transaction->amount;?></td></tr><?php
 						}
 						else
 						{
-							?><tr bgcolor="#CCC"><td><?php echo $transaction->date ?></td><td><a href="transaction-details.php?idNumber=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td><td><?php echo $transaction->memo;?></td><td><?php echo $transaction->amount;?></td></tr><?php
+							?><tr bgcolor="#CCC"><td><?php echo $transaction->date ?></td>
+                        <td><a href="transaction-details.php?idNumber=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td>
+                        <td><?php echo $transaction->memo;?></td>
+                        <td><?php echo '$ '; if($transaction->from == $accountNumber){echo '- ';} echo $transaction->amount;?></td></tr><?php
 						}
 				 	}
 				 ?>

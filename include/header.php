@@ -1,5 +1,8 @@
 <?php
 session_start();
+include_once "db_layer/DataStore.php";
+$accounts = $datastore->getMiAccounts();
+
 ?>
 
 <div id="header">
@@ -11,11 +14,10 @@ session_start();
 		   <li class='active'><a href="mibank.php"><span>Mi Accounts</span></a></li>
 		   <li class='has-sub'><a href=''><span>View Accounts</span></a>
 		      <ul>
-		         <li><a href='view-account.php?type=1'><span>Savings</span></a></li>
-		         <li><a href='view-account.php?type=2'><span>Cheque</span></a></li>
-		         <li><a href='view-account.php?type=3'><span>Credit card</span></a></li>
-		         <li class='last'><a href='view-account.php?type=4'><span>Loan</span></a></li>
-		      </ul>
+                  <?php foreach($accounts as $account){ ?>
+                    <li class='last'><a href='view-account.php?accountNumber=<?php echo $account->accountNumber;?>'><span><?php echo $account->accountTypeName ?></span></a></li>
+                <?php } ?>
+              </ul>
 		   </li>
 		   <li><a href='transfer.php'><span>Transfer</span></a></li>
 		   <li><a href='update-details.php'><span>Update details</span></a></li>
