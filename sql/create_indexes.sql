@@ -17,4 +17,5 @@ create index transaction_date_index on ibankTransaction(date_of_transaction);
 /*
 select U.full_name,A.balance from ibankAccount A left join ibankUser U on A.login_user_id = U.login_id;
 */
-
+CREATE INDEX user_login_index on ibankUser(login_id) global partition by
+hash (login_id) partitions 4;
