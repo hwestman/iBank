@@ -48,6 +48,33 @@ insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',1
 insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',1,9);
 insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',1,10);
 
+UPDATE ibankAccount SET balance = '-250000' WHERE account_number = 18301722;
+UPDATE ibankAccount SET balance = 2500000 WHERE account_number = 18277656;
+UPDATE ibankAccount SET balance = 48 WHERE account_number = 18283004;
+UPDATE ibankAccount SET balance = '-1532' WHERE account_number = 18293700;
+
+
+18273645		     1
+18274982		     1
+18276319		     1
+18277656		     1
+18278993		     1
+18280330		     1
+18281667		     1
+18283004		     1
+18287015		     2
+18288352		     2
+18289689		     2
+18291026		     3
+18292363		     3
+18293700		     3
+18295037		     4
+18296374		     4
+18297711		     4
+18299048		     4
+18300385		     4
+18301722		     4
+
 
 
 COMMIT;
