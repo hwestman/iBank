@@ -1,12 +1,23 @@
 <?php
 
-	session_start();
+include 'db_layer/DataStore.php';
 
+    
+
+	session_start();
+    
 	if(isset($_POST['login']))
 	{
-		$username = $_POST['username'];
+        global $datastore;
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        
+        $login = $datastore->attemptLogin($username,$password);
+        $login['datastore'] = $datastore;
+        $_SESSION['login'] = $login; 
+        
 	}
-	
+	/*
 	if($username == "customer")
 	{
 		$_SESSION['login']['cust'] = true;
@@ -19,6 +30,6 @@
 	{
 		$_SESSION['login']['manager'] = true;
 	}
-
+    */
 	header("LOCATION: index.php");
 ?>

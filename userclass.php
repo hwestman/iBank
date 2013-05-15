@@ -43,23 +43,6 @@ class User {
             return null;
     }
 
-    public function getLoginForm() { //Henter loggin/loggut form
-        if ($this->loggedOn() == true)
-            return "<form method='post' action='authenticate.php'>\n
-			<input type='hidden' name='logout' value='true'/>\n
-			<input type='submit' value='Logg av'/>\n</form>";
-        else    {
-            return "<form method='post' action='authenticate.php'><ul>
-		<li><input type='text' name='userId' value='Username'><br/></li>
-		<li><input type='password' name='passWord' value=''><br/></li>
-		<li><button type='submit'/>Login</button></li>
-		</ul></form>";
-        }
-    }
-
 }
 
-$user = new User($db);	//oppretter bruker
-if (isset($needLogin) && !$user->loggedOn())
-    die('You need to be logged on to do this!');
 ?>
