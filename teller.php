@@ -51,7 +51,7 @@
 				<form name="transfer" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
 					<table>
 						<tr><td>From account:</td><td style="text-align: left">Teller deposit</td></tr>
-						<tr><td>Memo:</td><td><input class="left" type="text" name="memo" <?php if($transfer){ 
+						<tr><td>Memo:</td><td><input class="left" type="text" name="memo" value="Bank deposit"<?php if($transfer){ 
 							echo "value=\"".$_SESSION['transfer']['memo']."\"";} else { echo "placeholder=\"Distinctive text of transaction\"";}?> 
 						size="30" maxlength="18"/></td></tr>
 						<tr><td><hr></td><td><hr></td></tr>

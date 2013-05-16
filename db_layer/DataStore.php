@@ -1,7 +1,7 @@
 <?php
 
 
-include 'Connection.php';
+include_once 'Connection.php';
 //include 'User.php';
 include 'classes/Account.php';
 include 'classes/Transaction.php';
@@ -417,7 +417,7 @@ class DataStore{
         }   
     }
     
-    public function bankTransfer($amount, $fromAccount, $toAccount, $memo) {
+    public function bankDeposit($amount, $fromAccount, $toAccount, $memo) {
 	    
 	    $receiptNumber = null;
 

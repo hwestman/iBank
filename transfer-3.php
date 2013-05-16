@@ -20,7 +20,7 @@
     }
     else if(isset($_POST['Done']))
     {
-	    header('LOCATION: index.php');
+	    header('LOCATION: mibank.php');
     }
 
 ?>

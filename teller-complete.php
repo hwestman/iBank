@@ -10,7 +10,7 @@
 	    $memo = $_SESSION['transfer']['memo'];
 	    $toAccount = $_SESSION['transfer']['toAccount'];
 	    $amount = $_SESSION['transfer']['amount'];
-	    $receipt = $datastore->bankTransfer($amount, $fromAccount, $toAccount, $memo);
+	    $receipt = $datastore->bankDeposit($amount, $fromAccount, $toAccount, $memo);
 	    unset($_SESSION['transfer']);
     }
     

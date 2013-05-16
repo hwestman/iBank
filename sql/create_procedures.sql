@@ -34,6 +34,12 @@
     	PRINT receiptNumber;
     	/
     	
+    	//// BANK DEPOSIT PROCEDURE ////
+    	variable receiptNumber NUMBER;
+    	EXEC bankDeposit(13371337,18284341,'Back',100, :receiptNumber);
+    	PRINT receiptNumber;
+    	/
+    	
     	//// ACCUMULATE INTEREST PROCEDURE ////
     	VARIABLE interestSum NUMBER;
     	EXEC accumulateInterest(:interestSum);
@@ -86,31 +92,31 @@ CREATE OR REPLACE PROCEDURE transferFunds (
 AS
 fromAmount NUMBER;
 BEGIN	
-		SELECT balance INTO fromAmount FROM ibankAccount WHERE accountFrom = account_number;
+	SELECT balance INTO fromAmount FROM ibankAccount WHERE accountFrom = account_number;
 
-		fromAmount := fromAmount - money;
+	fromAmount := fromAmount - money;
+	
+	IF fromAmount < 0 THEN
+		RETURN;
+	ELSE
+		INSERT INTO ibankTransaction
+			(transaction_id, from_account, to_account, memo, amount)
+			VALUES ('', accountFrom, accountTo, message, money)
+			RETURNING transaction_id INTO receiptNumber;
 		
-		IF fromAmount < 0 THEN
+		UPDATE ibankAccount
+			SET balance = balance - money WHERE accountFrom = ibankAccount.account_number;
+		
+		UPDATE ibankAccount
+			SET balance = balance + money WHERE accountTo = ibankAccount.account_number;
+		
+		IF receiptNumber > 0 THEN
+			COMMIT;
 			RETURN;
 		ELSE
-			INSERT INTO ibankTransaction
-				(transaction_id, from_account, to_account, memo, amount)
-				VALUES ('', accountFrom, accountTo, message, money)
-				RETURNING transaction_id INTO receiptNumber;
-			
-			UPDATE ibankAccount
-				SET balance = balance - money WHERE accountFrom = ibankAccount.account_number;
-			
-			UPDATE ibankAccount
-				SET balance = balance + money WHERE accountTo = ibankAccount.account_number;
-			
-			IF receiptNumber > 0 THEN
-				COMMIT;
-				RETURN;
-			ELSE
-				ROLLBACK;
-			END IF;
+			ROLLBACK;
 		END IF;
+	END IF;
 END;
 /
 
@@ -125,20 +131,20 @@ CREATE OR REPLACE PROCEDURE bankDeposit (
 AS
 fromAmount NUMBER;
 BEGIN	
-		INSERT INTO ibankTransaction
-			(transaction_id, from_account, to_account, memo, amount)
-			VALUES ('', accountFrom, accountTo, message, money)
-			RETURNING transaction_id INTO receiptNumber;
-		
-		UPDATE ibankAccount
-			SET balance = balance + money WHERE accountTo = ibankAccount.account_number;
-		
-		IF receiptNumber > 0 THEN
-			COMMIT;
-			RETURN;
-		ELSE
-			ROLLBACK;
-		END IF;
+	INSERT INTO ibankTransaction
+		(transaction_id, from_account, to_account, memo, amount)
+		VALUES ('', accountFrom, accountTo, message, money)
+		RETURNING transaction_id INTO receiptNumber;
+	
+	UPDATE ibankAccount
+		SET balance = balance + money WHERE accountTo = ibankAccount.account_number;
+	
+	IF receiptNumber > 0 THEN
+		COMMIT;
+		RETURN;
+	ELSE
+		ROLLBACK;
+	END IF;
 END;
 /
 

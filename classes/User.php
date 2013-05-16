@@ -11,10 +11,6 @@
  * @author hwestman
  */
 
-require_once 'resources/Faker/src/autoload.php';
-$faker = Faker\Factory::create();
-
-
 class User {
     //put your code here
     
