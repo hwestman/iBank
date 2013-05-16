@@ -107,6 +107,7 @@ function overallValidation() {
 }
 
 $(document).ready(function() {
+    /*
     $("input[name=username]").keyup(function() {
         validateUserName();
     });
@@ -114,8 +115,5 @@ $(document).ready(function() {
         validatePassword();
     });
 
-
-    $("#content").click(function() {
-        $(this).html('')
-    })
+    */
 });

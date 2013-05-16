@@ -1,10 +1,18 @@
 <?php
     //this needs all required files
 
-
-    include_once '';
-
-
+    session_start();
+    
+    include_once "db_layer/DataStore.php";
+    $user = $datastore->getUser($_SESSION['login']['id']);
+    
+    
+    
+    if(isset($_POST['Update'])){
+        
+    }
+    
+    
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -15,10 +23,8 @@
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
 	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
 	    <link rel="stylesheet" type="text/css" href="css/button.css" />
-	    <!--
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-	    <script src="js/onload.js" type="text/javascript"></script>
--->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script src="js/onload.js" type="text/javascript"></script>
 	</head>
 
 	<div id="container">
@@ -27,10 +33,10 @@
 			<div id="content-main">
 				<form name="update" method="post" action="<?php $_SERVER['php_self'] ?>">
 						<table>
-							<tr><td>Full name:</td><td><input class="left" name="fName" id="fName" type="text" placeholder="dynamic driven" maxlength="50" size="50"/></td></tr>
-							<tr><td>Address:</td><td><input class="left" name="address" id="address" type="text" placeholder="dynamic driven" maxlength="200" size="50"/></td></tr>
-							<tr><td>Suburb:</td><td><input class="left" name="suburb" id="suburb" type="text" placeholder="dynamic driven drop down" maxlength="30" size="30" /> <input class="left" name="postcode" id="postcode" type="tel" placeholder="dynamic driven" readonly="readonly" maxlength="4" size="10" /></td></tr>
-							<tr><td>Contact number:</td><td><input class="left" name="telephone" id="telephone" type="tel" placeholder="dynamic driven" maxlength="10" size="20"/></td></tr>
+							<tr><td>Full name:</td><td><input class="left" name="fName" id="fName" type="text" placeholder="<?php echo $user->full_name ?>" maxlength="50" size="50"/></td></tr>
+							<tr><td>Address:</td><td><input class="left" name="address" id="address" type="text" placeholder="<?php echo $user->street_address ?>" maxlength="200" size="50"/></td></tr>
+							<tr><td>Suburb:</td><td><input class="left" name="suburb" id="suburb" type="text" placeholder="<?php echo $user->suburb_name ?>" maxlength="30" size="30" /> <input class="left" name="postcode" id="postcode" type="tel" placeholder="dynamic driven" readonly="readonly" maxlength="4" size="10" /></td></tr>
+							<tr><td>Contact number:</td><td><input class="left" name="telephone" id="telephone" type="tel" placeholder="<?php echo $user->contact_number ?>" maxlength="10" size="20"/></td></tr>
 							<tr><td>Current password:</td><td><input class="left" name="password" id="password" type="password" placeholder="enter current password to make changes" maxlength="50" size="50"/></td></tr>
 							<tr><td></td></tr>
 							<tr><td>New password:</td><td><input class="left" name="newPassword" id="newPassword" type="password" maxlength="50" size="50" required placeholder="leave blank if no change to password"/></td></tr>

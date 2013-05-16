@@ -80,6 +80,7 @@ GRANT INSERT ON ibankUser TO ibank_teller_role;
 GRANT INSERT ON ibankAddress TO ibank_teller_role;
 GRANT INSERT ON ibankSuburb TO ibank_teller_role;
 GRANT SELECT ON customer_info_view TO ibank_customer_role;
+GRANT SELECT ON transaction_data_view TO ibank_customer_role;
 
 /*
 cascading privileges to manager

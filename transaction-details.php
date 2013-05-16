@@ -3,7 +3,10 @@
 	session_start();
 	
 	include "check.php";
-
+    include_once "db_layer/DataStore.php";
+    include_once "classes/Transaction.php";
+    $account = $_SESSION['login']['account_context'];
+    $transaction = $datastore->getTransaction($_GET['transactionId']);
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -25,12 +28,21 @@
 		<div id="content">
 			<div id="content-main">
 				<table>
-						<tr><td>From account:</td><td><input class="left" type="text" name="fromAccount" readonly="readonly" value="<?php echo $fromAccount; ?>" size="30"/></td></tr>
-						<tr><td>Message:</td><td><input class="left" type="text" name="memo" readonly="readonly" value="<?php echo $memo; ?>" size="30" maxlength="18"/></td></tr>
-						<tr><td>Date:</td><td><input class="left" type="text" name="date" readonly="readonly" value="<?php echo $date; ?>" size="30" maxlength="18"/></td></tr>
-						<tr><td>Amount: $</td><td><input class="left" type="text" name="amount" readonly="readonly" value="<?php echo $amount; ?>" size="20" maxlength="4"/></td></tr>
+						<?php if($transaction->from == $account->accountNumber){ ?>
+                            <tr><td>To account:</td><td><input class="left" type="text" name="toAccount" readonly="readonly" value="<?php echo $transaction->to." (".$transaction->toUser.")"; ?>" size="30"/></td></tr>
+                            <tr><td>From account:</td><td><input class="left" type="text" name="fromAccount" readonly="readonly" value="<?php echo $account->accountTypeName." (".$transaction->from.")"; ?>" size="30"/></td></tr>
+                            <tr><td>Amount: $</td><td><input class="left" type="text" name="amount" readonly="readonly" value="<?php echo "- ".$transaction->amount; ?>" size="20" maxlength="4"/></td></tr>
+                            
+                        <?php }else { ?>
+                            <tr><td>To account:</td><td><input class="left" type="text" name="toAccount" readonly="readonly" value="<?php echo $account->accountTypeName." (".$transaction->to.")"; ?>" size="30"/></td></tr>
+                            <tr><td>From account:</td><td><input class="left" type="text" name="fromAccount" readonly="readonly" value="<?php echo $transaction->from." (".$transaction->fromUser.")"; ?>" size="30"/></td></tr>
+                            <tr><td>Amount: $</td><td><input class="left" type="text" name="amount" readonly="readonly" value="<?php echo $transaction->amount; ?>" size="20" maxlength="4"/></td></tr>
+                        <?php } ?>
+                        <tr><td>Message:</td><td><input class="left" type="text" name="memo" readonly="readonly" value="<?php echo $transaction->memo; ?>" size="30" maxlength="18"/></td></tr>
+						<tr><td>Date:</td><td><input class="left" type="text" name="date" readonly="readonly" value="<?php echo $transaction->date; ?>" size="30" maxlength="18"/></td></tr>
+						
 						<tr><td></td></tr>
-						<tr><td><strong>Receipt number:</strong></td><td style="text-align:left;"><?php echo $receipt; ?></td></tr>
+						<tr><td><strong>Receipt number:</strong></td><td style="text-align:left;"><?php echo $transaction->id; ?></td></tr>
 					</table>
 					<input type="submit" class="button" onClick="window.print()" id="right" name="Print" value="Print">
 					<input type="reset" class="button" id="left" name="back" onclick="location.href='view-account.php'" value="Back"/>

@@ -41,6 +41,7 @@ DROP TABLE ibankSuburb;
 */
 DROP VIEW user_info_view;
 DROP VIEW account_info_view;
+DROP VIEW transaction_data_view;
 
 
 

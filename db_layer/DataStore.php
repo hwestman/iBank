@@ -5,6 +5,7 @@ include 'Connection.php';
 //include 'User.php';
 include 'classes/Account.php';
 include 'classes/Transaction.php';
+include 'classes/User.php';
 
 class DataStore{
     
@@ -119,6 +120,73 @@ class DataStore{
         return $accounts;
     }
     
+    public function getAccount($accountNumber){
+        
+        $account = null;
+        $query = "  SELECT account_number,type_of_account,balance
+                    FROM ibank_dba.ibankAccount A
+                    WHERE A.account_number = :accountNumber";
+                
+        
+        $stmt = \oci_parse($this->connection->getConnection(), $query);
+
+        oci_bind_by_name($stmt, ':accountNumber', $accountNumber);
+
+        $res = oci_execute($stmt);
+        
+        if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                
+                
+                $account = new Account($row['ACCOUNT_NUMBER'], $row['TYPE_OF_ACCOUNT'], $row['BALANCE']);
+                
+            }
+
+        }else{
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+            
+        }
+        //oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $account;
+    }
+    
+    public function getUser($login_id){
+        
+        $user = null;
+        $query = "  SELECT * 
+                    FROM ibank_dba.user_info_view
+                    WHERE login_id = :loginId";
+                
+        
+        $stmt = \oci_parse($this->connection->getConnection(), $query);
+
+        oci_bind_by_name($stmt, ':loginId', $login_id);
+
+        $res = oci_execute($stmt);
+        
+        if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                $user = new User(   $row['LOGIN_ID'], 
+                                    $row['FULL_NAME'], 
+                                    $row['CONTACT_NUMBER'], 
+                                    $row['STREET_ADDRESS'], 
+                                    $row['SUBURB_NAME'], 
+                                    $row['POSTCODE']); 
+            }
+
+        }else{
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+            
+        }
+        //oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $user;
+        
+    }
+    
     public function checkAccountNumber($account_number){
         
         $query = "  SELECT login_user_id
@@ -226,6 +294,38 @@ class DataStore{
         
         
         
+        
+    }
+    
+    public function getTransaction($transactionId){
+        
+            $query = "  SELECT * from ibank_dba.transaction_data_view 
+                        WHERE transaction_id = :transactionId";
+            $transaction = null;
+
+            $stmt = \oci_parse($this->connection->getConnection(), $query);
+
+            oci_bind_by_name($stmt, ':transactionId', $transactionId);
+
+            $res = oci_execute($stmt);
+            
+            if($res){
+                while ($row = oci_fetch_assoc($stmt)) {
+                    $transaction = new Transaction( $row['FROM_ACCOUNT'],
+                                                    $row['TO_ACCOUNT'], 
+                                                    $row['DATE_OF_TRANSACTION'], 
+                                                    $row['TRANSACTION_ID'], 
+                                                    $row['MEMO'], $row['AMOUNT'], 
+                                                    $row['FULL_NAME_FROM'], 
+                                                    $row['FULL_NAME_TO']);
+                }
+
+            }else{
+                $transactions = null;
+                $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+
+            }
+            return $transaction;
         
     }
     

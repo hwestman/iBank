@@ -5,7 +5,7 @@
 
     include "db_layer/DataStore.php";
     $accountNumber = $_GET['accountNumber'];
-    
+    $_SESSION['login']['account_context'] = $datastore->getAccount($accountNumber);
     $transactions = $datastore->getTransactions($accountNumber);
 
 ?>
@@ -38,16 +38,16 @@
 						{
 							?><tr bgcolor="#DDD">
                                 <td><?php echo $transaction->date ?></td>
-                                <td><a href="transaction-details.php?idNumber=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td>
+                                <td><a href="transaction-details.php?transactionId=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td>
                                 <td><?php echo $transaction->memo;?></td>
-                                <td><?php echo '$ '; if($transaction->from == $accountNumber){echo '- ';} echo $transaction->amount;?></td></tr><?php
+                                <td><?php echo '$ '; if($transaction->from == $_SESSION['login']['account_context']->accountNumber){echo '- ';} echo $transaction->amount;?></td></tr><?php
 						}
 						else
 						{
 							?><tr bgcolor="#CCC"><td><?php echo $transaction->date ?></td>
-                        <td><a href="transaction-details.php?idNumber=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td>
+                        <td><a href="transaction-details.php?transactionId=<?php echo $transaction->id;?>"><?php echo $transaction->id;?></a></td>
                         <td><?php echo $transaction->memo;?></td>
-                        <td><?php echo '$ '; if($transaction->from == $accountNumber){echo '- ';} echo $transaction->amount;?></td></tr><?php
+                        <td><?php echo '$ '; if($transaction->from == $_SESSION['login']['account_context']->accountNumber){echo '- ';} echo $transaction->amount;?></td></tr><?php
 						}
 				 	}
 				 ?>

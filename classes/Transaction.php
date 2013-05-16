@@ -18,6 +18,8 @@ class Transaction {
     var $amount;
     var $from;
     var $to;
+    var $fromUser;
+    var $toUser;
     
     /**
      * 
@@ -27,9 +29,11 @@ class Transaction {
      * @param type $a amount
      * @param type $b balance
      */
-    public function __construct($from,$to,$date,$id,$memo,$amount) {		//constructor
+    public function __construct($from,$to,$date,$id,$memo,$amount,$fromUser,$toUser) {		//constructor
         $this->from = $from;
         $this->to = $to;
+        $this->fromUser = $fromUser;
+        $this->toUser = $toUser;
         $this->date = $date;
         $this->id = $id;
         $this->memo = $memo;
