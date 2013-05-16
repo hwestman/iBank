@@ -222,7 +222,7 @@ body {
 #content-main td select {
 	height: 10px;
 	width: 73%;
-	margin: 5px;
+	margin-left: 5px;
 	padding: 5px;
 	float: left;
 	text-align: left;
