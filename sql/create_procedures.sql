@@ -281,28 +281,6 @@ END;
 
 /*////////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////////////////////////////*/
 
-<<<<<<< HEAD
-=======
-/*///////////////////////////// CREATING AN ACCOUNT FUNCTION /////////////////////////////*/
-CREATE OR REPLACE FUNCTION createAccount (
-	staffID IN NUMBER,
-	loginID IN NUMBER,
-	loginID2 IN NUMBER,
-	accountType IN NUMBER
-)
-RETURN NUMBER
-IS
-accountNumber NUMBER;
-BEGIN	
-		INSERT INTO ibankAccount
-			(account_number, staff_user_id, login_user_id, login_user_id2, type_of_account)
-			VALUES ('', staffID, loginID, loginID2, accountType)
-			RETURNING account_number INTO accountNumber;
-			COMMIT;
-			RETURN accountNumber;
-END;
-/
-
 /*
     EXEC updateUser(7,'carlton_2','3696',95935336,'newPassword','new StreetAddress');
 
@@ -345,5 +323,3 @@ BEGIN
     --COMMIT;
 END;
 /
-
->>>>>>> 45f9f3123e395cd7e6acf4c269718635f21ca366
