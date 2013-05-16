@@ -89,6 +89,8 @@ GRANT EXECUTE ON createUser TO ibank_teller_role;
 cascading privileges to manager
 */
 GRANT ibank_teller_role TO ibank_manager_role;
+GRANT EXECUTE ON accumulateInterest TO ibank_manager_role;
+GRANT EXECUTE ON payoutInterest TO ibank_manager_role;
 
 /*
 Specific manager priveleges

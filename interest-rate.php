@@ -34,8 +34,8 @@
 					<tr bgcolor="#CCC"><td>Credit</td><td><?php echo $interestRate[1];?>%</td></tr>
 					<tr bgcolor="#DDD"><td>Cheque</td><td><?php echo $interestRate[2];?>%</td></tr>
 					<tr bgcolor="#CCC"><td>Loan</td><td><?php echo $interestRate[3];?>%</td></tr>
+					<a href="update-interest-rate.php"><input type="submit" class="button" id="right" name="Update" value="Update"></a>
 				</table>
-				<a href="update-interest-rate.php"><input type="submit" class="button" id="right" name="Update" value="Update"></a>
 			</div><!--CLOSE CONTENT MAIN-->
 		</div><!-- CLOSE CONTENT -->
 		<?php include "include/footer.php"; ?>
