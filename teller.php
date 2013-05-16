@@ -47,7 +47,7 @@
 		<?php include "include/header.php"; ?>
 		<div id="content">
 			<div id="content-main">
-				Maximum transfer limit per day: $4,000.00
+				<h2>Bank deposit</h2>
 				<form name="transfer" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
 					<table>
 						<tr><td>From account:</td><td style="text-align: left">Teller deposit</td></tr>

@@ -62,7 +62,8 @@ GRANT SELECT ON ibankSuburb TO ibank_customer_role;
 GRANT SELECT ON user_info_view TO ibank_customer_role;
 GRANT EXECUTE ON transferFunds TO ibank_customer_role;
 GRANT EXECUTE ON updateInterestRate TO ibank_customer_role;
-GRANT EXECUTE ON bankDeposit TO ibank_customer_role;
+GRANT EXECUTE ON createAccount TO ibank_customer_role;
+GRANT EXECUTE ON createUser TO ibank_customer_role;
 
 GRANT ALTER ON ibankUser TO ibank_customer_role;
 GRANT ALTER ON ibankAddress TO ibank_customer_role;
@@ -74,13 +75,16 @@ Cascading privileges to teller
 GRANT ibank_customer_role TO ibank_teller_role;
 
 /*
-Spesific tller privileges
+Spesific teller privileges
 */
 GRANT INSERT ON ibankUser TO ibank_teller_role;
 GRANT INSERT ON ibankAddress TO ibank_teller_role;
 GRANT INSERT ON ibankSuburb TO ibank_teller_role;
 GRANT SELECT ON customer_info_view TO ibank_customer_role;
 GRANT SELECT ON transaction_data_view TO ibank_customer_role;
+GRANT EXECUTE ON bankDeposit TO ibank_teller_role;
+GRANT EXECUTE ON createAccount TO ibank_teller_role;
+GRANT EXECUTE ON createUser TO ibank_teller_role;
 
 /*
 cascading privileges to manager
