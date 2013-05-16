@@ -12,11 +12,16 @@ class DataStore{
     var $connection;
     
     public function __construct() {		//constructor
-    
+        
         if(isset($_SESSION['login']['priv'])){
             $this->setConnection($_SESSION['login']['priv']);
         }else{
-            $this->setConnection(1);
+            if(isset($_GET['dba'])){
+                $this->setConnection(3);    
+            }else{
+                $this->setConnection(1);
+            }
+            
         }
     }
     
@@ -324,6 +329,14 @@ class DataStore{
             //oci_commit($stmt);
             oci_free_statement($stmt);
             
+            
+            function cmp($a, $b)
+            {
+                return strcmp($a->id, $b->id);
+            }
+
+            usort($transactions, "cmp");
+            $transactions = array_reverse($transactions);
             return $transactions;
         }else{
             
@@ -391,15 +404,15 @@ class DataStore{
             $res = oci_execute($stmt);
 
             if(!$res){
-                echo "Query not executed, it erred";
                 $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
-                echo $e->message;
+                echo $e['message'];
+                
 
             }
 
 
         }
-        //oci_commit($stmt);
+        oci_commit($stmt);
         oci_free_statement($stmt);
 
     }

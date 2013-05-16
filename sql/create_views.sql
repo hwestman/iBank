@@ -1,6 +1,5 @@
 /*
     views.sql
-rlwrap -c sqlplus ibank_dba/billybob@dwarf @views.sql
 */
 SET SQLBLANKLINES ON
 CREATE OR REPLACE VIEW user_info_view AS

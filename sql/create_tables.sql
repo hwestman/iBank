@@ -1,9 +1,24 @@
-
+SET SQLBLANKLINES ON
 /*
     INITIATING
+
+
+
+WORKFLOW FOR DATABASE GENERATION
+
+- Do create_tables.sql
+- Do create_views.sql
+- Do create_procedures.sql
+- Do create_roles.sql
+- Run the init.php from the source code! IMPORTANT! DO WITH FOLLOWING URL:
+    init.php?dba=1
+- Do the create_data.sql (init.php need to have runned before this for 
+    constraint-purposes)
+
+
 */
 
-SET SQLBLANKLINES ON
+
 
 
 /*
