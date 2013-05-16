@@ -45,7 +45,7 @@
 						<tr><td><strong>Receipt number:</strong></td><td style="text-align:left;"><?php echo $transaction->id; ?></td></tr>
 					</table>
 					<input type="submit" class="button" onClick="window.print()" id="right" name="Print" value="Print">
-					<input type="reset" class="button" id="left" name="back" onclick="location.href='view-account.php'" value="Back"/>
+					<input type="reset" class="button" id="left" name="back" onclick="javascript: window.history.go(-1);" value="Back"/>
 			</div><!--CLOSE CONTENT MAIN-->
 		</div><!-- CLOSE CONTENT -->
 		<?php include "include/footer.php"; ?>
