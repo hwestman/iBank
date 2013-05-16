@@ -209,6 +209,7 @@ body {
 
 .selectLength {
 	width: 200px;
+	margin-top: -3px;
 	float: left;
 	text-align: left;
 	margin: 5px;
