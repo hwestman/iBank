@@ -114,6 +114,34 @@ BEGIN
 END;
 /
 
+/*///////////////////////////// BANK DEPOSIT PROCEDURE /////////////////////////////*/
+CREATE OR REPLACE PROCEDURE bankDeposit (
+	accountFrom IN NUMBER,
+	accountTo IN NUMBER,
+	message IN VARCHAR2,
+	money IN NUMBER,	
+	receiptNumber OUT NUMBER
+)
+AS
+fromAmount NUMBER;
+BEGIN	
+		INSERT INTO ibankTransaction
+			(transaction_id, from_account, to_account, memo, amount)
+			VALUES ('', accountFrom, accountTo, message, money)
+			RETURNING transaction_id INTO receiptNumber;
+		
+		UPDATE ibankAccount
+			SET balance = balance + money WHERE accountTo = ibankAccount.account_number;
+		
+		IF receiptNumber > 0 THEN
+			COMMIT;
+			RETURN;
+		ELSE
+			ROLLBACK;
+		END IF;
+END;
+/
+
 /*///////////////////////////// ACCUMULATE INTEREST PROCEDURE /////////////////////////////*/
 CREATE OR REPLACE PROCEDURE accumulateInterest(
 	interestSum OUT NUMBER
