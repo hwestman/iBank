@@ -172,7 +172,7 @@ CREATE OR REPLACE PROCEDURE accumulateInterest(
 )
 AS
 accountNumber NUMBER;
-interestRate NUMBER (8,7);
+interestRate NUMBER (20,18);
 accountType NUMBER;
 bankBalance NUMBER;
 tmp NUMBER;
