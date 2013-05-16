@@ -23,7 +23,7 @@ CREATE TABLE ibankUser(
 );
 
 /*For auto_increment*/
-CREATE SEQUENCE login_id_seq START WITH 13371337 INCREMENT BY 1337;
+CREATE SEQUENCE login_id_seq START WITH 13371337 INCREMENT BY 1;
 
 CREATE OR REPLACE trigger login_id_trig
 BEFORE INSERT ON ibankUser
