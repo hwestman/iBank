@@ -5,6 +5,7 @@
 	include "check.php";
 	include_once "db_layer/DataStore.php";
     $accounts = $datastore->getMiAccounts();
+    $userInfo = $datastore->getUser($_SESSION['login']['id']);
     $total = 0;
     
 ?>
@@ -46,6 +47,16 @@
                         
                 </table>
 			</div><!--CLOSE CONTENT MAIN-->
+			<div id="content-right">
+				<table>
+					<th width="40%">Your details</th><th width="70%"><?php echo $userInfo->login_id;?></th>
+					<tr bgcolor="#DDD"><td>Full name:</td><td><?php echo $userInfo->full_name;?></td></tr>
+					<tr bgcolor="#CCC"><td>Address:</td><td><?php echo $userInfo->street_address;?></td></tr>
+					<tr bgcolor="#DDD"><td>Suburb:</td><td><?php echo $userInfo->suburb_name." ".$userInfo->post_code;?></td></tr>
+					<tr bgcolor="#CCC"><td>State:</td><td><?php echo $userInfo->county;?></td></tr>
+					<tr bgcolor="#DDD"><td>Contact:</td><td><?php echo $userInfo->contact_number;?></td></tr>				
+				</table>
+			</div><!--CLOSE CONTENT RIGHT-->
 		</div><!-- CLOSE CONTENT -->
 		<?php include "include/footer.php"; ?>
 	</div><!-- CLOSE CONTAINER -->
