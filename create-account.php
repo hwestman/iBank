@@ -2,38 +2,6 @@
     session_start();
     
     include "db_layer/DataStore.php";
-    
-    if(isset($_POST['submit'])){
-    	$staffID = $_SESSION['login']['id'];
-    	
-		$accountType = $_POST['accountType'];
-		$fullname = $_POST['fName'];
-		$address = $_POST['address'];
-		$county = $_POST['county'];
-		$suburbID = 4;
-    	$contactNumber = $_POST['telephone'];
-    	$password = $_POST['newPassword'];
-    	
-    	$userInfo = $datastore->createAccountAndUser($accountType, $fullname, $address, $county, $suburbID, $contactNumber, $password, $staffID);
-    	if($userInfo[0] > 0)
-    	{
-    		$_SESSION['newAccount'][0] = $userInfo[0];
-    		$_SESSION['newAccount'][1] = $userInfo[1];
-    		$_SESSION['newAccount'][2] = $password;
-	    	header('LOCATION: account-created.php');
-    	}
-    }
-    
-    if(isset($_POST['Print']))
-    {
-	   
-    }
-    else if(isset($_POST['Done']))
-    {
-	    header('LOCATION: teller.php');
-    }
-    
-    
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -115,7 +83,7 @@
 		<?php include "include/header.php"; ?>
 		<div id="content">
 			<div id="content-main">
-				<form name="newUser" method="post" action="<?php $_SERVER['php_self'] ?>">
+				<form name="newUser" method="post" action="account-created.php">
 					<table>
 						<tr><td>Bank account type:</td><td>
 						<select name="accountType">
@@ -134,7 +102,7 @@
 						<tr><td>Re-type Password:</td><td><input class="left" type="password" name="re_newPassword" id="pass2" size="50" maxlength="30" required placeholder="Confirm password" onchange="javascript:return checkPasswordsMatch();"/></td></tr>
 					</table>
 					<input type="submit" class="button" id="left" name="Cancel" value="Cancel"/>
-					<input type="submit" class="button" id="right" name="submit" value="Create" onclick="javascript:return validateForm()"/>
+					<input type="submit" class="button" id="right" name="Create" value="Create" onclick="javascript:return validateForm()"/>
 				</form>
 			</div><!--CLOSE CONTENT MAIN-->
 			<div id="content-right">

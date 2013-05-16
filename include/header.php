@@ -30,7 +30,7 @@ $accounts = $datastore->getMiAccounts();
 	{?>
 	<div id='cssmenu'>
 		<ul>
-			<li class="active"><a href=""><span>Teller</span></a></li>
+			<li class="active"><a href="teller.php"><span>Teller</span></a></li>
 		   <li><a href="create-account.php"><span>New account</span></a></li>
 		   <li class='last'><a href='log-out.php'><span>Log out</span></a></li>
 		</ul>

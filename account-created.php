@@ -13,6 +13,17 @@
 	    header('LOCATION: teller.php');
     }
     
+	$staffID = $_SESSION['login']['id'];
+	
+	$accountType = $_POST['accountType'];
+	$fullname = $_POST['fName'];
+	$address = $_POST['address'];
+	$county = $_POST['county'];
+	$suburbID = 4;
+	$contactNumber = $_POST['telephone'];
+	$password = $_POST['password'];
+	
+	$userInfo = $datastore->createAccountAndUser($accountType, $fullname, $address, $county, $suburbID, $contactNumber, $password, $staffID);
     
 ?>
 <!DOCTYPE html>
@@ -34,9 +45,9 @@
 			<div id="content-main">
 				<form name="transfer-done" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
 					<table>
-						<tr><td class="left">Login number:</td><td><?php echo $_SESSION['newAccount'][0]; ?></td></tr>
-						<tr><td class="left">Password:</td><td><?php echo $_SESSION['newAccount'][2]; ?></td></tr>
-						<tr><td class="left">Bank account number:</td><td><?php echo $_SESSION['newAccount'][1]; ?></td></tr>
+						<tr><td class="left">Login number:</td><td><?php echo $userInfo[0] ?></td></tr>
+						<tr><td class="left">Password:</td><td><?php echo $password ?></td></tr>
+						<tr><td class="left">Bank account number:</td><td><?php echo $userInfo[1] ?></td></tr>
 					</table>
 					<input type="submit" class="button" onClick="window.print()" id="left" name="Print" value="Print">
 					<input type="submit" class="button" id="right" name="Done" value="Done">

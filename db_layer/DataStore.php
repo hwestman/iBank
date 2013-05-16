@@ -59,7 +59,7 @@ class DataStore{
         //OCI_Define_By_Name($stmt,":username",$username); 
         //OCI_Define_By_Name($stmt,":password",$password); 
         oci_bind_by_name($stmt, ':username', $username);
-        oci_bind_by_name($stmt, ':password', $password);
+        oci_bind_by_name($stmt, ':password', $password, 200);
 
         $res = oci_execute($stmt);
         
@@ -94,7 +94,7 @@ class DataStore{
         
         $stmt = \oci_parse($this->connection->getConnection(), $query);
 
-        oci_bind_by_name($stmt, ':loginId', $_SESSION['login']['id']);
+        oci_bind_by_name($stmt, ':loginId', $_SESSION['login']['id'], 8);
 
         $res = oci_execute($stmt);
         
@@ -130,7 +130,7 @@ class DataStore{
         
         $stmt = \oci_parse($this->connection->getConnection(), $query);
 
-        oci_bind_by_name($stmt, ':accountNumber', $accountNumber);
+        oci_bind_by_name($stmt, ':accountNumber', $accountNumber, 8);
 
         $res = oci_execute($stmt);
         
@@ -162,7 +162,7 @@ class DataStore{
         
         $stmt = \oci_parse($this->connection->getConnection(), $query);
 
-        oci_bind_by_name($stmt, ':loginId', $login_id);
+        oci_bind_by_name($stmt, ':loginId', $login_id, 8);
 
         $res = oci_execute($stmt);
         
@@ -195,11 +195,11 @@ class DataStore{
 	    
 	    $stmt = \oci_parse($this->connection->getConnection(), $query);
 	    
-        oci_bind_by_name($stmt, ':user_login', $user->login_id);
+        oci_bind_by_name($stmt, ':user_login', $user->login_id, 8);
         oci_bind_by_name($stmt, ':full_name', $user->full_name);
-        oci_bind_by_name($stmt, ':suburb_id', $user->suburb_id);
+        oci_bind_by_name($stmt, ':suburb_id', $user->suburb_id, 11);
         oci_bind_by_name($stmt, ':contact_number', $user->contact_number);
-        oci_bind_by_name($stmt, ':password', $user->new_password);
+        oci_bind_by_name($stmt, ':password', $user->new_password, 200);
         oci_bind_by_name($stmt, ':street_address', $user->street_address);
         
         
@@ -229,7 +229,7 @@ class DataStore{
         
         $stmt = \oci_parse($this->connection->getConnection(), $query);
 
-        oci_bind_by_name($stmt, ':accountNumber', $account_number);
+        oci_bind_by_name($stmt, ':accountNumber', $account_number, 8);
 
         $res = oci_execute($stmt);
         $attemptUser = null;
@@ -271,7 +271,7 @@ class DataStore{
 
             $stmt = \oci_parse($this->connection->getConnection(), $query);
 
-            oci_bind_by_name($stmt, ':account_number', $accountNumber);
+            oci_bind_by_name($stmt, ':account_number', $accountNumber, 8);
 
             $res = oci_execute($stmt);
 
@@ -297,7 +297,7 @@ class DataStore{
 
             $stmt = \oci_parse($this->connection->getConnection(), $query);
 
-            oci_bind_by_name($stmt, ':account_number', $accountNumber);
+            oci_bind_by_name($stmt, ':account_number', $accountNumber, 8);
 
             $res = oci_execute($stmt);
 
@@ -337,7 +337,7 @@ class DataStore{
 
             $stmt = \oci_parse($this->connection->getConnection(), $query);
 
-            oci_bind_by_name($stmt, ':transactionId', $transactionId);
+            oci_bind_by_name($stmt, ':transactionId', $transactionId, 11);
 
             $res = oci_execute($stmt);
             
@@ -379,7 +379,7 @@ class DataStore{
             $sep = explode(",",$suburb);
             $sep[0]=str_replace('"', '', $sep[0]);
             $sep[1] = str_replace('"', '', $sep[1]);
-            oci_bind_by_name($stmt, ':postCode', $sep[0]);
+            oci_bind_by_name($stmt, ':postCode', $sep[0], 4);
             oci_bind_by_name($stmt, ':suburbName', $sep[1]);
 
             $res = oci_execute($stmt);
@@ -426,7 +426,7 @@ class DataStore{
 	    $query = "CALL ibank_dba.transferFunds($fromAccount, $toAccount, '$memo', $amount, :receiptNumber)";
 
 	    $stmt = \oci_parse($this->connection->getConnection(), $query);
-	    oci_bind_by_name($stmt, ":receiptNumber", $receiptNumber);
+	    oci_bind_by_name($stmt, ":receiptNumber", $receiptNumber, 11);
 	    $res = \oci_execute($stmt);
 	    
 	    if($res){
@@ -456,7 +456,7 @@ class DataStore{
 	    $query = "CALL ibank_dba.bankDeposit($fromAccount, $toAccount, '$memo', $amount, :receiptNumber)";
 
 	    $stmt = \oci_parse($this->connection->getConnection(), $query);
-	    oci_bind_by_name($stmt, ":receiptNumber", $receiptNumber);
+	    oci_bind_by_name($stmt, ":receiptNumber", $receiptNumber, 11);
 	    $res = \oci_execute($stmt);
 	    
 	    if($res){
@@ -541,17 +541,17 @@ class DataStore{
 	    //echo $query;
 	    $stmt = \oci_parse($this->connection->getConnection(), $query);
 	    
-	    oci_bind_by_name($stmt, ':suburbID', $suburbID);
+	    oci_bind_by_name($stmt, ':suburbID', $suburbID, 11);
 	    oci_bind_by_name($stmt, ':address', $address);
         oci_bind_by_name($stmt, ':county', $county);
         oci_bind_by_name($stmt, ':fullname', $fullname);
-        oci_bind_by_name($stmt, ':password', $password);
+        oci_bind_by_name($stmt, ':password', $password, 200);
         oci_bind_by_name($stmt, ':priv', $priv);
-        oci_bind_by_name($stmt, ':contactNumber', $contactNumber);
-        oci_bind_by_name($stmt, ':loginID', $loginID);
+        oci_bind_by_name($stmt, ':contactNumber', $contactNumber, 10);
+        oci_bind_by_name($stmt, ':loginID', $loginID, 8);
 	    
 	    $res = \oci_execute($stmt);
-	    
+
 	    if($res){
 		     $userInfo[0] = $loginID;
         }else{
@@ -568,10 +568,10 @@ class DataStore{
         
         $stmt2 = \oci_parse($this->connection->getConnection(), $query2);
         
-        oci_bind_by_name($stmt2, ':staffID', $staffID);
-	    oci_bind_by_name($stmt2, ':loginID', $loginID);
+        oci_bind_by_name($stmt2, ':staffID', $staffID, 8);
+	    oci_bind_by_name($stmt2, ':loginID', $loginID, 8);
         oci_bind_by_name($stmt2, ':accountType', $accountType);
-        oci_bind_by_name($stmt2, ':accountNumber', $accountNumber);
+        oci_bind_by_name($stmt2, ':accountNumber', $accountNumber, 8);
         
 	    $res2 = \oci_execute($stmt2);
 
