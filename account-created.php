@@ -5,7 +5,8 @@
     
     if(isset($_POST['Print']))
     {
-	   
+    	unset($_SESSION['newAccount']);
+	    header('LOCATION: teller.php');
     }
     else if(isset($_POST['Done']))
     {
@@ -25,7 +26,11 @@
 	
 	$userInfo = $datastore->createAccountAndUser($accountType, $fullname, $address, $county, $suburbID, $contactNumber, $password, $staffID);
     
+	    $_SESSION['newAccount'][0] = $userInfo[0];
+	    $_SESSION['newAccount'][1] = $password;
+	    $_SESSION['newAccount'][2] = $userInfo[1];
 ?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
@@ -45,9 +50,9 @@
 			<div id="content-main">
 				<form name="transfer-done" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
 					<table>
-						<tr><td class="left">Login number:</td><td><?php echo $userInfo[0] ?></td></tr>
-						<tr><td class="left">Password:</td><td><?php echo $password ?></td></tr>
-						<tr><td class="left">Bank account number:</td><td><?php echo $userInfo[1] ?></td></tr>
+						<tr><td class="left">Login number:</td><td><?php echo $_SESSION['newAccount'][0] ?></td></tr>
+						<tr><td class="left">Password:</td><td><?php echo $_SESSION['newAccount'][1]?></td></tr>
+						<tr><td class="left">Bank account number:</td><td><?php echo $_SESSION['newAccount'][2] ?></td></tr>
 					</table>
 					<input type="submit" class="button" onClick="window.print()" id="left" name="Print" value="Print">
 					<input type="submit" class="button" id="right" name="Done" value="Done">
