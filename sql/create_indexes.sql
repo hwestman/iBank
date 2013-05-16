@@ -19,3 +19,6 @@ select U.full_name,A.balance from ibankAccount A left join ibankUser U on A.logi
 */
 CREATE INDEX user_login_index on ibankUser(login_id) global partition by
 hash (login_id) partitions 4;
+
+CREATE INDEX postcode_hash_index on ibankSuburb(postcode) global partition by
+hash (postcode) partitions 4;
