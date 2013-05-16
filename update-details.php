@@ -44,8 +44,12 @@
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
 	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
 	    <link rel="stylesheet" type="text/css" href="css/button.css" />
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="css/themes/ui-lightness/jquery-ui.css" />
+        
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="js/onload.js" type="text/javascript"></script>
+        
 	</head>
 
 	<div id="container">
@@ -56,7 +60,12 @@
 						<table>
 							<tr><td>Full name:</td><td><input class="left" name="fName" id="fName" type="text" placeholder="<?php echo $user->full_name ?>" maxlength="50" size="50"/></td></tr>
 							<tr><td>Address:</td><td><input class="left" name="address" id="address" type="text" placeholder="<?php echo $user->street_address ?>" maxlength="200" size="50"/></td></tr>
-							<tr><td>Suburb:</td><td><input class="left" name="suburb" id="suburb" type="text" placeholder="<?php echo $user->suburb_name ?>" maxlength="30" size="30" /> <input class="left" name="postcode" id="postcode" type="tel" placeholder="dynamic driven" readonly="readonly" maxlength="4" size="10" /></td></tr>
+                            <tr>
+                                <td>
+                                    Postcode:</td>
+                                <td> 
+                                    <input class="left" name="postcode" id="postcode" type="tel" placeholder="Post Code"  maxlength="4" size="10" /><select name="suburb" id="suburb"></select></td>
+                            </tr>
 							<tr><td>Contact number:</td><td><input class="left" name="telephone" id="telephone" type="tel" placeholder="<?php echo $user->contact_number ?>" maxlength="10" size="20"/></td></tr>
 							<tr><td>Current password:</td><td><input class="left" name="password" id="password" type="password" placeholder="enter current password to make changes" maxlength="50" size="50"/></td></tr>
 							<tr><td></td></tr>

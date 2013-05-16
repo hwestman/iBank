@@ -106,14 +106,68 @@ function overallValidation() {
     }
 }
 
-$(document).ready(function() {
-    /*
-    $("input[name=username]").keyup(function() {
-        validateUserName();
+function getSuburbs(postcode){
+    var suburbs;
+    $.ajax({
+       dataType: 'html',
+       type:'POST',
+       data:{postcode:postcode,json:true,action:'getSuburbs'},
+       url: '/iBank/ajaxRequest.php',
+       success: function(response){
+           
+           suburbs = jQuery.parseJSON(response);
+           fillSuburbs($(suburbs));
+       },
+       error: function(ex){
+        
+            console.log(ex);
+       },
+       complete: function(){
+       }
     });
+    return suburbs;
+}
+function fillSuburbs(suburbs){
+   if(suburbs.length>0){
+        var sel = $("#suburb");
+        suburbs.each(function( index ) {
+            var pc = $(this);
+            ret='<option value="'+pc[0]['id']+'">'+pc[0]['suburb']+'</option>';
+            sel.append(ret);
+        });
+   }else{
+       $("#suburb").html("");
+       $("#postcode").val("");
+   }
+     
+}
+function initialize(){
+   var postcode = $("#postcode");
+   postcode.focusout(function() {
+        
+        if($(this).val().length == 4){
+            getSuburbs($(this).val());
+        }else{
+            postcode.val("");
+            $("#suburb").html("");
+        }
+        
+       
+   });
+   
+}
+
+$(document).ready(function() {
+    
+    initialize();
+    
     $("input[name=password]").keyup(function() {
         validatePassword();
     });
+    $("input[name=username]").keyup(function() {
+        validateUserName();
+    });
+    
 
-    */
+    
 });

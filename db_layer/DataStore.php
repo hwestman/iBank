@@ -265,7 +265,8 @@ class DataStore{
             $query = "  SELECT TT.transaction_id,TT.to_account,TT.date_of_transaction,TT.memo,TT.amount,A.login_user_id 
                         FROM ibank_dba.ibankTransaction TT 
                         LEFT JOIN ibank_dba.ibankAccount A on TT.from_account = A.account_number
-                        WHERE TT.from_account = :account_number";
+                        WHERE TT.from_account = :account_number
+                        ORDER BY TT.date_of_transaction DESC";
 
 
             $stmt = \oci_parse($this->connection->getConnection(), $query);
@@ -527,6 +528,29 @@ class DataStore{
         oci_free_statement($stmt);
         
         return $interestRate;
+    }
+    public function getSuburbs($postcode){
+        $suburbs = array();
+        $query = "select * from ibank_dba.ibankSuburb
+                    WHERE postcode = $postcode";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    $res = \oci_execute($stmt);
+	    
+	    
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                array_push($suburbs,array('id'=>$row['SUBURB_ID'],'suburb'=>$row['SUBURB_NAME'],'postcode'=>$row['POSTCODE']));
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $suburbs;
     }
 
     
