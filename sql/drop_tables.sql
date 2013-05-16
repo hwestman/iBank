@@ -43,7 +43,11 @@ DROP VIEW user_info_view;
 DROP VIEW account_info_view;
 DROP VIEW transaction_data_view;
 
+/*
 
+PROCEDURES AND FUNCTIONS
+*/
+DROP PROCEDURE updateUser;
 
 /*
     Indexes

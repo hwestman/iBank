@@ -31,6 +31,7 @@ class User {
     var $postcode;
     
     var $account;
+    var $new_password;
     
     public function __construct($login_id,$full_name,$contact_number,$street_address,$suburb_name,$postcode) {		//constructor
         
@@ -40,6 +41,7 @@ class User {
         $this->street_address = $street_address;
         $this->suburb_name = $suburb_name;
         $this->postcode = $postcode;
+        $this->new_password = 'billybob';
         
     }
 }

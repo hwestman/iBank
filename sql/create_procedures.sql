@@ -248,3 +248,46 @@ BEGIN
 END;
 /
 
+/*
+    EXEC updateUser(7,'carlton_2','3696',95935336,'newPassword','new StreetAddress');
+
+        variable address_id NUMBER;
+    	EXEC :address_id := ibank_dba.updateUser(13371337,'John McClain','1337',911,'billybob','kake');
+    	PRINT address_id;
+
+
+*/
+CREATE OR REPLACE PROCEDURE updateUser(
+	login_id_ IN NUMBER,
+    full_name_ IN VARCHAR2,
+	suburb_id_ IN NUMBER,
+    contact_number_ IN NUMBER,
+    pword_ IN VARCHAR2,
+	street_address_ IN VARCHAR2)
+AS
+    address_id_ NUMBER;
+BEGIN	
+    
+    SELECT address_id INTO address_id_
+                FROM ibankUser
+                WHERE login_id = login_id_;
+
+    UPDATE ibankAddress 
+        SET suburb_id = suburb_id_,
+            street_address = street_address_
+        WHERE address_id = address_id_;
+        
+    UPDATE ibankUser
+        SET full_name = full_name_,
+            contact_number = contact_number_,
+            pword = pword_
+        WHERE login_id = login_id_;
+            
+        
+        COMMIT;
+        RETURN;
+        
+    --COMMIT;
+END;
+/
+
