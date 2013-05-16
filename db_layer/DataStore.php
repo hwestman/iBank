@@ -173,7 +173,8 @@ class DataStore{
                                     $row['CONTACT_NUMBER'], 
                                     $row['STREET_ADDRESS'], 
                                     $row['SUBURB_NAME'], 
-                                    $row['POSTCODE']); 
+                                    $row['POSTCODE'],
+                                    $row['COUNTY']); 
             }
 
         }else{

@@ -5,6 +5,7 @@
 	include "check.php";
 	include_once "db_layer/DataStore.php";
     $accounts = $datastore->getMiAccounts();
+    $user = $datastore->getUser($_SESSION['login']['id']);
     $total = 0;
     
 ?>
