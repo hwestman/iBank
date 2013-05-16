@@ -15,7 +15,7 @@ $accounts = $datastore->getMiAccounts();
 		   <li class='has-sub'><a href=''><span>View Accounts</span></a>
 		      <ul>
                   <?php foreach($accounts as $account){ ?>
-                    <li class='last'><a href='view-account.php?accountNumber=<?php echo $account->accountNumber;?>'><span><?php echo $account->accountTypeName ?></span></a></li>
+                    <li class='last'><a href='view-account.php?accountNumber=<?php echo $account->accountNumber;?>'><span><?php echo $account->accountTypeName.' ('.$account->accountNumber.')'; ?></span></a></li>
                 <?php } ?>
               </ul>
 		   </li>

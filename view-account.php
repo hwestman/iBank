@@ -5,9 +5,11 @@
 
     include "db_layer/DataStore.php";
     $accountNumber = $_GET['accountNumber'];
+    
     $_SESSION['login']['account_context'] = $datastore->getAccount($accountNumber);
     $transactions = $datastore->getTransactions($accountNumber);
-
+    $interest = $datastore->getInterest($_SESSION['login']['account_context']->accountType);
+    $accumulatedInterest = $datastore->getAccumulated($accountNumber);
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -51,15 +53,15 @@
 						}
 				 	}
 				 ?>
-				 <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td></td><td>Account total:</td><td>$2,000,068.91</td></tr>
+				 <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td></td><td>Account total:</td><td>$<?php echo $_SESSION['login']['account_context']->balance ?></td></tr>
 				</table>
 			</div><!--CLOSE CONTENT MAIN-->
 			<div id="content-right">
 				<table width="100%">
 					<th>Accrued interest</th><th>Amount</th>
-					<tr><td>Interest to date:</td><td>$2.68</td></tr>
+					<tr><td>Interest to date:</td><td>$ <?php echo $accumulatedInterest ?></td></tr>
 					<tr bgcolor="#CCC"><td>Interest frequency:</td><td>Monthly</td></tr>
-					<tr><td>Interest rate p/a:</td><td>6.00%</td></tr>
+					<tr><td>Interest rate p/a:</td><td><?php echo $interest['rate']; ?> %</td></tr>
 				</table>
 			</div><!--CLOSE CONTENT RIGHT-->
 		</div><!-- CLOSE CONTENT -->

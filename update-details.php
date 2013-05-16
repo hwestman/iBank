@@ -14,9 +14,8 @@
         if($_POST['address'] != ''){
             $user->street_address = $_POST['address'];
         }
-        if(isset($_POST['suburb'])){
-            $user->suburb_name = $_POST['suburb'];
-            $user->suburb_id = 1337;
+        if($_POST['suburb'] != ''){
+            $user->suburb_id = $_POST['suburb'];
         }
         if($_POST['telephone'] != ''){
             $user->contact_number = $_POST['telephone'];
@@ -44,7 +43,6 @@
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
 	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
 	    <link rel="stylesheet" type="text/css" href="css/button.css" />
-        <link rel="stylesheet" type="text/css" href="css/themes/ui-lightness/jquery-ui.css" />
         
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -64,13 +62,13 @@
                                 <td>
                                     Postcode:</td>
                                 <td> 
-                                    <input class="left" name="postcode" id="postcode" type="tel" placeholder="Post Code"  maxlength="4" size="10" /><select name="suburb" id="suburb"></select></td>
+                                    <input class="left" name="postcode" id="postcode" type="tel" placeholder="<?php echo $user->postcode ?>"  maxlength="4" size="10" /><select name="suburb" id="suburb"><option><?php echo $user->suburb_name ?></option></select></td>
                             </tr>
 							<tr><td>Contact number:</td><td><input class="left" name="telephone" id="telephone" type="tel" placeholder="<?php echo $user->contact_number ?>" maxlength="10" size="20"/></td></tr>
 							<tr><td>Current password:</td><td><input class="left" name="password" id="password" type="password" placeholder="enter current password to make changes" maxlength="50" size="50"/></td></tr>
 							<tr><td></td></tr>
-							<tr><td>New password:</td><td><input class="left" name="newPassword" id="newPassword" type="password" maxlength="50" size="50" placeholder="leave blank if no change to password"/></td></tr>
-							<tr><td>Confirm new password:</td><td><input class="left" name="confirmPassword" id="confirmPassword" type="password" size="50" maxlength="50"  placeholder="leave blank if no change to password"/></td></tr>
+							<tr><td>New password:</td><td><input class="left password" name="newPassword" id="newPassword" type="password" maxlength="50" size="50" placeholder="leave blank if no change to password"/><div class="error"></div></td></tr>
+							<tr><td>Confirm new password:</td><td><input class="left" name="confirmPassword" id="confirmPassword" type="password" size="50" maxlength="50"  placeholder="leave blank if no change to password"/><div class="error"></div></td></tr>
 						</table>
 					<input type="submit" class="button" id="left" name="Cancel" value="Cancel">
 					<input type="submit" class="button" id="right" name="Update" value="Update">

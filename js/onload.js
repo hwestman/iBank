@@ -27,8 +27,8 @@ function validateUserName() {
  * Validates a specific password
  * 
  */
-function validatePassword(password) {
-    var element = $("input[name=password]");
+function validatePassword(element) {
+    
     var errorMessage = "";
     //Makes sure it revalidates for each attempt
     element.removeClass("validated");
@@ -130,9 +130,11 @@ function getSuburbs(postcode){
 function fillSuburbs(suburbs){
    if(suburbs.length>0){
         var sel = $("#suburb");
+        sel.html("");
         suburbs.each(function( index ) {
             var pc = $(this);
             ret='<option value="'+pc[0]['id']+'">'+pc[0]['suburb']+'</option>';
+            
             sel.append(ret);
         });
    }else{
@@ -154,6 +156,17 @@ function initialize(){
         
        
    });
+   $("#newPassword").keyup(function() {
+        validatePassword($(this));
+    });
+    $("#confirmPassword").focusout(function() {
+        if($("#newPassword").val() == $(this).val()){
+            $(this).next().html("");
+            
+        }else{
+            $(this).next().html("Passwords gotta be the same man..");
+        }
+    });
    
 }
 
@@ -161,12 +174,7 @@ $(document).ready(function() {
     
     initialize();
     
-    $("input[name=password]").keyup(function() {
-        validatePassword();
-    });
-    $("input[name=username]").keyup(function() {
-        validateUserName();
-    });
+    
     
 
     

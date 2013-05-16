@@ -610,6 +610,63 @@ class DataStore{
         
         return $suburbs;
     }
+    public function getInterest($accountType){
+        
+        $query = "SELECT interest_rate from ibank_dba.ibankAccountType
+                    WHERE type_id = :accountType";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+        
+        oci_bind_by_name($stmt, ':accountType', $accountType);
+        
+	    $res = \oci_execute($stmt);
+	    
+	    $interest = null;
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                $interest = array('type'=>$accountType,'rate'=>$row['INTEREST_RATE']);
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $interest;
+        
+        
+    }
+     public function getAccumulated($accountNumber){
+        
+        $query = "SELECT interest_sum from ibank_dba.ibankAccount
+                    WHERE account_number = :accountnumber";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+        
+        oci_bind_by_name($stmt, ':accountNumber', $accountNumber);
+        
+	    $res = \oci_execute($stmt);
+	    
+	    $interest = null;
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                $interest = $row['INTEREST_SUM'];
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+            echo $e['message'];
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $interest;
+        
+        
+    }
     
     
 }
