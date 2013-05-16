@@ -35,16 +35,16 @@ insert into ibankAccountType values('','Loan',04.2500);
 
 
 insert into ibankAccount (account_number,staff_user_id,login_user_id) values('',13371337,13371337);
-insert into ibankAccount (account_number,staff_user_id,login_user_id) values('',13372674,13372674);
-insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13372674,13374011);
-insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13372674,13375348);
-insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13372674,13376685);
-insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13372674,13378022);
-insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13372674,13379359);
-insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13372674,13380696);
-insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13372674,13382033);
+insert into ibankAccount (account_number,staff_user_id,login_user_id) values('',13371338,13371338);
+insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13371338,13371339);
+insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13371338,13371340);
+insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13371338,13371341);
+insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13371338,13371342);
+insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13371338,13371343);
+insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13371338,13371344);
+insert into ibankAccount (account_number,staff_user_id,login_user_id)values('',13371338,13371345);
 COMMIT;
-
+/*
 UPDATE ibankAccount SET balance = balance + '-250000' WHERE account_number = 18301722;
 UPDATE ibankAccount SET balance = balance + 2500000 WHERE account_number = 18277656;
 UPDATE ibankAccount SET balance = balance + 48 WHERE account_number = 18283004;
@@ -65,5 +65,5 @@ UPDATE ibankAccount SET balance = balance + 6782 WHERE account_number = 18289689
 UPDATE ibankAccount SET balance = balance + '-12' WHERE account_number = 18291026;
 UPDATE ibankAccount SET balance = balance + '-3214' WHERE account_number = 18285678;
 UPDATE ibankAccount SET balance = balance + '-6001' WHERE account_number = 18293700;
-
+*/
 COMMIT;

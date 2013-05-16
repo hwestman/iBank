@@ -390,8 +390,9 @@ class DataStore{
 
         $data = explode("\n", $file);
         array_shift($data);
+        $i = 0;
         foreach($data as $suburb){
-
+            
             $sep = explode(",",$suburb);
             $sep[0]=str_replace('"', '', $sep[0]);
             $sep[1] = str_replace('"', '', $sep[1]);
@@ -406,7 +407,10 @@ class DataStore{
                 
 
             }
-
+            if($i==100){
+                break;
+            }
+            $i++;
 
         }
         oci_commit($stmt);

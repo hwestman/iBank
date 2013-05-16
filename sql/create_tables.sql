@@ -104,7 +104,7 @@ CREATE TABLE ibankAccount(
 ); 
 
 /*For auto_increment*/
-CREATE SEQUENCE account_number_seq START WITH 18273645 INCREMENT BY 1337;
+CREATE SEQUENCE account_number_seq START WITH 13371337 INCREMENT BY 7331;
 
 CREATE OR REPLACE trigger account_number_trig
 BEFORE INSERT ON ibankAccount
