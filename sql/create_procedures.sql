@@ -172,7 +172,7 @@ CREATE OR REPLACE PROCEDURE accumulateInterest(
 )
 AS
 accountNumber NUMBER;
-interestRate NUMBER (8,7);
+interestRate NUMBER (20,18);
 accountType NUMBER;
 bankBalance NUMBER;
 tmp NUMBER;
@@ -277,9 +277,6 @@ BEGIN
 		RETURN;
 END;
 /
-
-/*////////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////////////////////////////*/
-
 /*
     EXEC updateUser(7,'carlton_2','3696',95935336,'newPassword','new StreetAddress');
 
@@ -289,6 +286,8 @@ END;
 
 
 */
+
+/*///////////////////////////// UPDATE USER PROCEDURE /////////////////////////////*/
 CREATE OR REPLACE PROCEDURE updateUser(
 	login_id_ IN NUMBER,
     full_name_ IN VARCHAR2,

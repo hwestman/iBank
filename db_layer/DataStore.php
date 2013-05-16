@@ -109,9 +109,6 @@ class DataStore{
                 
                 $account = new Account($row['ACCOUNT_NUMBER'], $row['TYPE_OF_ACCOUNT'], $row['BALANCE']);
                 array_push($accounts,$account);
-                
-                
-                
             }
 
         }else{

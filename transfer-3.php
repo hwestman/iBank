@@ -12,6 +12,11 @@
 	    $amount = $_SESSION['transfer']['amount'];
 	    $receipt = $datastore->transferFunds($amount, $fromAccount, $toAccount, $memo);
 	    unset($_SESSION['transfer']);
+	    
+	    if($receipt == "Error")
+	    {
+		    $receipt = "Sorry there is not enough funds in your bank account to make the following transaction.";
+	    }
     }
     
     if(isset($_POST['Print']))
