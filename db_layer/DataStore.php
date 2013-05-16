@@ -686,7 +686,7 @@ class DataStore{
 	    
 	    if($res){
             while ($row = oci_fetch_assoc($stmt)) {
-                array_push($loan,array('balance'=>$row['SUM(BALANCE)'],'interestSum'=>$row['"SUM(INTEREST_SUM)"']));
+                array_push($loan,array('balance'=>$row['SUM(BALANCE)'],'interestSum'=>$row['SUM(INTEREST_SUM)']));
             }
 
         }else{
@@ -699,6 +699,45 @@ class DataStore{
         return $loan;
     }
     
+    public function accumulateInterest(){
+    	$query = "CALL ibank_dba.accumulateInterest(:accumulatedInterest)";
+    	
+    	$stmt = \oci_parse($this->connection->getConnection(), $query);
+        
+        oci_bind_by_name($stmt, ':accumulatedInterest', $interest);
+        
+	    $res = \oci_execute($stmt);
+
+	    if($res){
+	    	return true;
+        }else{
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+            return false;
+        }
+        
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+    }
+    
+    public function payoutInterest(){
+    	$query = "CALL ibank_dba.payoutInterest(:interestSum)";
+    	
+    	$stmt = \oci_parse($this->connection->getConnection(), $query);
+        
+        oci_bind_by_name($stmt, ':interestSum', $interest);
+        
+	    $res = \oci_execute($stmt);
+
+	    if($res){
+	    	return true;
+        }else{
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+            return false;
+        }
+        
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+    }
     
 }
 $datastore = new DataStore();
