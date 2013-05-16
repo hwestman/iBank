@@ -3,7 +3,7 @@
     
     include "db_layer/DataStore.php";
     
-    if(isset($_POST['Create'])){
+    if(isset($_POST['submit'])){
     	$staffID = $_SESSION['login']['id'];
     	
 		$accountType = $_POST['accountType'];
@@ -134,7 +134,7 @@
 						<tr><td>Re-type Password:</td><td><input class="left" type="password" name="re_newPassword" id="pass2" size="50" maxlength="30" required placeholder="Confirm password" onchange="javascript:return checkPasswordsMatch();"/></td></tr>
 					</table>
 					<input type="submit" class="button" id="left" name="Cancel" value="Cancel"/>
-					<input type="submit" class="button" id="right" name="Create" value="Create" onclick="javascript:return validateForm();"/>
+					<input type="submit" class="button" id="right" name="submit" value="Create" onclick="javascript:return validateForm()"/>
 				</form>
 			</div><!--CLOSE CONTENT MAIN-->
 			<div id="content-right">
