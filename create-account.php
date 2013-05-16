@@ -49,11 +49,6 @@
 					alert("County/State must be filled out");
 					return false;
 				}
-				else if (password==null || password=="" || password.length < 8)
-				{
-					alert("Password must be filled out, and have at least 8 characters");
-					return false;
-				}
 				else
 				{
 					return true;
