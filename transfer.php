@@ -58,7 +58,7 @@
 							<td>
 								<select name="fromAccount">
 									<?php foreach($accounts as $account){ ?>
-									<option value="<?php echo $account->accountNumber; ?>"><?php echo $account->accountNumber; ?></option>
+									<option value="<?php echo $account->accountNumber; ?>"><?php echo $account->accountTypeName." (".$account->accountNumber.")"; ?></option>
 									<?php } ?>
 								</select>
 							</td>

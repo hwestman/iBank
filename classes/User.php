@@ -29,7 +29,7 @@ class User {
     var $account;
     var $new_password;
     
-    public function __construct($login_id,$full_name,$contact_number,$street_address,$suburb_name,$postcode,$county) {		//constructor
+    public function __construct($login_id,$full_name,$contact_number,$street_address,$suburb_name,$postcode,$county,$suburb_id,$password) {		//constructor
         
         $this->login_id = $login_id;
         $this->full_name = $full_name;
@@ -38,6 +38,8 @@ class User {
         $this->suburb_name = $suburb_name;
         $this->postcode = $postcode;
         $this->county = $county;
+        $this->suburb_id = $suburb_id;
+        $this->new_password = $password;
         
     }
 }

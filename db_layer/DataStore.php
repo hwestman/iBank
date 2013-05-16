@@ -174,7 +174,9 @@ class DataStore{
                                     $row['STREET_ADDRESS'], 
                                     $row['SUBURB_NAME'], 
                                     $row['POSTCODE'],
-                                    $row['COUNTY']); 
+                                    $row['COUNTY'],
+                                    $row['SUBURB_ID'],
+                                    $row['PWORD']); 
             }
 
         }else{
@@ -191,8 +193,9 @@ class DataStore{
     public function updateUser($user){
         
         $success = false;
+        
         $query = "CALL ibank_dba.updateUser(:user_login,:full_name,:suburb_id,:contact_number,:password,:street_address)";
-        //$query = "CALL ibank_dba.updateUser($user->login_id,$user->full_name,$user->suburb_id,$user->contact_number,$user->new_password,$user->street_address)";
+        
 	    
 	    $stmt = \oci_parse($this->connection->getConnection(), $query);
 	    
@@ -211,6 +214,8 @@ class DataStore{
         }else{
             
             $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+            echo $e['message'];
+            exit;
         }
         oci_commit($stmt);
         oci_free_statement($stmt);
