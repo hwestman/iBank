@@ -611,6 +611,94 @@ class DataStore{
         return $suburbs;
     }
     
+    public function savings(){
+    	$savings = array();
+	    $query = "SELECT SUM(balance), SUM(interest_sum) FROM ibank_dba.ibankAccount WHERE type_of_account = 1";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    $res = \oci_execute($stmt);
+	    
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                array_push($savings,array('balance'=>$row['SUM(BALANCE)'],'interestSum'=>$row['SUM(INTEREST_SUM)']));
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $savings;
+    }
+    
+    public function credit(){
+	    $credit = array();
+	    $query = "SELECT SUM(balance), SUM(interest_sum) FROM ibank_dba.ibankAccount WHERE type_of_account = 2";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    $res = \oci_execute($stmt);
+	    
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                array_push($credit,array('balance'=>$row['SUM(BALANCE)'],'interestSum'=>$row['SUM(INTEREST_SUM)']));
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $credit;
+    }
+    
+    public function cheque(){
+	    $cheque = array();
+	    $query = "SELECT SUM(balance), SUM(interest_sum) FROM ibank_dba.ibankAccount WHERE type_of_account = 3";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    $res = \oci_execute($stmt);
+	    
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                array_push($cheque,array('balance'=>$row['SUM(BALANCE)'],'interestSum'=>$row['SUM(INTEREST_SUM)']));
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $cheque;
+    }
+    
+    public function loan(){
+	    $loan = array();
+	    $query = "SELECT SUM(balance), SUM(interest_sum) FROM ibank_dba.ibankAccount WHERE type_of_account = 4";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    $res = \oci_execute($stmt);
+	    
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                array_push($loan,array('balance'=>$row['SUM(BALANCE)'],'interestSum'=>$row['"SUM(INTEREST_SUM)"']));
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $loan;
+    }
+    
     
 }
 $datastore = new DataStore();

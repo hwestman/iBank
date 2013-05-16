@@ -13,7 +13,7 @@
 		
 		$updatedInterestRates = $datastore->updateInterestRate($_SESSION['interestRates'][0], $_SESSION['interestRates'][1], $_SESSION['interestRates'][2], $_SESSION['interestRates'][3]);
 		
-		header('LOCATION: interest-rate.php');
+		header('LOCATION: manager.php');
 	}
 
 ?>

@@ -4,7 +4,15 @@
 	
 	include "check.php";
 	include "db_layer/DataStore.php";
-    $accounts = $datastore->getMiAccounts();
+    $savings = $datastore->savings();
+    $credit = $datastore->credit();
+    $cheque = $datastore->cheque();
+    $loan = $datastore->loan();
+    
+    $interestRate = array();
+	$interestRate = $datastore->getInterestRate();
+	
+	$_SESSION['interestRates'] = $interestRate; 
     
 ?>
 <!DOCTYPE html>
@@ -26,16 +34,41 @@
 		<?php include "include/header.php"; ?>
 		<div id="content">
 			<div id="content-main">
-				<table>
-					<th width="30%">Account number</th><th width="35%">Account type</th><th width="35%">Balance</th>
-					<?php foreach($accounts as $account){ ?>
-                        <tr bgcolor="#DDD"><td><a href="view-account.php?accountNumber=<?php echo $account->accountNumber;?>"><?php echo $account->accountNumber; ?></a></td><td><?php echo $account->accountTypeName; ?></td><td>$<?php echo $account->balance;?></td></tr>
-                       
-                    <?php } ?>
-                        <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total debt:</td><td>$<?php echo $creditAmount+$loanAmount;?></td></tr>
-                        <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total credit:</td><td>$<?php echo $savingsAmount+$chequeAmount;?></td></tr>
-                </table>
+				<div class="stats">
+					<table>
+						<tr bgcolor="#DDD"><td>Total savings:</td><td>$<?php echo $savings[0]['balance']?></td></tr>
+						<tr bgcolor="#CCC"><td>Total accrued interest</td><td>$<?php echo $savings[0]['interestSum']?></td></tr>
+					</table>
+				</div><!--CLOSE STATS -->
+				<div class="stats">
+					<table>
+						<tr bgcolor="#DDD"><td>Total credit:</td><td>$<?php echo $credit[0]['balance']?></td></tr>
+						<tr bgcolor="#CCC"><td>Total accrued interest</td><td>$<?php echo $credit[0]['interestSum']?></td></tr>
+					</table>
+				</div><!--CLOSE STATS -->
+				<div class="stats">
+					<table>
+						<tr bgcolor="#DDD"><td>Total cheque:</td><td>$<?php echo $cheque[0]['balance']?></td></tr>
+						<tr bgcolor="#CCC"><td>Total accrued interest</td><td>$<?php echo $cheque[0]['interestSum']?></td></tr>
+					</table>
+				</div><!--CLOSE STATS -->
+				<div class="stats">
+					<table>
+						<tr bgcolor="#DDD"><td>Total loan:</td><td>$<?php echo $loan[0]['balance']?></td></tr>
+						<tr bgcolor="#CCC"><td>Total accrued interest</td><td>$<?php echo $loan[0]['interestSum']?></td></tr>
+					</table>
+				</div><!--CLOSE STATS -->
 			</div><!--CLOSE CONTENT MAIN-->
+			<div id="content-right">
+				<table>
+					<th width="35%">Account type</th><th width="35%">Interest rate per annum</th>
+					<tr bgcolor="#DDD"><td>Savings</td><td><?php echo $interestRate[0];?>%</td></tr>
+					<tr bgcolor="#CCC"><td>Credit</td><td><?php echo $interestRate[1];?>%</td></tr>
+					<tr bgcolor="#DDD"><td>Cheque</td><td><?php echo $interestRate[2];?>%</td></tr>
+					<tr bgcolor="#CCC"><td>Loan</td><td><?php echo $interestRate[3];?>%</td></tr>
+				</table>
+				<a href="update-interest-rate.php"><input type="submit" class="button" id="right" name="Update" value="Update"></a>
+			</div><!--CLOSE CONTENT RIGHT-->
 		</div><!-- CLOSE CONTENT -->
 		<?php include "include/footer.php"; ?>
 	</div><!-- CLOSE CONTAINER -->

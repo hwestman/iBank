@@ -42,7 +42,6 @@ $accounts = $datastore->getMiAccounts();
 	<div id='cssmenu'>
 		<ul>
 			<li class="active"><a href="manager.php"><span>Manager</span></a></li>
-		   <li><a href='interest-rate.php'><span>Interest rate</span></a></li>
 		   <li class='last'><a href='log-out.php'><span>Log out</span></a></li>
 		</ul>
 	</div><!--CLOSE CSSMENU-->

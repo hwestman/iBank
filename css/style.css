@@ -156,6 +156,27 @@ body {
 	text-align: right;
 }
 
+#content-main .stats {
+	height: 100px;
+	width: 250px;
+	float: left;
+	margin: 20px;
+	border: outset grey 5px;
+	border-radius: 10px;
+}
+
+#content-main .stats {
+	height: 100px;
+	width: 250px;
+	float: left;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 23px;
+	margin-top: 23px;
+	border: outset grey 5px;
+	border-radius: 10px;
+}
+
 #content-main table {
 	width: 100%;
 	background-color: #BBB;
