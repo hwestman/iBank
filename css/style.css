@@ -203,6 +203,8 @@ body {
 	width: 100px;
 	margin: 5px;
 	padding: 5px;
+	float: left;
+	text-align: left;
 }
 
 #content-main td a{

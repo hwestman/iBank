@@ -1,26 +1,38 @@
 <?php
 
-	session_start();
-	
 	include "check.php";
-	
-	$savingsAmount = "52012.55";
-	$chequeAmount = "10012.50";
-	$creditAmount = "-2561.12";
-	$loanAmount = "-250321.87";
-	
-	$savingsAccount = "12345678";
-	$chequeAccount = "12387654";
-	$creditAccount = "87654321";
-	$loanAccount = "81726354";
-	
+	include "db_layer/DataStore.php";
+     session_start();
+     
+     if(isset($_POST['Next']))
+    {
+    	$_SESSION['transfer'];
+	    $memo = $_POST['memo'];
+	    $_SESSION['transfer']['memo'] = $memo;
+	    $toAccount = $_POST['toAccount'];
+	    $_SESSION['transfer']['toAccount'] = $toAccount;
+	    $amount = $_POST['amount'];
+	    $_SESSION['transfer']['amount'] = $amount;
+	    
+	    header('LOCATION: teller-bank-transfer-confirm.php');
+    }
+    else if(isset($_POST['Cancel']))
+    {
+	    unset($_SESSION['transfer']);
+    }
+    
+    if(isset($_SESSION['transfer']))
+     {
+     	$transfer = true;
+     }
+     
 
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
 	<head>
-	    <title>Mi Account - iBank</title>
+	    <title>Bank transfer - iBank</title>
 	    <meta charset="UTF-8"/>
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
 	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
@@ -35,16 +47,28 @@
 		<?php include "include/header.php"; ?>
 		<div id="content">
 			<div id="content-main">
-				<table>
-					<th width="30%">Account number</th><th width="35%">Account type</th><th width="35%">Balance</th>
-					<tr bgcolor="#DDD"><td><a href="view-account.php?accountNumber=<?php echo $savingsAccount;?>"><?php echo $savingsAccount; ?></a></td><td>Savings</td><td>$<?php echo $savingsAmount;?></td></tr>
-					<tr bgcolor="#CCC"><td><a href="view-account.php?accountNumber=<?php echo $chequeAccount;?>"><?php echo $chequeAccount; ?></a></td><td>Cheque</td><td>$<?php echo $chequeAmount;?></td></tr>
-					<tr bgcolor="#DDD"><td><a href="view-account.php?accountNumber=<?php echo $creditAccount;?>"><?php echo $creditAccount; ?></a></td><td>Credit</td><td>$<?php echo $creditAmount;?></td></tr>
-					<tr bgcolor="#CCC"><td><a href="view-account.php?accountNumber=<?php echo $loanAccount;?>"><?php echo $loanAccount; ?></a></td><td>Loan</td><td><?php echo $loanAmount;?></td></tr>
-					<tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total debt:</td><td>$<?php echo $creditAmount+$loanAmount;?></td></tr>
-					<tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total credit:</td><td>$<?php echo $savingsAmount+$chequeAmount;?></td></tr>
-				</table>
+				Maximum transfer limit per day: $4,000.00
+				<form name="transfer" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
+					<table>
+						<tr><td>From account:</td><td style="text-align: left">Teller deposit</td></tr>
+						<tr><td>Memo:</td><td><input class="left" type="text" name="memo" value="Bank deposit"<?php if($transfer){ 
+							echo "value=\"".$_SESSION['transfer']['memo']."\"";} else { echo "placeholder=\"Distinctive text of transaction\"";}?> 
+						size="30" maxlength="18"/></td></tr>
+						<tr><td><hr></td><td><hr></td></tr>
+						<tr><td>To account:</td><td><input class="left" type="text" name="toAccount" <?php if($transfer){ 
+							echo "value=\"".$_SESSION['transfer']['toAccount']."\"";} else { echo "placeholder=\"8 digit account number\"";}?>
+						size="30" maxlength="8"/></td></tr>
+						<tr><td>Amount: $</td><td><input class="left" type="text" name="amount" <?php if($transfer){ 
+							echo "value=\"".$_SESSION['transfer']['amount']."\"";} else { echo "placeholder=\"How much?\"";}?> 
+						size="20" maxlength="10"/></td></tr>
+					</table>
+					<input type="reset" class="button" id="left" name="cancel" onclick="location.href='teller.php'" value="Cancel"/>
+					<input type="submit" class="button" id="right" name="Next" value="Next">
+				</form>
 			</div><!--CLOSE CONTENT MAIN-->
+			<div id="content-right">
+				The funds will be available in the persons bank account instantly.
+			</div><!--CLOSE CONTENT RIGHT-->
 		</div><!-- CLOSE CONTENT -->
 		<?php include "include/footer.php"; ?>
 	</div><!-- CLOSE CONTAINER -->

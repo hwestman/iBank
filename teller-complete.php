@@ -6,11 +6,11 @@
     
     if(isset($_SESSION['transfer']))
     {
-	    $fromAccount = $_SESSION['transfer']['fromAccount'];
+	    $fromAccount = 13371337;
 	    $memo = $_SESSION['transfer']['memo'];
 	    $toAccount = $_SESSION['transfer']['toAccount'];
 	    $amount = $_SESSION['transfer']['amount'];
-	    $receipt = $datastore->transferFunds($amount, $fromAccount, $toAccount, $memo);
+	    $receipt = $datastore->bankDeposit($amount, $fromAccount, $toAccount, $memo);
 	    unset($_SESSION['transfer']);
     }
     
@@ -20,7 +20,7 @@
     }
     else if(isset($_POST['Done']))
     {
-	    header('LOCATION: mibank.php');
+	    header('LOCATION: teller.php');
     }
 
 ?>
@@ -28,7 +28,7 @@
 <html dir="ltr" lang="en-US">
 
 	<head>
-	    <title>Transfer receipt - iBank</title>
+	    <title>Bank transfer complete - iBank</title>
 	    <meta charset="UTF-8"/>
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
 	    <link rel="stylesheet" type="text/css" href="css/menu.css" />
