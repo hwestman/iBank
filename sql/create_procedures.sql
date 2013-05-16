@@ -281,3 +281,69 @@ END;
 
 /*////////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////////////////////////////*/
 
+<<<<<<< HEAD
+=======
+/*///////////////////////////// CREATING AN ACCOUNT FUNCTION /////////////////////////////*/
+CREATE OR REPLACE FUNCTION createAccount (
+	staffID IN NUMBER,
+	loginID IN NUMBER,
+	loginID2 IN NUMBER,
+	accountType IN NUMBER
+)
+RETURN NUMBER
+IS
+accountNumber NUMBER;
+BEGIN	
+		INSERT INTO ibankAccount
+			(account_number, staff_user_id, login_user_id, login_user_id2, type_of_account)
+			VALUES ('', staffID, loginID, loginID2, accountType)
+			RETURNING account_number INTO accountNumber;
+			COMMIT;
+			RETURN accountNumber;
+END;
+/
+
+/*
+    EXEC updateUser(7,'carlton_2','3696',95935336,'newPassword','new StreetAddress');
+
+        variable address_id NUMBER;
+    	EXEC :address_id := ibank_dba.updateUser(13371337,'John McClain','1337',911,'billybob','kake');
+    	PRINT address_id;
+
+
+*/
+CREATE OR REPLACE PROCEDURE updateUser(
+	login_id_ IN NUMBER,
+    full_name_ IN VARCHAR2,
+	suburb_id_ IN NUMBER,
+    contact_number_ IN NUMBER,
+    pword_ IN VARCHAR2,
+	street_address_ IN VARCHAR2)
+AS
+    address_id_ NUMBER;
+BEGIN	
+    
+    SELECT address_id INTO address_id_
+                FROM ibankUser
+                WHERE login_id = login_id_;
+
+    UPDATE ibankAddress 
+        SET suburb_id = suburb_id_,
+            street_address = street_address_
+        WHERE address_id = address_id_;
+        
+    UPDATE ibankUser
+        SET full_name = full_name_,
+            contact_number = contact_number_,
+            pword = pword_
+        WHERE login_id = login_id_;
+            
+        
+        COMMIT;
+        RETURN;
+        
+    --COMMIT;
+END;
+/
+
+>>>>>>> 45f9f3123e395cd7e6acf4c269718635f21ca366

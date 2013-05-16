@@ -187,6 +187,37 @@ class DataStore{
         
     }
     
+    public function updateUser($user){
+        
+        $success = false;
+        $query = "CALL ibank_dba.updateUser(:user_login,:full_name,:suburb_id,:contact_number,:password,:street_address)";
+        //$query = "CALL ibank_dba.updateUser($user->login_id,$user->full_name,$user->suburb_id,$user->contact_number,$user->new_password,$user->street_address)";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    
+        oci_bind_by_name($stmt, ':user_login', $user->login_id);
+        oci_bind_by_name($stmt, ':full_name', $user->full_name);
+        oci_bind_by_name($stmt, ':suburb_id', $user->suburb_id);
+        oci_bind_by_name($stmt, ':contact_number', $user->contact_number);
+        oci_bind_by_name($stmt, ':password', $user->new_password);
+        oci_bind_by_name($stmt, ':street_address', $user->street_address);
+        
+        
+        $res = \oci_execute($stmt);
+	    
+        if($res){
+            $success = true;
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $success;
+    }
+    
+    
     public function checkAccountNumber($account_number){
         
         $query = "  SELECT login_user_id
