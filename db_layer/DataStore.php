@@ -532,23 +532,27 @@ class DataStore{
     public function createAccountAndUser($accountType, $fullname, $address, $county, $suburbID, $contactNumber, $password, $staffID) {
 	    /************************ CREATE USER **************************/
 	    $loginID = null;
-	    $loginID2 = null;
 	    $userInfo = array();
 	    $priv = 1;
 	    
-	    $query = "CALL ibank_dba.createUser($suburbID, $address, $county, $fullname, $password, $priv, $contactNumber, :loginID)";
+	    $query = "BEGIN ibank_dba.createUser(:suburbID, :address, :county, :fullname, :password, :priv, :contactNumber, :loginID); END;";
 	    
+	    //echo $query;
 	    $stmt = \oci_parse($this->connection->getConnection(), $query);
-	    oci_bind_by_name($stmt, ":loginID", $loginID);
+	    
+	    oci_bind_by_name($stmt, ':suburbID', $suburbID);
+	    oci_bind_by_name($stmt, ':address', $address);
+        oci_bind_by_name($stmt, ':county', $county);
+        oci_bind_by_name($stmt, ':fullname', $fullname);
+        oci_bind_by_name($stmt, ':password', $password);
+        oci_bind_by_name($stmt, ':priv', $priv);
+        oci_bind_by_name($stmt, ':contactNumber', $contactNumber);
+        oci_bind_by_name($stmt, ':loginID', $loginID);
+	    
 	    $res = \oci_execute($stmt);
 	    
-	    $i = 0;
 	    if($res){
-            while ($row = oci_fetch_assoc($stmt)) {
-                $userInfo[0] = $row['LOGIN_ID'];
-                $i++;
-            }
-
+		     $userInfo[0] = $loginID;
         }else{
             
             $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
@@ -557,31 +561,27 @@ class DataStore{
         oci_free_statement($stmt);
         
         /************************ CREATE ACCOUNT **************************/
-        /*
-$loginID = $userInfo[0];
         $accountNumber = null;
-        
-        $query2 = "CALL ibank_dba.createAccount($staffID, $loginID, $loginID2, $accountType, :accountNumber)";
+                
+        $query2 = "CALL ibank_dba.createAccount(:staffID, :loginID, :accountType, :accountNumber)";
         
         $stmt2 = \oci_parse($this->connection->getConnection(), $query2);
-        oci_bind_by_name($stmt2, ":accountNumber", $accountNumber);
+        
+        oci_bind_by_name($stmt2, ':staffID', $staffID);
+	    oci_bind_by_name($stmt2, ':loginID', $loginID);
+        oci_bind_by_name($stmt2, ':accountType', $accountType);
+        oci_bind_by_name($stmt2, ':accountNumber', $accountNumber);
+        
 	    $res2 = \oci_execute($stmt2);
-	    
-	    $i = 0;
-	    if($res2){
-            while ($row2 = oci_fetch_assoc($stmt2)) {
-                $userInfo[1] = $row2['ACCOUNT_NUMBER'];
-                $i++;
-            }
 
+	    if($res2){
+	    	$userInfo[1] = $accountNumber;
         }else{
-            
             $e2 = oci_error($stmt2);   // For oci_connect errors do not pass a handle
         }
         
         oci_commit($stmt2);
         oci_free_statement($stmt2);
-*/
        
         return $userInfo;
     }

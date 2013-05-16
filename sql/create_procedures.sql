@@ -24,7 +24,7 @@
     
 		//// CREATING ACCOUNT FUNCTION ////
     	variable accountNumber NUMBER;
-    	EXEC :accountNumber := createAccount(1,4,'',4);
+    	EXEC createAccount(1,4,4, :accountNumber);
     	PRINT accountNumber;
     	/
     	
@@ -85,18 +85,17 @@ END;
 CREATE OR REPLACE PROCEDURE createAccount (
 	staffID IN NUMBER,
 	loginID IN NUMBER,
-	loginID2 IN NUMBER,
 	accountType IN NUMBER,
 	accountNumber OUT NUMBER
 )
 AS
 BEGIN	
-		INSERT INTO ibankAccount
-			(account_number, staff_user_id, login_user_id, login_user_id2, type_of_account)
-			VALUES ('', staffID, loginID, loginID2, accountType)
-			RETURNING account_number INTO accountNumber;
-			COMMIT;
-			RETURN;
+	INSERT INTO ibankAccount
+		(account_number, staff_user_id, login_user_id, type_of_account)
+		VALUES ('', staffID, loginID, accountType)
+		RETURNING account_number INTO accountNumber;
+	COMMIT;
+	RETURN;
 END;
 /
 
