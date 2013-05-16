@@ -49,12 +49,12 @@
 			</div><!--CLOSE CONTENT MAIN-->
 			<div id="content-right">
 				<table>
-					<th width="40%">Your details</th><th width="70%"><?php echo $userInfo->login_id;?></th>
-					<tr bgcolor="#DDD"><td>Full name:</td><td><?php echo $userInfo->full_name;?></td></tr>
-					<tr bgcolor="#CCC"><td>Address:</td><td><?php echo $userInfo->street_address;?></td></tr>
-					<tr bgcolor="#DDD"><td>Suburb:</td><td><?php echo $userInfo->suburb_name." ".$userInfo->post_code;?></td></tr>
-					<tr bgcolor="#CCC"><td>State:</td><td><?php echo $userInfo->county;?></td></tr>
-					<tr bgcolor="#DDD"><td>Contact:</td><td><?php echo $userInfo->contact_number;?></td></tr>				
+					<th width="40%">Your details</th><th width="70%"><?php echo $user->login_id;?></th>
+					<tr bgcolor="#DDD"><td>Full name:</td><td><?php echo $user->full_name;?></td></tr>
+					<tr bgcolor="#CCC"><td>Address:</td><td><?php echo $user->street_address;?></td></tr>
+					<tr bgcolor="#DDD"><td>Suburb:</td><td><?php echo $user->suburb_name." ".$userInfo->post_code;?></td></tr>
+					<tr bgcolor="#CCC"><td>State:</td><td><?php echo $user->county;?></td></tr>
+					<tr bgcolor="#DDD"><td>Contact:</td><td><?php echo $user->contact_number;?></td></tr>				
 				</table>
 			</div><!--CLOSE CONTENT RIGHT-->
 		</div><!-- CLOSE CONTENT -->
