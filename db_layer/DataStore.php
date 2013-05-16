@@ -407,9 +407,9 @@ class DataStore{
                 
 
             }
-            if($i==100){
+            /*if($i==100){
                 break;
-            }
+            }*/
             $i++;
 
         }
