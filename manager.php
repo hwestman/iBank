@@ -9,6 +9,8 @@
     $cheque = $datastore->cheque();
     $loan = $datastore->loan();
     
+    $user = $datastore->getUser($_SESSION['login']['id']);
+    
     $interestRate = array();
 	$interestRate = $datastore->getInterestRate();
 	
@@ -38,36 +40,41 @@
 					<table>
 						<tr bgcolor="#DDD"><td>Total savings:</td><td>$<?php echo $savings[0]['balance']?></td></tr>
 						<tr bgcolor="#CCC"><td>Total accrued interest</td><td>$<?php echo $savings[0]['interestSum']?></td></tr>
+						<tr><td>Interest rate</td><td><?php echo $interestRate[0];?>%</td></tr>
 					</table>
 				</div><!--CLOSE STATS -->
 				<div class="stats">
 					<table>
 						<tr bgcolor="#DDD"><td>Total credit:</td><td>$<?php echo $credit[0]['balance']?></td></tr>
 						<tr bgcolor="#CCC"><td>Total accrued interest</td><td>$<?php echo $credit[0]['interestSum']?></td></tr>
+						<tr><td>Interest rate</td><td><?php echo $interestRate[1];?>%</td></tr>
 					</table>
 				</div><!--CLOSE STATS -->
 				<div class="stats">
 					<table>
 						<tr bgcolor="#DDD"><td>Total cheque:</td><td>$<?php echo $cheque[0]['balance']?></td></tr>
 						<tr bgcolor="#CCC"><td>Total accrued interest</td><td>$<?php echo $cheque[0]['interestSum']?></td></tr>
+						<tr><td>Interest rate</td><td><?php echo $interestRate[2];?>%</td></tr>
 					</table>
 				</div><!--CLOSE STATS -->
 				<div class="stats">
 					<table>
 						<tr bgcolor="#DDD"><td>Total loan:</td><td>$<?php echo $loan[0]['balance']?></td></tr>
 						<tr bgcolor="#CCC"><td>Total accrued interest</td><td>$<?php echo $loan[0]['interestSum']?></td></tr>
+						<tr><td>Interest rate</td><td><?php echo $interestRate[3];?>%</td></tr>
 					</table>
 				</div><!--CLOSE STATS -->
+				<a href="update-interest-rate.php"><input type="submit" class="button" id="right" name="Update" value="Update interest rate"></a>
 			</div><!--CLOSE CONTENT MAIN-->
 			<div id="content-right">
 				<table>
-					<th width="35%">Account type</th><th width="35%">Interest rate per annum</th>
-					<tr bgcolor="#DDD"><td>Savings</td><td><?php echo $interestRate[0];?>%</td></tr>
-					<tr bgcolor="#CCC"><td>Credit</td><td><?php echo $interestRate[1];?>%</td></tr>
-					<tr bgcolor="#DDD"><td>Cheque</td><td><?php echo $interestRate[2];?>%</td></tr>
-					<tr bgcolor="#CCC"><td>Loan</td><td><?php echo $interestRate[3];?>%</td></tr>
+					<th width="40%">Your details</th><th width="70%"><?php echo $user->login_id;?></th>
+					<tr bgcolor="#DDD"><td>Full name:</td><td><?php echo $user->full_name;?></td></tr>
+					<tr bgcolor="#CCC"><td>Address:</td><td><?php echo $user->street_address;?></td></tr>
+					<tr bgcolor="#DDD"><td>Suburb:</td><td><?php echo $user->suburb_name." ".$userInfo->post_code;?></td></tr>
+					<tr bgcolor="#CCC"><td>State:</td><td><?php echo $user->county;?></td></tr>
+					<tr bgcolor="#DDD"><td>Contact:</td><td><?php echo $user->contact_number;?></td></tr>				
 				</table>
-				<a href="update-interest-rate.php"><input type="submit" class="button" id="right" name="Update" value="Update"></a>
 			</div><!--CLOSE CONTENT RIGHT-->
 		</div><!-- CLOSE CONTENT -->
 		<?php include "include/footer.php"; ?>
