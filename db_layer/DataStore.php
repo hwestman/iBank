@@ -196,7 +196,7 @@ class DataStore{
         
         $success = false;
         
-        $query = "CALL ibank_dba.updateUser(:user_login,:full_name,:suburb_id,:contact_number,:password,:street_address)";
+        $query = "CALL ibank_dba.updateUser(:user_login,:full_name,:suburb_id,:county,:contact_number,:password,:street_address)";
         
 	    
 	    $stmt = \oci_parse($this->connection->getConnection(), $query);
@@ -204,6 +204,7 @@ class DataStore{
         oci_bind_by_name($stmt, ':user_login', $user->login_id, 8);
         oci_bind_by_name($stmt, ':full_name', $user->full_name);
         oci_bind_by_name($stmt, ':suburb_id', $user->suburb_id, 11);
+        oci_bind_by_name($stmt, ':county', $user->county);
         oci_bind_by_name($stmt, ':contact_number', $user->contact_number);
         oci_bind_by_name($stmt, ':password', $user->new_password, 200);
         oci_bind_by_name($stmt, ':street_address', $user->street_address);
@@ -225,6 +226,32 @@ class DataStore{
         return $success;
     }
     
+    public function createAccount($staffID, $loginID, $accountType){
+	    $accountNumber = null;
+                
+        $query2 = "CALL ibank_dba.createAccount(:staffID, :loginID, :accountType, :accountNumber)";
+        
+        $stmt2 = \oci_parse($this->connection->getConnection(), $query2);
+        
+        oci_bind_by_name($stmt2, ':staffID', $staffID, 8);
+	    oci_bind_by_name($stmt2, ':loginID', $loginID, 8);
+        oci_bind_by_name($stmt2, ':accountType', $accountType);
+        oci_bind_by_name($stmt2, ':accountNumber', $accountNumber, 8);
+        
+	    $res2 = \oci_execute($stmt2);
+
+	    if($res2){
+	    	$userInfo[1] = $accountNumber;
+        }else{
+            $e2 = oci_error($stmt2);   // For oci_connect errors do not pass a handle
+        }
+        
+        oci_commit($stmt2);
+        oci_free_statement($stmt2);
+       
+        return $userInfo;
+    }
+    
     
     public function checkAccountNumber($account_number){
         
@@ -243,8 +270,6 @@ class DataStore{
         $attemptUser = null;
         if($res){
             while ($row = oci_fetch_assoc($stmt)) {
-                
-                
                 $attemptUser = $row['LOGIN_USER_ID'];
             }
 

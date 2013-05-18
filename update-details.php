@@ -20,6 +20,9 @@
         if($_POST['telephone'] != ''){
             $user->contact_number = $_POST['telephone'];
         }
+        if($_POST['county'] != ''){
+            $user->county = $_POST['county'];
+        }
         if($_POST['password'] != ''){
             $user->new_password = $_POST['password'];
         }
@@ -64,6 +67,7 @@
                                 <td> 
                                     <input class="left" name="postcode" id="postcode" type="tel" placeholder="<?php echo $user->postcode ?>"  maxlength="4" size="10" /><select name="suburb" id="suburb"><option value=""><?php echo $user->suburb_name ?></option></select></td>
                             </tr>
+                            <tr><td>County/State:</td><td><input class="left" name="county" id="county" type="text" placeholder="<?php echo $user->county ?>" maxlength="200" size="50"/></td></tr>
 							<tr><td>Contact number:</td><td><input class="left" name="telephone" id="telephone" type="tel" placeholder="<?php echo $user->contact_number ?>" maxlength="10" size="20"/></td></tr>
 							<tr><td>Current password:</td><td><input class="left" name="password" id="password" type="password" placeholder="enter current password to make changes" maxlength="50" size="50"/></td></tr>
 							<tr><td></td></tr>

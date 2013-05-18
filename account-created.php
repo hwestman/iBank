@@ -20,11 +20,19 @@
 	$fullname = $_POST['fName'];
 	$address = $_POST['address'];
 	$county = $_POST['county'];
-	$suburbID = 4;
+	$suburbID = $_POST['suburb'];
 	$contactNumber = $_POST['telephone'];
 	$password = $_POST['password'];
 	
-	$userInfo = $datastore->createAccountAndUser($accountType, $fullname, $address, $county, $suburbID, $contactNumber, $password, $staffID);
+	if($_POST['existing']){
+		$loginID = $_POST['existing'];
+		
+		$userInfo = $datastore->createAccount($staffID, $loginID, $accountType);
+	}
+	else{
+		$userInfo = $datastore->createAccountAndUser($accountType, $fullname, $address, $county, $suburbID, $contactNumber, $password, $staffID);
+	}
+	
     
 	    $_SESSION['newAccount'][0] = $userInfo[0];
 	    $_SESSION['newAccount'][1] = $password;

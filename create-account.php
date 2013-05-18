@@ -17,13 +17,18 @@
         <script type="text/javascript">
 			function validateForm()
 			{
+				var existing=document.forms["newUser"]["existing"].value;
 				var account=document.forms["newUser"]["accountType"].value;
 				var fname=document.forms["newUser"]["fName"].value;
 				var address=document.forms["newUser"]["address"].value;
 				var suburb=document.forms["newUser"]["suburb"].value;
 				var county=document.forms["newUser"]["county"].value;
 				var password=document.forms["newUser"]["password"].value;
-
+				
+				if(existing)
+				{
+					return true;
+				}
 				if (account==null || account=="")
 				{
 					alert("A type of account must be chosen");
@@ -88,6 +93,7 @@
 							<option name="Cheque" value="3">Cheque</option>
 							<option name="Loan" value="4">Loan</option>
 						</select>
+						<tr><td>Existing users login number:</td><td><input class="left" name="existing" id="existing" type="text" placeholder="Leave blank if a new user" maxlength="50" size="50"/></td></tr>
 						<tr><td>Full name:</td><td><input class="left" name="fName" id="fName" type="text" placeholder="Full name" maxlength="50" size="50"/></td></tr>
 						<tr><td>Address:</td><td><input class="left" name="address" id="address" type="text" placeholder="Street address" maxlength="200" size="50"/></td></tr>
 						<tr>
