@@ -386,7 +386,7 @@ class DataStore{
 
         $stmt = \oci_parse($this->connection->getConnection(), $query);
 
-        $file = file_get_contents('./resources/suburbs.txt', true);
+        $file = file_get_contents('./resources/suburbs_shuffled.txt', true);
 
         $data = explode("\n", $file);
         array_shift($data);
