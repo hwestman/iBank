@@ -292,6 +292,7 @@ CREATE OR REPLACE PROCEDURE updateUser(
 	login_id_ IN NUMBER,
     full_name_ IN VARCHAR2,
 	suburb_id_ IN NUMBER,
+	county_ IN VARCHAR2,
     contact_number_ IN NUMBER,
     pword_ IN VARCHAR2,
 	street_address_ IN VARCHAR2)
@@ -305,7 +306,8 @@ BEGIN
 
     UPDATE ibankAddress 
         SET suburb_id = suburb_id_,
-            street_address = street_address_
+            street_address = street_address_,
+            county = county_
         WHERE address_id = address_id_;
         
     UPDATE ibankUser

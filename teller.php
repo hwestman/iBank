@@ -4,6 +4,8 @@
 	include "db_layer/DataStore.php";
      session_start();
      
+     $user = $datastore->getUser($_SESSION['login']['id']);
+     
      if(isset($_POST['Next']))
     {
     	$_SESSION['transfer'];
@@ -68,6 +70,15 @@
 			</div><!--CLOSE CONTENT MAIN-->
 			<div id="content-right">
 				The funds will be available in the persons bank account instantly.
+				<br/>
+				<table>
+					<th width="40%">Your details</th><th width="70%"><?php echo $user->login_id;?></th>
+					<tr bgcolor="#DDD"><td>Full name:</td><td><?php echo $user->full_name;?></td></tr>
+					<tr bgcolor="#CCC"><td>Address:</td><td><?php echo $user->street_address;?></td></tr>
+					<tr bgcolor="#DDD"><td>Suburb:</td><td><?php echo $user->suburb_name." ".$userInfo->post_code;?></td></tr>
+					<tr bgcolor="#CCC"><td>State:</td><td><?php echo $user->county;?></td></tr>
+					<tr bgcolor="#DDD"><td>Contact:</td><td><?php echo $user->contact_number;?></td></tr>				
+				</table>
 			</div><!--CLOSE CONTENT RIGHT-->
 		</div><!-- CLOSE CONTENT -->
 		<?php include "include/footer.php"; ?>
