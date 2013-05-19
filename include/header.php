@@ -29,23 +29,27 @@ $accounts = $datastore->getMiAccounts();
 	else if($_SESSION['login']['priv'] == 2)
 	{?>
 	<div id='cssmenu'>
+		<div class="teller">
 		<ul>
 			<li class="active"><a href="teller.php"><span>Teller</span></a></li>
 		   <li><a href="create-account.php"><span>New account</span></a></li>
 		   <li class='last'><a href='log-out.php'><span>Log out</span></a></li>
 		</ul>
+		</div><!--CLOSE TELLER -->
 	</div><!--CLOSE CSSMENU-->
 	<?php
 	}
 	else if($_SESSION['login']['priv'] == 3)
 	{?>
 	<div id='cssmenu'>
+		<div class="manager">
 		<ul>
 			<li class="active"><a href="manager.php"><span>Manager</span></a></li>
 			<li><a href="schedule/accumulate-interest.php"><span>Accumulate interest</span></a></li>
 			<li><a href="schedule/payout-interest.php"><span>Payout interest</span></a></li>
 		   <li class='last'><a href='log-out.php'><span>Log out</span></a></li>
 		</ul>
+		</div><!-- CLOSE MANAGER -->
 	</div><!--CLOSE CSSMENU-->
 	<?php
 	}

@@ -16,6 +16,13 @@
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0, .4);
 }
 
+#cssmenu .manager ul {
+	background: #8c6b24 url(images/overlay.png) repeat-x 0 -110px; 
+}
+#cssmenu .teller ul {
+	background: #248c30 url(images/overlay.png) repeat-x 0 -110px; 
+}
+
 #cssmenu li {
 	margin: 0 5px; 
 	padding: 0 0 8px; 
