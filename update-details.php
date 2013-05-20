@@ -61,11 +61,11 @@
 						<table>
 							<tr><td>Full name:</td><td><input class="left" name="fName" id="fName" type="text" placeholder="<?php echo $user->full_name ?>" maxlength="50" size="50"/></td></tr>
 							<tr><td>Address:</td><td><input class="left" name="address" id="address" type="text" placeholder="<?php echo $user->street_address ?>" maxlength="200" size="50"/></td></tr>
+                            
                             <tr>
-                                <td>
-                                    Postcode:</td>
-                                <td> 
-                                    <input class="left" name="postcode" id="postcode" type="tel" placeholder="<?php echo $user->postcode ?>"  maxlength="4" size="10" /><select name="suburb" id="suburb"><option value=""><?php echo $user->suburb_name ?></option></select></td>
+                                <td>Suburb</td>
+                                <td><input class="left" name="suburb" id="suburb2" type="tel" placeholder="<?php echo $user->suburb_name ?>"   /><input class="left" name="postcode" id="postcode2" type="tel" readonly="readonly" placeholder="<?php echo $user->postcode ?>"  maxlength="4" size="10" /><input name="suburb" id="suburb_id" hidden="hidden"/> </td>
+                                
                             </tr>
                             <tr><td>County/State:</td><td><input class="left" name="county" id="county" type="text" placeholder="<?php echo $user->county ?>" maxlength="200" size="50"/></td></tr>
 							<tr><td>Contact number:</td><td><input class="left" name="telephone" id="telephone" type="tel" placeholder="<?php echo $user->contact_number ?>" maxlength="10" size="20"/></td></tr>

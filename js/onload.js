@@ -127,6 +127,40 @@ function getSuburbs(postcode){
     });
     return suburbs;
 }
+function fillPostcode(postcode){
+    if(postcode && postcode.length>0){
+        var sel = $("#postcode2");
+        sel.val(postcode[0]);
+        $("#suburb_id").val(postcode[1]);
+        
+   }else{
+       $("#suburb2").val("");
+       $("#postcode2").val("");
+   }
+   
+}
+function getPostcode(suburb){
+   var suburbs;
+    $.ajax({
+       dataType: 'html',
+       type:'POST',
+       data:{suburb:suburb,json:true,action:'getPostcode'},
+       url: '/iBank/ajaxRequest.php',
+       success: function(response){
+           
+           postcode = jQuery.parseJSON(response);
+            fillPostcode(postcode);
+       },
+       error: function(ex){
+        
+            console.log(ex);
+       },
+       complete: function(){
+       }
+    });
+   
+}
+
 function fillSuburbs(suburbs){
    if(suburbs.length>0){
         var sel = $("#suburb");
@@ -156,6 +190,22 @@ function initialize(){
         
        
    });
+   
+   
+   var suburb2 = $("#suburb2");
+   suburb2.focusout(function() {
+        console.log($(this).val());
+        if($(this).val().length != 0){
+            getPostcode($(this).val());
+        }else{
+            postcode.val("");
+            $("#suburb").html("");
+        }
+        
+       
+   });
+   
+   
    $("#newPassword").keyup(function() {
         validatePassword($(this));
     });

@@ -655,6 +655,32 @@ class DataStore{
         
         return $suburbs;
     }
+    
+    public function getPostcode($suburb){
+        $postcode = null;
+        $suburb = strtoupper($suburb);
+        $query = "select * from ibank_dba.ibankSuburb
+                    WHERE suburb_name = '$suburb'";
+	    
+	    $stmt = \oci_parse($this->connection->getConnection(), $query);
+	    $res = \oci_execute($stmt);
+	    
+	    
+	    if($res){
+            while ($row = oci_fetch_assoc($stmt)) {
+                $postcode = array($row['POSTCODE'],$row['SUBURB_ID']);
+            }
+
+        }else{
+            
+            $e = oci_error($stmt);   // For oci_connect errors do not pass a handle
+        }
+        oci_commit($stmt);
+        oci_free_statement($stmt);
+        
+        return $postcode;
+    }
+    
     public function getInterest($accountType){
         
         $query = "SELECT interest_rate from ibank_dba.ibankAccountType

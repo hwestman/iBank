@@ -11,6 +11,12 @@ switch ($_POST['action']) {
         $ret = $datastore->getSuburbs($postCode);
         
     break;
+    case 'getPostcode':
+        $suburb=$_POST['suburb'];
+        $ret = $datastore->getPostcode($suburb);
+        
+    break;
+    
                 
 }
 
