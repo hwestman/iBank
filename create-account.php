@@ -21,7 +21,7 @@
 				var account=document.forms["newUser"]["accountType"].value;
 				var fname=document.forms["newUser"]["fName"].value;
 				var address=document.forms["newUser"]["address"].value;
-				var suburb=document.forms["newUser"]["suburb"].value;
+				var suburb=document.forms["newUser"]["suburb2"].value;
 				var county=document.forms["newUser"]["county"].value;
 				var password=document.forms["newUser"]["password"].value;
 				
@@ -44,7 +44,7 @@
 					alert("Address must be filled out");
 					return false;
 				}
-				else if (suburb==null || suburb=="")
+				else if (suburb2==null || suburb2=="")
 				{
 					alert("Suburb and post code must be selected");
 					return false;
