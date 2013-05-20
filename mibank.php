@@ -43,7 +43,6 @@
                         <?php } ?>
                         
                     <?php } ?>
-                        <tr style="color:white; font-size:1.2em; font-weight:bold"><td></td><td>Total:</td><td>$<?php echo $total?></td></tr>
                         
                 </table>
 			</div><!--CLOSE CONTENT MAIN-->
