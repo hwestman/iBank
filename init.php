@@ -19,7 +19,7 @@ function shuffles(){
     
     
     foreach($data as $suburb){
-        file_put_contents('./resources/suburbs_shuffled.txt', $suburb,FILE_APPEND); 
+        file_put_contents('./resources/suburbs_shuffled.txt', $suburb.="\n",FILE_APPEND); 
     }
     
 }

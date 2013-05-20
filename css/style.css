@@ -243,6 +243,10 @@ body {
 	padding: 5px;
 	text-align: right;
 }
+.error{
+    font-size: 0.9 em;
+    color: red;
+}
 
 /*///////////////////// RIGHT CONTENT //////////////////////////*/
 

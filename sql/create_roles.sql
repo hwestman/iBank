@@ -8,7 +8,7 @@ SELECT * FROM USER_SYS_PRIVS;
 
 need to kick out a user?
 select sid,username,serial# from v$session
-alter system kill session '<sid>,<serial#>'
+alter system kill session '70,37489#'; '<sid>,<serial#>'
 
 
 THE IBANKDBA USER(below) NEEDS TO BE CREATED BEFORE RUNNING STRUCTURE.SQL, WHICH

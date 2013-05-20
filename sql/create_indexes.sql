@@ -21,6 +21,8 @@ within different time-periods
 */
 create index transaction_date_index on ibankTransaction(date_of_transaction);
 
+create index postcode_index on ibankSuburb(postcode);
+
 /*
 This is pretty much sorted on initial insert because of the file, but is nessecary
 because of the "select suburbs where postcode = ?", When we select all suburbs on a specific postcode,
